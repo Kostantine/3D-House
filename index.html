@@ -1,122 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D House</title>
-  <meta name="description" content="3D House creates custom 3D prints, unique models, decorations, and personalized designs.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D House</title>
+    <!-- Google Fonts Exo 2 -->
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        /* Homepage Styles */
+        .home {
+            background: url('https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .tagline {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+        }
+
+        .shop-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(0, 128, 0, 0.85);
+            color: white;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .shop-button:hover {
+            background-color: rgba(0, 150, 0, 0.95);
+        }
+
+        .shop-button img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        /* Shop Page Styles */
+        .shop-page {
+            padding: 50px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            background-color: #f5f5f5;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-title {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Link Reset for Shop Button Navigation */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to 3D House</h1>
-  <p>We make awesome 3D printed creations.</p>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D House Project</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
-      color: #333;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 30px 0;
-    }
-    h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-    h2 {
-      color: #2c3e50;
-      margin-top: 40px;
-    }
-    p {
-      font-size: 18px;
-      max-width: 600px;
-      margin: 10px auto 30px auto;
-    }
-    img {
-      max-width: 300px;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-    }
-    /* New button styles */
-    .order-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #4267B2; /* Facebook blue */
-      color: white;
-      padding: 12px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      margin: 40px 0;
-      transition: background-color 0.3s;
-    }
-    .order-button:hover {
-      background-color: #365899;
-    }
-    footer {
-      margin-top: 50px;
-      padding: 20px 0;
-      background-color: #2c3e50;
-      color: white;
-    }
-    a {
-      color: #3498db;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
 
-  <header>
-    <h1>3D House Project</h1>
-  </header>
+    <!-- Homepage -->
+    <div class="home" id="home">
+        <div class="logo">3D House</div>
+        <div class="tagline">Where your prints come to life!</div>
+        <a href="#shop" class="shop-button">
+            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Shop Logo">
+            Shop
+        </a>
+    </div>
 
-  <main>
-    <section>
-      <h2>About the Project</h2>
-      <p>This is a 3D House model designed for visualization and web display. Explore the rooms and layout below.</p>
-    </section>
-
-    <section>
-      <h2>Gallery</h2>
-      <img src="https://via.placeholder.com/300x200?text=Front+View" alt="3D House Front View">
-      <img src="https://via.placeholder.com/300x200?text=Living+Room" alt="Living Room">
-      <img src="https://via.placeholder.com/300x200?text=Kitchen" alt="Kitchen">
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>Have questions or feedback? Reach me at: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-    </section>
-
-    <!-- New Order Button -->
-    <a href="https://www.facebook.com/yourpage" class="order-button" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
-           alt="Facebook" width="20" height="20">
-      Order your 3D print here
-    </a>
-
-  </main>
-
-  <footer>
-    <p>&copy; 2026 3D House Project</p>
-  </footer>
+    <!-- Shop Page -->
+    <div class="shop-page" id="shop">
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&fit=crop&w=400&q=80" alt="Product 1">
+            <div class="product-title">Project One</div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1581092580497-0e1c6b5f5424?auto=format&fit=crop&w=400&q=80" alt="Product 2">
+            <div class="product-title">Project Two</div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=400&q=80" alt="Product 3">
+            <div class="product-title">Project Three</div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&fit=crop&w=400&q=80" alt="Product 4">
+            <div class="product-title">Project Four</div>
+        </div>
+    </div>
 
 </body>
 </html>
