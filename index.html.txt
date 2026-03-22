@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D House</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
+    color: white;
+    text-align: center;
+}
+
+.header {
+    margin-top: 30px;
+}
+
+.examples {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.examples img {
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.product img {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.big-text {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.messenger {
+    background: #0084ff;
+}
+
+.facebook {
+    background: #1877f2;
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+    <h1>3D HOUSE</h1>
+    <p>Where YOUR prints come to life!</p>
+</div>
+
+<h3>Examples of what we print!</h3>
+
+<div class="examples">
+    <img src="dog.jpg">
+    <img src="cat.jpg">
+    <img src="snail.jpg">
+    <img src="seal.jpg">
+    <img src="axolotl.jpg">
+</div>
+
+<h2 class="section-title">Animals</h2>
+
+<div class="products">
+    <div class="product">
+        <img src="stand.jpg">
+        <p>Headphone Stands</p>
+    </div>
+
+    <div class="product">
+        <img src="shelf.jpg">
+        <p>Mini Shelves</p>
+    </div>
+
+    <div class="product">
+        <img src="oreo.jpg">
+        <p>Magnet Fidgets</p>
+    </div>
+</div>
+
+<div class="big-text">And More!</div>
+
+<h3>CREATE YOUR 3D PRINT HERE!</h3>
+<p>Contact us here!<br>And get your prints!</p>
+
+<a href="#" class="btn messenger">Messenger</a>
+<a href="#" class="btn facebook">Facebook</a>
+
+</body>
+</html>
