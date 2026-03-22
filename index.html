@@ -20,7 +20,7 @@
 
         /* Homepage Styles */
         .home {
-            background: url('https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            position: relative;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -28,6 +28,19 @@
             align-items: center;
             color: white;
             text-align: center;
+            overflow: hidden;
+        }
+
+        /* Darkened video background */
+        .home video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(40%);
+            z-index: -1;
         }
 
         .logo {
@@ -43,19 +56,22 @@
             text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
         }
 
-        .shop-button {
+        .button {
             display: inline-flex;
             align-items: center;
-            background-color: rgba(0, 128, 0, 0.85);
-            color: white;
             padding: 12px 20px;
             font-size: 18px;
             font-weight: 600;
-            border: none;
             border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
             transition: 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .shop-button {
+            background-color: rgba(0, 128, 0, 0.85);
+            color: white;
         }
 
         .shop-button:hover {
@@ -66,6 +82,21 @@
             width: 24px;
             height: 24px;
             margin-right: 10px;
+        }
+
+        .contact-button {
+            background-color: rgba(59, 89, 152, 0.9);
+            color: white;
+        }
+
+        .contact-button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        .contact-button:hover {
+            background-color: rgba(59, 89, 152, 1);
         }
 
         /* Shop Page Styles */
@@ -103,7 +134,6 @@
             color: #333;
         }
 
-        /* Link Reset for Shop Button Navigation */
         a {
             text-decoration: none;
             color: inherit;
@@ -114,11 +144,21 @@
 
     <!-- Homepage -->
     <div class="home" id="home">
+        <video autoplay muted loop>
+            <source src="https://cdn.videvo.net/videvo_files/video/free/2021-09/large_watermarked/3d_printer_preview_1080p_1302_preview.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="logo">3D House</div>
         <div class="tagline">Where your prints come to life!</div>
-        <a href="#shop" class="shop-button">
-            <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Shop Logo">
+        <!-- Shop button -->
+        <a href="https://your-shop-link.com" class="button shop-button" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Shopping Cart Icon">
             Shop
+        </a>
+        <!-- Facebook Contact button -->
+        <a href="https://facebook.com/yourpage" class="button contact-button" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook Logo">
+            Contact
         </a>
     </div>
 
@@ -127,18 +167,6 @@
         <div class="product-card">
             <img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&fit=crop&w=400&q=80" alt="Product 1">
             <div class="product-title">Project One</div>
-        </div>
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1581092580497-0e1c6b5f5424?auto=format&fit=crop&w=400&q=80" alt="Product 2">
-            <div class="product-title">Project Two</div>
-        </div>
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=400&q=80" alt="Product 3">
-            <div class="product-title">Project Three</div>
-        </div>
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&fit=crop&w=400&q=80" alt="Product 4">
-            <div class="product-title">Project Four</div>
         </div>
     </div>
 
