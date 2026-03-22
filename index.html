@@ -1,160 +1,148 @@
-<body>
-  <div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D House</title>
 
-    <!-- Logo + tagline -->
-    <div class="hero">
-      <img src="logo.png" class="logo" />
-      <p class="tagline">Where YOUR prints come to life!</p>
-    </div>
-
-    <!-- Section title -->
-    <h2>Examples of what we print!</h2>
-
-    <!-- Top image row -->
-    <div class="image-row">
-      <img src="img1.jpg" />
-      <img src="img2.jpg" />
-      <img src="img3.jpg" />
-      <img src="img4.jpg" />
-      <img src="img5.jpg" />
-    </div>
-
-    <!-- Animals section -->
-    <h2>Animals</h2>
-
-    <div class="card-row">
-      <div class="card">
-        <img src="stand.jpg" />
-        <p>Headphone Stands</p>
-      </div>
-
-      <div class="card">
-        <img src="shelf.jpg" />
-        <p>Mini Shelf’s</p>
-      </div>
-
-      <div class="card">
-        <img src="fidget.jpg" />
-        <p>Magnet Fidgets</p>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <h1 class="cta">And More!</h1>
-
-    <h2>CREATE YOUR 3D PRINT HERE!</h2>
-    <p>Contact us here!<br>And get your print!</p>
-
-    <!-- Buttons -->
-    <div class="buttons">
-      <a href="#" class="btn messenger">Messenger</a>
-      <a href="#" class="btn facebook">Facebook</a>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <p>your@email.com</p>
-      <p>your@email.com</p>
-    </footer>
-
-  </div>
-</body>
+<style>
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #3a3a3a, #000);
-  color: white;
-  text-align: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
+    color: white;
+    text-align: center;
 }
 
-.container {
-  padding: 20px;
+/* Header */
+.header {
+    margin-top: 30px;
 }
 
-/* Logo */
-.logo {
-  width: 140px;
-  border-radius: 50%;
+.header h1 {
+    margin: 5px;
 }
 
-.tagline {
-  font-weight: bold;
-  margin-top: 10px;
+.header p {
+    margin: 5px;
 }
 
-/* Section titles */
-h2 {
-  margin-top: 40px;
+/* Example images row */
+.examples {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px;
 }
 
-/* Top image row */
-.image-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-  flex-wrap: wrap;
+.examples img {
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    object-fit: cover;
 }
 
-.image-row img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 30px;
+/* Section title */
+.section-title {
+    font-size: 28px;
+    margin-top: 20px;
 }
 
-/* Cards */
-.card-row {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
-  flex-wrap: wrap;
+/* Products */
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
-.card img {
-  width: 140px;
-  height: 140px;
-  border-radius: 30px;
+.product img {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    object-fit: cover;
 }
 
-.card p {
-  margin-top: 10px;
-  font-weight: bold;
+.product p {
+    margin-top: 10px;
 }
 
-/* CTA */
-.cta {
-  font-size: 40px;
-  margin-top: 30px;
+/* Big text */
+.big-text {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 20px 0;
 }
 
 /* Buttons */
-.buttons {
-  margin-top: 20px;
-}
-
 .btn {
-  display: inline-block;
-  padding: 12px 25px;
-  margin: 10px;
-  border-radius: 25px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .messenger {
-  background: #4c8bf5;
+    background: #0084ff;
 }
 
 .facebook {
-  background: #1877f2;
+    background: #1877f2;
 }
+</style>
 
-/* Footer */
-footer {
-  margin-top: 40px;
-  font-size: 12px;
-  opacity: 0.8;
-}
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <h1>3D HOUSE</h1>
+    <p>Where YOUR prints come to life!</p>
+</div>
+
+<h3>Examples of what we print!</h3>
+
+<!-- Small Images -->
+<div class="examples">
+    <img src="dog.jpg">
+    <img src="cat.jpg">
+    <img src="snail.jpg">
+    <img src="seal.jpg">
+    <img src="axolotl.jpg">
+</div>
+
+<h2 class="section-title">Animals</h2>
+
+<!-- Products -->
+<div class="products">
+    <div class="product">
+        <img src="stand.jpg">
+        <p>Headphone Stands</p>
+    </div>
+
+    <div class="product">
+        <img src="shelf.jpg">
+        <p>Mini Shelves</p>
+    </div>
+
+    <div class="product">
+        <img src="oreo.jpg">
+        <p>Magnet Fidgets</p>
+    </div>
+</div>
+
+<div class="big-text">And More!</div>
+
+<h3>CREATE YOUR 3D PRINT HERE!</h3>
+<p>Contact us here!<br>And get your prints!</p>
+
+<a href="#" class="btn messenger">Messenger</a>
+<a href="#" class="btn facebook">Facebook</a>
+
+</body>
+</html>
