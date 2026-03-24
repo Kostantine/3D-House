@@ -82,6 +82,21 @@ body {
 .facebook {
     background: #1877f2;
 }
+
+.footer {
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+.footer a {
+    color: #00ffff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
 </style>
 
 </head>
@@ -127,8 +142,16 @@ body {
 <h3>CREATE YOUR 3D PRINT HERE!</h3>
 <p>Contact us here!<br>And get your prints!</p>
 
-<a href="https://m.me/Konstantine Zedginidze" class="btn messenger" target="_blank">Messenger</a>
-<a href="https://www.facebook.com/3D- ouseE" class="btn facebook" target="_blank">Facebook</a>
+<!-- Replace with your real Facebook page and Messenger links -->
+<a href="https://m.me/KonstantineZedginidze" class="btn messenger" target="_blank">Messenger</a>
+<a href="https://www.facebook.com/3D-HouseE" class="btn facebook" target="_blank">Facebook</a>
+
+<!-- FOOTER WITH EMAILS -->
+<div class="footer">
+    <p>Or email us at:</p>
+    <a href="mailto:konstantinezedgina@gmail.com">konstantinezedgina@gmail.com</a>
+    <a href="mailto:demezedginidze@gmail.com">demezedginidze@gmail.com</a>
+</div>
 
 </body>
 </html>
