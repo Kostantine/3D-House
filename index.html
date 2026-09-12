@@ -9,32 +9,39 @@
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
-body {
+html, body {
     margin: 0;
+    padding: 0;
+    background-color: #03030c; /* Force a deep space black canvas fallback baseline */
+    min-height: 100vh;
+}
+
+body {
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    background: #000;
     color: white;
     text-align: center;
     position: relative;
     overflow-x: hidden;
+    overflow-y: auto; /* Fixes the cut-off by allowing the page to scroll naturally */
 }
 
-/* Moving Space Background Canvas Layer */
+/* High Visibility Animated Warp Canvas Layer */
 #spaceCanvas {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Pull canvas layer forward slightly to guarantee it renders */
+    pointer-events: none; /* Allows cursor to pass directly through to text links smoothly */
 }
 
-/* Content wrapper sitting safely over the stars */
+/* Content wrapper sitting safely over the space elements */
 .content-wrapper {
     position: relative;
-    z-index: 1;
+    z-index: 10; /* Locked tightly on top of the space warp background simulation */
+    padding-bottom: 60px; /* Extra breathing room at the very bottom so nothing gets cut off */
 }
 
 /* Header */
@@ -185,7 +192,7 @@ h3 {
     font-weight: 600;
     font-family: 'Lexend', sans-serif;
     position: relative;
-    z-index: 2;
+    z-index: 12;
     transition: transform 0.3s ease;
 }
 
@@ -215,7 +222,7 @@ h3 {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    z-index: 1;
+    z-index: 5;
     opacity: 0;
     pointer-events: none;
 }
@@ -371,13 +378,3 @@ h3 {
         <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
     </div>
     <div class="btn-container">
-        <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
-    </div>
-
-    <!-- Updated Email Section - Grouped to animate label and link together -->
-    <div class="gmail-group-container space-down">
-        <span class="gmail-label">Gmail:</span>
-        <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
-    </div>
-
-    <div class="gmail-group-container">
