@@ -13,9 +13,28 @@ body {
     margin: 0;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    background: linear-gradient(to bottom, #2c2c2c, #000);
+    background: #000;
     color: white;
     text-align: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Moving Space Background Canvas Layer */
+#spaceCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Content wrapper sitting safely over the stars */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
 }
 
 /* Header */
@@ -268,6 +287,7 @@ h3 {
     max-width: 500px;
     margin-left:auto;
     margin-right:auto;
+    backdrop-filter: blur(4px); /* Clean frosted glass effect over space warp */
 }
 
 .feedback-section h3 {
@@ -300,76 +320,64 @@ h3 {
 </head>
 <body>
 
-<!-- Header -->
-<div class="header">
-    <h1>3D HOUSE</h1>
-    <p>Where YOUR prints come to life!</p>
-</div>
+<!-- High-Performance Animated Warp Canvas -->
+<canvas id="spaceCanvas"></canvas>
 
-<h3>Examples of what we print!</h3>
+<div class="content-wrapper">
 
-<!-- Small Images -->
-<div class="examples">
-    <img src="dog.jpg">
-    <img src="cat.jpg">
-    <img src="snail.jpg">
-    <img src="seal.jpg">
-    <img src="axolotl.jpg">
-</div>
-
-<h2 class="section-title">Animals</h2>
-
-<!-- Products -->
-<div class="products">
-    <div class="product">
-        <img src="stand.jpg">
-        <p>Headphone Stands</p>
+    <!-- Header -->
+    <div class="header">
+        <h1>3D HOUSE</h1>
+        <p>Where YOUR prints come to life!</p>
     </div>
 
-    <div class="product">
-        <img src="shelf.jpg">
-        <p>Mini Shelves</p>
+    <h3>Examples of what we print!</h3>
+
+    <!-- Small Images -->
+    <div class="examples">
+        <img src="dog.jpg">
+        <img src="cat.jpg">
+        <img src="snail.jpg">
+        <img src="seal.jpg">
+        <img src="axolotl.jpg">
     </div>
 
-    <div class="product">
-        <img src="oreo.jpg">
-        <p>Magnet Fidgets</p>
+    <h2 class="section-title">Animals</h2>
+
+    <!-- Products -->
+    <div class="products">
+        <div class="product">
+            <img src="stand.jpg">
+            <p>Headphone Stands</p>
+        </div>
+
+        <div class="product">
+            <img src="shelf.jpg">
+            <p>Mini Shelves</p>
+        </div>
+
+        <div class="product">
+            <img src="oreo.jpg">
+            <p>Magnet Fidgets</p>
+        </div>
     </div>
-</div>
 
-<div class="big-text">And More!</div>
+    <div class="big-text">And More!</div>
 
-<h3>CREATE YOUR 3D PRINT HERE!</h3>
-<p>Contact us here!<br>And get your prints!</p>
+    <h3>CREATE YOUR 3D PRINT HERE!</h3>
+    <p>Contact us here!<br>And get your prints!</p>
 
-<div class="btn-container">
-    <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
-</div>
-<div class="btn-container">
-    <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
-</div>
+    <div class="btn-container">
+        <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
+    </div>
+    <div class="btn-container">
+        <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
+    </div>
 
-<!-- Updated Email Section - Grouped to animate label and link together -->
-<div class="gmail-group-container space-down">
-    <span class="gmail-label">Gmail:</span>
-    <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
-</div>
+    <!-- Updated Email Section - Grouped to animate label and link together -->
+    <div class="gmail-group-container space-down">
+        <span class="gmail-label">Gmail:</span>
+        <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
+    </div>
 
-<div class="gmail-group-container">
-    <span class="gmail-label">Gmail:</span>
-    <a href="https://google.com" target="_blank">demezedginidze@gmail.com</a>
-</div>
-
-<!-- Feedback Section -->
-<div class="feedback-section">
-    <h3>Feedback</h3>
-    
-    <!-- Form using Formspree -->
-    <form action="https://formspree.io" method="POST">
-        <input type="text" name="message" placeholder="Type your feedback here..." required>
-        <button type="submit">Send</button>
-    </form>
-</div>
-
-</body>
-</html>
+    <div class="gmail-group-container">
