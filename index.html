@@ -3,45 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D House</title>
+<title>3D House Store</title>
 
 <!-- Include Lexend font -->
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #03030c; /* Deep space black baseline fallback */
-    min-height: 100vh;
-}
-
 body {
+    margin: 0;
+    padding: 0 0 60px 0;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
+    background-color: #03030c;
     color: white;
     text-align: center;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto; /* Fixes page cut-off by allowing natural scrolling */
-}
-
-/* High Visibility Animated Warp Canvas Layer */
-#spaceCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1; 
-    pointer-events: none; /* Allows cursor to click links underneath smoothly */
-}
-
-/* Content wrapper sitting safely over the space elements */
-.content-wrapper {
-    position: relative;
-    z-index: 10; /* Locked tightly on top of background canvas */
-    padding-bottom: 60px; /* Extra breathing room at the bottom */
 }
 
 /* Header */
@@ -51,7 +26,7 @@ body {
 
 .header h1 {
     margin: 5px;
-    font-size: 85px; /* Bigger title */
+    font-size: 85px; 
     background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
     background-size: 400% 100%;
     -webkit-background-clip: text;
@@ -66,16 +41,14 @@ body {
 
 .header p {
     margin: 5px;
-    font-size: 22px; /* Subtitle slightly bigger */
+    font-size: 22px; 
 }
 
-/* Main headings on page */
 h3 {
-    font-size: 32px; /* Bigger h3 headings */
+    font-size: 32px; 
     font-weight: 600;
 }
 
-/* Example images row */
 .examples {
     display: flex;
     justify-content: center;
@@ -85,25 +58,22 @@ h3 {
 }
 
 .examples img {
-    width: 90px; /* bigger animal example images */
+    width: 90px; 
     height: 90px;
     border-radius: 15px;
     object-fit: cover;
-    transition: transform 0.3s ease; /* Makes scaling smooth */
+    transition: transform 0.3s ease;
 }
 
-/* Example images get bigger when hovered */
 .examples img:hover {
-    transform: scale(1.12); /* Enlarges image when pointed at */
+    transform: scale(1.12); 
 }
 
-/* Section title */
 .section-title {
-    font-size: 36px; /* Slightly bigger section title */
+    font-size: 36px;
     margin-top: 20px;
 }
 
-/* Products */
 .products {
     display: flex;
     justify-content: center;
@@ -113,90 +83,47 @@ h3 {
 }
 
 .product img {
-    width: 150px; /* bigger product images */
+    width: 150px; 
     height: 150px;
     border-radius: 20px;
     object-fit: cover;
-    transition: transform 0.3s ease; /* Makes scaling smooth */
+    transition: transform 0.3s ease;
 }
 
-/* Main product images get bigger when hovered */
 .product img:hover {
-    transform: scale(1.08); /* Enlarges image when pointed at */
+    transform: scale(1.08); 
 }
 
 .product p {
     margin-top: 10px;
 }
 
-/* Big text */
 .big-text {
-    font-size: 40px; /* Bigger big text */
+    font-size: 40px;
     font-weight: 600;
     margin: 20px 0;
 }
 
-/* Buttons and Links Container Setup for Fireworks */
-.btn-container, .gmail-group-container {
+.btn-container {
     display: inline-block;
-    position: relative;
-    margin: 5px;
+    margin: 10px;
 }
 
-/* Unique wrapper to split the two Gmail elements and space them out vertically */
-.gmail-group-container {
-    display: block;
-    margin: 15px auto;
-    font-size: 22px;
-    width: fit-content;
-}
-
-/* Spacing out the first block down from the text above, and away from the block below */
-.space-down {
-    margin-top: 45px;
-    margin-bottom: 40px; /* Moves the second email down significantly */
-}
-
-/* Specific styling for the text inside the Gmail group */
-.gmail-group-container .gmail-label, 
-.gmail-group-container a {
-    display: inline-block;
-    vertical-align: middle;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 600;
-    transition: transform 0.3s ease;
-    text-decoration: none;
-    padding: 6px 5px;
-    
-    /* Smooth, slow rainbow animation for the text labels and the links */
-    background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow 14s linear infinite; /* Wonderfully slow color change */
-}
-
-/* Extra side spacing on link specifically */
-.gmail-group-container a {
-    padding-left: 10px;
-}
-
-/* Buttons styling */
 .btn {
     display: inline-block;
-    padding: 15px 25px; /* Slightly bigger buttons */
-    margin: 10px;
+    padding: 15px 25px; 
     border-radius: 25px;
     color: white;
     text-decoration: none;
     font-weight: 600;
     font-family: 'Lexend', sans-serif;
-    position: relative;
-    z-index: 12;
     transition: transform 0.3s ease;
 }
 
-/* Button colors */
+.btn:hover {
+    transform: scale(1.08);
+}
+
 .messenger {
     background: #0084ff;
 }
@@ -205,83 +132,28 @@ h3 {
     background: #1877f2;
 }
 
-/* General Hover Scale for Buttons and Entire Gmail Row Groups together */
-.btn-container:hover .btn,
-.gmail-group-container:hover .gmail-label,
-.gmail-group-container:hover a {
-    transform: scale(1.10); /* Zooms both text elements at the exact same time */
+/* Email Container section */
+.email-section {
+    margin-top: 50px;
+    margin-bottom: 40px;
 }
 
-/* Multi-Stage Fireworks setup using pseudo-elements */
-.btn-container::before, .btn-container::after,
-.gmail-group-container::before, .gmail-group-container::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    z-index: 5;
-    opacity: 0;
-    pointer-events: none;
+.gmail-row {
+    display: block;
+    margin: 25px auto;
+    font-size: 24px;
 }
 
-/* Firework Phase 1: High flying primary dots (Runs for exactly 3 seconds total) */
-.btn-container:hover::before, .gmail-group-container:hover::before {
-    animation: firework-stage-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1);
-    animation-iteration-count: 4; /* Exactly 3 seconds */
-}
-
-/* Firework Phase 2: Shattering mini secondary sparks bursting outward (Runs for exactly 3 seconds total) */
-.btn-container:hover::after, .gmail-group-container:hover::after {
-    animation: firework-stage-2 0.75s cubic-bezier(0.1, 0.6, 0.2, 1);
-    animation-delay: 0.15s;
-    animation-iteration-count: 4;
-}
-
-/* Stage 1 Animation: Spreads far out into the air as bright round dots */
-@keyframes firework-stage-1 {
-    0% {
-        box-shadow: 
-            0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff,
-            0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff;
-        opacity: 1;
-        transform: scale(1);
-    }
-    40% {
-        opacity: 1;
-    }
-    100% {
-        box-shadow: 
-            -150px -90px 4px #ff0055, 150px -90px 4px #00ffcc, -150px 90px 4px #ffcc00, 150px 90px 4px #9900ff,
-            -180px 0px 4px #ff5500, 180px 0px 4px #00ff00, 0px -180px 4px #0066ff, 0px 180px 4px #cc00ff;
-        opacity: 0;
-        transform: scale(1.6);
-    }
-}
-
-/* Stage 2 Animation: Explodes instantly into a multiplying wave of dense bright micro-sparks */
-@keyframes firework-stage-2 {
-    0% {
-        box-shadow: 
-            0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300,
-            0 0 #33ff00, 0 0 #0033ff, 0 0 #e60073, 0 0 #ff9900;
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        box-shadow: 
-            -110px -130px 2px #00ffff, 110px -130px 2px #ff00ff, -130px 110px 2px #ffff00, 130px 110px 2px #ff3300,
-            -130px -110px 2px #33ff00, 130px -110px 2px #0033ff, -110px 130px 2px #e60073, 110px 130px 2px #ff9900,
-            -125px -125px 2px #ff0055, 125px -125px 2px #00ffcc, -125px 125px 2px #ffcc00, 125px 125px 2px #9900ff,
-            -145px -60px 1px #ffff00, 145px 60px 1px #ff00ff, -60px 145px 1px #00ffff, 60px -145px 1px #ff3300;
-        opacity: 0;
-        transform: scale(2.3);
-    }
+.gmail-row span, .gmail-row a {
+    display: inline-block;
+    font-weight: 600;
+    text-decoration: none;
+    background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 14s linear infinite;
+    padding: 0 5px;
 }
 
 /* Feedback section */
@@ -294,7 +166,6 @@ h3 {
     max-width: 500px;
     margin-left:auto;
     margin-right:auto;
-    backdrop-filter: blur(4px); /* Clean frosted glass effect over space warp */
 }
 
 .feedback-section h3 {
@@ -323,62 +194,72 @@ h3 {
     cursor:pointer;
 }
 </style>
-
 </head>
 <body>
 
-<!-- High-Performance Animated Warp Canvas Layer -->
-<canvas id="spaceCanvas"></canvas>
+<div class="header">
+    <h1>3D HOUSE</h1>
+    <p>Where YOUR prints come to life!</p>
+</div>
 
-<div class="content-wrapper">
+<h3>Examples of what we print!</h3>
 
-    <!-- Header -->
-    <div class="header">
-        <h1>3D HOUSE</h1>
-        <p>Where YOUR prints come to life!</p>
+<div class="examples">
+    <img src="dog.jpg">
+    <img src="cat.jpg">
+    <img src="snail.jpg">
+    <img src="seal.jpg">
+    <img src="axolotl.jpg">
+</div>
+
+<h2 class="section-title">Animals</h2>
+
+<div class="products">
+    <div class="product">
+        <img src="stand.jpg">
+        <p>Headphone Stands</p>
     </div>
-
-    <h3>Examples of what we print!</h3>
-
-    <!-- Small Images -->
-    <div class="examples">
-        <img src="dog.jpg">
-        <img src="cat.jpg">
-        <img src="snail.jpg">
-        <img src="seal.jpg">
-        <img src="axolotl.jpg">
+    <div class="product">
+        <img src="shelf.jpg">
+        <p>Mini Shelves</p>
     </div>
-
-    <h2 class="section-title">Animals</h2>
-
-    <!-- Products -->
-    <div class="products">
-        <div class="product">
-            <img src="stand.jpg">
-            <p>Headphone Stands</p>
-        </div>
-
-        <div class="product">
-            <img src="shelf.jpg">
-            <p>Mini Shelves</p>
-        </div>
-
-        <div class="product">
-            <img src="oreo.jpg">
-            <p>Magnet Fidgets</p>
-        </div>
+    <div class="product">
+        <img src="oreo.jpg">
+        <p>Magnet Fidgets</p>
     </div>
+</div>
 
-    <div class="big-text">And More!</div>
+<div class="big-text">And More!</div>
 
-    <h3>CREATE YOUR 3D PRINT HERE!</h3>
-    <p>Contact us here!<br>And get your prints!</p>
+<h3>CREATE YOUR 3D PRINT HERE!</h3>
+<p>Contact us here!<br>And get your prints!</p>
 
-    <!-- Social Media Buttons -->
-    <div class="btn-container">
-        <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
+<div class="btn-container">
+    <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
+</div>
+<div class="btn-container">
+    <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
+</div>
+
+<!-- Clear Emails Layout Configuration Layer -->
+<div class="email-section">
+    <div class="gmail-row">
+        <span>Gmail:</span>
+        <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
     </div>
-    <div class="btn-container">
-        <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
+    <div class="gmail-row">
+        <span>Gmail:</span>
+        <a href="https://google.com" target="_blank">demezedginidze@gmail.com</a>
     </div>
+</div>
 
+<div class="feedback-section">
+    <h3>Feedback</h3>
+    <form action="https://formspree.io" method="POST">
+        <input type="text" name="message" placeholder="Type your feedback here..." required>
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+</body>
+</html>
