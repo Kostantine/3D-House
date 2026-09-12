@@ -6,7 +6,7 @@
 <title>3D House</title>
 
 <!-- Include Lexend font -->
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap" rel="stylesheet">
+<link href="https://googleapis.com" rel="stylesheet">
 
 <style>
 body {
@@ -25,7 +25,17 @@ body {
 
 .header h1 {
     margin: 5px;
-    font-size: 60px; /* Bigger title */
+    font-size: 85px; /* Bigger title */
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 8s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
 }
 
 .header p {
@@ -206,13 +216,13 @@ h3 {
 <h3>CREATE YOUR 3D PRINT HERE!</h3>
 <p>Contact us here!<br>And get your prints!</p>
 
-<a href="https://www.messenger.com/t/25751000994498733/" target="_blank" class="btn messenger">Messenger</a>
-<a href="https://www.facebook.com/profile.php?id=61582165801375" target="_blank" class="btn facebook">Facebook</a>
+<a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
+<a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
 
 <!-- Updated Email Section -->
 <p class="email">
-    Gmail: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=konstantinezedgina@gmail.com" target="_blank">konstantinezedgina@gmail.com</a><br>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=demezedginidze@gmail.com" target="_blank">demezedginidze@gmail.com</a>
+    Gmail: <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a><br>
+    <a href="https://google.com" target="_blank">demezedginidze@gmail.com</a>
 </p>
 
 <!-- Feedback Section -->
@@ -220,7 +230,7 @@ h3 {
     <h3>Feedback</h3>
     
     <!-- Form using Formspree -->
-    <form action="https://formspree.io/f/yourformid" method="POST">
+    <form action="https://formspree.io" method="POST">
         <input type="text" name="message" placeholder="Type your feedback here..." required>
         <button type="submit">Send</button>
     </form>
