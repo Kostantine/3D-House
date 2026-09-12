@@ -110,6 +110,12 @@ h3 {
     margin: 20px 0;
 }
 
+/* Buttons and Links Container Setup for Fireworks */
+.btn-container, .gmail-link-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
@@ -120,6 +126,9 @@ h3 {
     text-decoration: none;
     font-weight: 600;
     font-family: 'Lexend', sans-serif;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
 }
 
 /* Button colors */
@@ -142,6 +151,76 @@ h3 {
     text-decoration: none;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    margin: 4px 0;
+}
+
+/* General Hover Scale for Buttons and Gmails */
+.btn-container:hover .btn,
+.gmail-link-wrapper:hover a {
+    transform: scale(1.08);
+}
+
+/* Create the Firework Burst Effect using pseudo-elements */
+.btn-container::before, .btn-container::after,
+.gmail-link-wrapper::before, .gmail-link-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Firework layer 1 (Primary colors spark burst) */
+.btn-container:hover::before, .gmail-link-wrapper:hover::before {
+    animation: firework-burst-1 0.6s ease-out infinite;
+}
+
+/* Firework layer 2 (Secondary colors spark burst) */
+.btn-container:hover::after, .gmail-link-wrapper:hover::after {
+    animation: firework-burst-2 0.6s ease-out infinite;
+    animation-delay: 0.2s;
+}
+
+/* Firework Particle Vectors */
+@keyframes firework-burst-1 {
+    0% {
+        box-shadow: 
+            0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff,
+            0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff;
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 
+            -40px -40px #ff0055, 40px -40px #00ffcc, -40px 40px #ffcc00, 40px 40px #9900ff,
+            -60px 0px #ff5500, 60px 0px #00ff00, 0px -60px #0066ff, 0px 60px #cc00ff;
+        opacity: 0;
+        transform: scale(1.4);
+    }
+}
+
+@keyframes firework-burst-2 {
+    0% {
+        box-shadow: 
+            0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300,
+            0 0 #33ff00, 0 0 #0033ff, 0 0 #9900ff, 0 0 #ff0066;
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 
+            -25px -50px #00ffff, 25px -50px #ff00ff, -50px 25px #ffff00, 50px 25px #ff3300,
+            -50px -25px #33ff00, 50px -25px #0033ff, -25px 50px #9900ff, 25px 50px #ff0066;
+        opacity: 0;
+        transform: scale(1.2);
+    }
 }
 
 /* Feedback section */
@@ -228,13 +307,22 @@ h3 {
 <h3>CREATE YOUR 3D PRINT HERE!</h3>
 <p>Contact us here!<br>And get your prints!</p>
 
-<a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
-<a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
+<div class="btn-container">
+    <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
+</div>
+<div class="btn-container">
+    <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
+</div>
 
 <!-- Updated Email Section -->
 <p class="email">
-    Gmail: <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a><br>
-    <a href="https://google.com" target="_blank">demezedginidze@gmail.com</a>
+    Gmail: 
+    <span class="gmail-link-wrapper">
+        <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
+    </span><br>
+    <span class="gmail-link-wrapper">
+        <a href="https://google.com" target="_blank">demezedginidze@gmail.com</a>
+    </span>
 </p>
 
 <!-- Feedback Section -->
