@@ -9,52 +9,57 @@
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
+/* Reset base browser parameters safely */
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #03030c; /* Deep space dark backdrop */
+    width: 100%;
     min-height: 100vh;
+    background-color: #03030c; /* Deep space dark backdrop void */
 }
 
 body {
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
     color: white;
-    text-align: center;
     position: relative;
     overflow-x: hidden;
-    overflow-y: auto; /* Lets the page scroll naturally to prevent layout cut-off */
+    overflow-y: auto; /* Allows natural scrolling downwards */
 }
 
-/* HIGH VISIBILITY LAVA LAMP BACKGROUND LAYER */
+/* HIGH VISIBILITY BACKGROUND CANVAS: Forced to stretch 100% to prevent blank screens */
 #spaceCanvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1; /* Sits directly on top of the black background */
-    pointer-events: none; /* Allows cursor to click links underneath smoothly */
+    z-index: 1; /* Pushes shapes directly behind structural storefront code layout */
+    pointer-events: none; /* Crucial: Allows clicks to pass through to the buttons beneath */
+    display: block;
 }
 
-/* MAIN LAYOUT CONTAINER */
-.content-wrapper {
+/* TOTAL WEBPAGE CONTENT WRAPPER: Centers layout and prevents feedback container loss */
+.main-container {
     position: relative;
-    z-index: 10; /* Floating safely on top of the background canvas */
-    background: transparent !important;
-    padding-bottom: 60px; /* Extra room at the very bottom */
+    z-index: 10; /* Locked tightly on top of the moving lava bubbles */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 80px; /* Massive bottom cushion padding so feedback form never cuts off */
+    box-sizing: border-box;
     
-    /* Cinematic Entrance: Page lifts up from the bottom while fading in beautifully */
+    /* Cinematic Intro Entrance: Clean, centered slide up animation sequence */
     opacity: 0;
-    transform: translateY(60px);
-    animation: entranceRiseUp 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 0.1s; 
+    animation: layoutEntranceRise 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.15s;
 }
 
-@keyframes entranceRiseUp {
+/* Center-locked vertical slide rise mechanics */
+@keyframes layoutEntranceRise {
     0% {
         opacity: 0;
-        transform: translateY(60px);
+        transform: translateY(70px);
     }
     100% {
         opacity: 1;
@@ -62,19 +67,26 @@ body {
     }
 }
 
-/* Header */
+/* Header Section - Explicitly centered horizontally */
 .header {
-    margin-top: 30px;
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .header h1 {
-    margin: 5px;
-    font-size: 85px; /* Bigger title */
+    margin: 5px 0;
+    font-size: 85px; 
+    text-align: center;
     background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
     background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rainbow 8s linear infinite;
+    width: auto;
 }
 
 @keyframes rainbow {
@@ -83,21 +95,24 @@ body {
 }
 
 .header p {
-    margin: 5px;
+    margin: 10px 0;
     font-size: 22px; 
+    text-align: center;
 }
 
 h3 {
     font-size: 32px; 
     font-weight: 600;
+    margin-top: 40px;
 }
 
+/* Image showcase grids mapping */
 .examples {
     display: flex;
     justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 20px auto;
 }
 
 .examples img {
@@ -114,7 +129,7 @@ h3 {
 
 .section-title {
     font-size: 36px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .products {
@@ -144,10 +159,10 @@ h3 {
 .big-text {
     font-size: 40px;
     font-weight: 600;
-    margin: 20px 0;
+    margin: 35px 0;
 }
 
-/* Button and Gmail container layout wrapping */
+/* Button & Link layout block specifications */
 .btn-container, .gmail-group-container {
     display: inline-block;
     position: relative;
@@ -156,17 +171,17 @@ h3 {
 
 .gmail-group-container {
     display: block;
-    margin: 15px auto;
+    margin: 20px auto;
     font-size: 22px;
     width: fit-content;
 }
 
 .space-down {
-    margin-top: 45px;
-    margin-bottom: 40px; /* Spacing out the two Gmail slots vertically */
+    margin-top: 55px;
+    margin-bottom: 40px; /* Creates clean spacing down to the second block layout */
 }
 
-/* Buttons styling */
+/* Buttons formatting styling */
 .btn {
     display: inline-block;
     padding: 15px 25px; 
@@ -188,7 +203,7 @@ h3 {
     background: #1877f2;
 }
 
-/* Specific styling for the text inside the Gmail group */
+/* Gmail links customized specifications layout mapping */
 .gmail-group-container .gmail-label, 
 .gmail-group-container a {
     display: inline-block;
@@ -211,14 +226,14 @@ h3 {
     padding-left: 10px;
 }
 
-/* CUSTOM ZOOM ANIMATION */
+/* CUSTOM ZOOM ANIMATION: Activates on user cursor interactions */
 .btn-container:hover .btn,
 .gmail-group-container:hover .gmail-label,
 .gmail-group-container:hover a {
-    transform: scale(1.10); /* Smoothly zooms text and labels larger together */
+    transform: scale(1.10); /* Elements expand smoothly together */
 }
 
-/* ORIGINAL FIREWORKS METHOD: Popping particle stars explosion directly out from the nodes */
+/* ORIGINAL FIREWORKS METHOD: Explodes directly out from the elements core nodes */
 .btn-container::before, .btn-container::after,
 .gmail-group-container::before, .gmail-group-container::after {
     content: "";
@@ -269,53 +284,62 @@ h3 {
     }
 }
 
-/* Feedback section */
+/* Feedback card module mapping */
 .feedback-section {
-    margin-top: 50px;
-    padding: 20px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 15px;
+    margin-top: 60px;
+    padding: 25px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 20px;
     width: 90%;
     max-width: 500px;
-    margin-left:auto;
-    margin-right:auto;
-    backdrop-filter: blur(4px); /* Clean glass panel backing effect */
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px); /* Premium frosted pane effect */
+    box-sizing: border-box;
 }
 
 .feedback-section h3 {
+    margin-top: 0;
     margin-bottom: 15px;
     font-size: 28px;
 }
 
 .feedback-section input[type="text"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
     border: none;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
 }
 
 .feedback-section button {
-    padding: 12px 25px;
+    padding: 12px 30px;
     border-radius: 25px;
     border: none;
-    background:#0084ff;
-    color:white;
+    background: #0084ff;
+    color: white;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    cursor:pointer;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.feedback-section button:hover {
+    transform: scale(1.05);
 }
 </style>
 </head>
 <body>
 
-<!-- The moving lava lamp background canvas layer -->
+<!-- High-Performance Animated Liquid Background Canvas Layer -->
 <canvas id="spaceCanvas"></canvas>
 
-<!-- All structural layout items wrapped cleanly safely on top -->
-<div class="content-wrapper">
+<!-- Master Structure Container Layer Sitting Safely on Top -->
+<div class="main-container">
 
     <div class="header">
         <h1>3D HOUSE</h1>
@@ -358,17 +382,3 @@ h3 {
         <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
     </div>
     <div class="btn-container">
-        <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
-    </div>
-
-    <!-- Dual-Compatibility Mailer Configuration System -->
-    <div class="gmail-group-container space-down">
-        <span class="gmail-label">Gmail:</span>
-        <a href="https://google.com" onclick="location.href='mailto:konstantinezedgina@://gmail.com'; return false;" target="_blank">konstantinezedgina@gmail.com</a>
-    </div>
-
-    <div class="gmail-group-container">
-        <span class="gmail-label">Gmail:</span>
-        <a href="https://google.com" onclick="location.href='mailto:demezedginidze@://gmail.com'; return false;" target="_blank">demezedginidze@gmail.com</a>
-    </div>
-
