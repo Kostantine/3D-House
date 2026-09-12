@@ -63,6 +63,12 @@ h3 {
     height: 90px;
     border-radius: 15px;
     object-fit: cover;
+    transition: transform 0.3s ease; /* Makes the scaling smooth */
+}
+
+/* Example images get bigger when hovered */
+.examples img:hover {
+    transform: scale(1.12); /* Enlarges the image when pointed at */
 }
 
 /* Section title */
@@ -85,6 +91,12 @@ h3 {
     height: 150px;
     border-radius: 20px;
     object-fit: cover;
+    transition: transform 0.3s ease; /* Makes the scaling smooth */
+}
+
+/* Main product images get bigger when hovered */
+.product img:hover {
+    transform: scale(1.08); /* Enlarges the image when pointed at */
 }
 
 .product p {
