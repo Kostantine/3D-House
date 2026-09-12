@@ -114,6 +114,7 @@ h3 {
 .btn-container, .gmail-link-wrapper {
     display: inline-block;
     position: relative;
+    margin: 5px;
 }
 
 /* Buttons */
@@ -140,14 +141,16 @@ h3 {
     background: #1877f2;
 }
 
-/* Email text */
+/* Email container section with more spreading spacing */
 .email {
-    margin-top: 15px;
-    font-size: 18px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    line-height: 2.2; /* Spreads lines apart vertically */
 }
 
+/* Gmail links with custom positioning, spacing, and slow rainbow text effect */
 .email a {
-    color: #ffffff;
     text-decoration: none;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
@@ -155,16 +158,23 @@ h3 {
     position: relative;
     z-index: 2;
     transition: transform 0.3s ease;
-    margin: 4px 0;
+    padding: 6px 15px; /* Generous breathing room inside links */
+    
+    /* Smooth, slow rainbow animation for the text */
+    background: linear-gradient(90deg, #ff3366, #ff9933, #ffff33, #33cc66, #3399ff, #9933ff, #ff3366);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 14s linear infinite; /* Wonderfully slow color change */
 }
 
 /* General Hover Scale for Buttons and Gmails */
 .btn-container:hover .btn,
 .gmail-link-wrapper:hover a {
-    transform: scale(1.08);
+    transform: scale(1.10);
 }
 
-/* Create the Firework Burst Effect using pseudo-elements */
+/* Multi-Stage Fireworks setup using pseudo-elements */
 .btn-container::before, .btn-container::after,
 .gmail-link-wrapper::before, .gmail-link-wrapper::after {
     content: "";
@@ -179,47 +189,57 @@ h3 {
     pointer-events: none;
 }
 
-/* Firework layer 1 (Primary colors spark burst) */
+/* Firework Phase 1: High flying primary dots */
 .btn-container:hover::before, .gmail-link-wrapper:hover::before {
-    animation: firework-burst-1 0.6s ease-out infinite;
+    animation: firework-stage-1 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
 }
 
-/* Firework layer 2 (Secondary colors spark burst) */
+/* Firework Phase 2: Shattering mini secondary sparks bursting outward */
 .btn-container:hover::after, .gmail-link-wrapper:hover::after {
-    animation: firework-burst-2 0.6s ease-out infinite;
-    animation-delay: 0.2s;
+    animation: firework-stage-2 0.8s cubic-bezier(0.1, 0.6, 0.2, 1) infinite;
+    animation-delay: 0.15s;
 }
 
-/* Firework Particle Vectors */
-@keyframes firework-burst-1 {
+/* Stage 1 Animation: Spreads far out into the air as bright round dots */
+@keyframes firework-stage-1 {
     0% {
         box-shadow: 
             0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff,
             0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff;
         opacity: 1;
+        transform: scale(1);
     }
-    100% {
-        box-shadow: 
-            -40px -40px #ff0055, 40px -40px #00ffcc, -40px 40px #ffcc00, 40px 40px #9900ff,
-            -60px 0px #ff5500, 60px 0px #00ff00, 0px -60px #0066ff, 0px 60px #cc00ff;
-        opacity: 0;
-        transform: scale(1.4);
-    }
-}
-
-@keyframes firework-burst-2 {
-    0% {
-        box-shadow: 
-            0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300,
-            0 0 #33ff00, 0 0 #0033ff, 0 0 #9900ff, 0 0 #ff0066;
+    40% {
         opacity: 1;
     }
     100% {
         box-shadow: 
-            -25px -50px #00ffff, 25px -50px #ff00ff, -50px 25px #ffff00, 50px 25px #ff3300,
-            -50px -25px #33ff00, 50px -25px #0033ff, -25px 50px #9900ff, 25px 50px #ff0066;
+            -110px -90px 3px #ff0055, 110px -90px 3px #00ffcc, -110px 90px 3px #ffcc00, 110px 90px 3px #9900ff,
+            -140px 0px 3px #ff5500, 140px 0px 3px #00ff00, 0px -140px 3px #0066ff, 0px 140px 3px #cc00ff;
         opacity: 0;
-        transform: scale(1.2);
+        transform: scale(1.6);
+    }
+}
+
+/* Stage 2 Animation: Explodes instantly into a secondary wave of tons of micro-sparks */
+@keyframes firework-stage-2 {
+    0% {
+        box-shadow: 
+            0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300,
+            0 0 #33ff00, 0 0 #0033ff, 0 0 #e60073, 0 0 #ff9900;
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 
+            -75px -130px 1px #00ffff, 75px -130px 1px #ff00ff, -130px 75px 1px #ffff00, 130px 75px 1px #ff3300,
+            -130px -75px 1px #33ff00, 130px -75px 1px #0033ff, -75px 130px 1px #e60073, 75px 130px 1px #ff9900,
+            -95px -95px 1px #ff0055, 95px -95px 1px #00ffcc, -95px 95px 1px #ffcc00, 95px 95px 1px #9900ff;
+        opacity: 0;
+        transform: scale(2.2);
     }
 }
 
@@ -316,7 +336,7 @@ h3 {
 
 <!-- Updated Email Section -->
 <p class="email">
-    Gmail: 
+    Gmail:<br>
     <span class="gmail-link-wrapper">
         <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
     </span><br>
