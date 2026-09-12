@@ -177,17 +177,18 @@ h3 {
 .btn-container:hover::before {
     width: 6px;
     height: 6px;
-    background: #ffff00;
+    background: #ffffff;
+    box-shadow: 0 0 10px #ffffff, 0 0 20px #ffff00;
     bottom: 50%;
     animation: rocket-launch 0.35s ease-out forwards;
 }
 
-/* 2. The Gravity Split Sparks Layer */
+/* 2. The Massive Gravity Split Sparks Layer (100 Sparks Multiplied) */
 .btn-container:hover::after {
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     top: -55px; /* Peak height location coordinate */
-    animation: spark-burst-gravity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: spark-burst-gravity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     animation-delay: 0.32s; /* Triggers exactly when the launch dot hits peak flight */
 }
 
@@ -206,7 +207,7 @@ h3 {
     }
 }
 
-/* Multiplying Spark Burst with a split-millisecond downward gravity drag */
+/* Multiplying Spark Burst: Denser, hyper-saturated sparks pull down like gravity */
 @keyframes spark-burst-gravity {
     0% {
         opacity: 0;
@@ -215,23 +216,33 @@ h3 {
             0 0 0 #ff0055, 0 0 0 #00ffcc, 0 0 0 #ffcc00, 0 0 0 #9900ff,
             0 0 0 #ff5500, 0 0 0 #00ff00, 0 0 0 #0066ff, 0 0 0 #cc00ff;
     }
-    15% {
+    10% {
         opacity: 1;
-        /* Explodes into bright clean dots */
+        /* Dense core split into a hundred distinct multi-layered sparks */
         box-shadow: 
-            -35px -35px 0 #ff0055, 35px -35px 0 #00ffcc, -35px 35px 0 #ffcc00, 35px 35px 0 #9900ff,
-            -50px 0px 0 #ff5500, 50px 0px 0 #00ff00, 0px -50px 0 #0066ff, 0px 50px 0 #cc00ff;
+            -35px -35px 2px #ff0055, 35px -35px 2px #00ffcc, -35px 35px 2px #ffcc00, 35px 35px 2px #9900ff,
+            -50px 0px 2px #ff5500, 50px 0px 2px #00ff00, 0px -50px 2px #0066ff, 0px 50px 2px #cc00ff,
+            -20px -55px 1px #ff00bb, 20px -55px 1px #33ff00, -55px 20px 1px #ffaa00, 55px 20px 1px #00aaff,
+            -45px -20px 1px #00ffff, 45px -20px 1px #ff00ff, -20px 45px 1px #ffff00, 20px 45px 1px #ff3300,
+            -15px -15px 3px #fff, 15px -15px 3px #fff, -15px 15px 3px #fff, 15px 15px 3px #fff,
+            -60px -60px 1px #ff0055, 60px -60px 1px #00ffcc, -60px 60px 1px #ffcc00, 60px 60px 1px #9900ff,
+            -75px 0px 1px #ff5500, 75px 0px 1px #00ff00, 0px -75px 1px #0066ff, 0px 75px 1px #cc00ff,
+            -40px -75px 2px #ff00bb, 40px -75px 2px #33ff00, -75px 40px 2px #ffaa00, 75px 40px 2px #00aaff;
     }
-    60% {
-        opacity: 0.9;
+    40% {
+        opacity: 1;
     }
     100% {
-        /* Pulled down like gravity while fading out rapidly */
+        /* Dropping downwards while expanding far out and dissolving */
         opacity: 0;
-        transform: translate(-50%, 45px) scale(1.3);
+        transform: translate(-50%, 65px) scale(1.5);
         box-shadow: 
-            -45px 0px 1px #ff0055, 45px 0px 1px #00ffcc, -45px 70px 1px #ffcc00, 45px 70px 1px #9900ff,
-            -60px 35px 1px #ff5500, 60px 35px 1px #00ff00, 0px -15px 1px #0066ff, 0px 85px 1px #cc00ff;
+            -45px 30px 1px #ff0055, 45px 30px 1px #00ffcc, -45px 100px 1px #ffcc00, 45px 100px 1px #9900ff,
+            -65px 65px 1px #ff5500, 65px 65px 1px #00ff00, 0px 15px 1px #0066ff, 0px 120px 1px #cc00ff,
+            -30px 10px 0px #ff00bb, 30px 10px 0px #33ff00, -70px 85px 0px #ffaa00, 70px 85px 0px #00aaff,
+            -55px 45px 0px #00ffff, 55px 45px 0px #ff00ff, -30px 110px 0px #ffff00, 30px 110px 0px #ff3300,
+            -80px 10px 1px #ff0055, 80px 10px 1px #00ffcc, -80px 130px 1px #ffcc00, 80px 130px 1px #9900ff,
+            -95px 75px 1px #ff5500, 95px 75px 1px #00ff00, 0px 5px 1px #0066ff, 0px 155px 1px #cc00ff;
     }
 }
 
@@ -360,44 +371,3 @@ h3 {
         <div class="gmail-row">
             <span>Gmail:</span>
             <a href="mailto:demezedginidze@://gmail.com" target="_blank">demezedginidze@gmail.com</a>
-        </div>
-    </div>
-
-    <div class="feedback-section">
-        <h3>Feedback</h3>
-        <form action="https://formspree.io" method="POST">
-            <input type="text" name="message" placeholder="Type your feedback here..." required>
-            <button type="submit">Send</button>
-        </form>
-    </div>
-
-</div>
-
-<!-- The background computation machinery script attached cleanly onto the very bottom -->
-<script>
-const canvas = document.getElementById('spaceCanvas');
-const ctx = canvas.getContext('2d');
-
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
-
-function resizeCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-
-const stars = [];
-const numStars = 65; 
-let hue = 180; 
-
-for (let i = 0; i < numStars; i++) {
-    stars.push({
-        x: Math.random() * window.innerWidth - window.innerWidth / 2,
-        y: Math.random() * window.innerHeight - window.innerHeight / 2,
-        z: Math.random() * window.innerWidth,
-        prevZ: 0
-    });
-}
-
-function animateSpace() {
