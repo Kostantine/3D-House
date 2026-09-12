@@ -12,7 +12,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #03030c; /* Force a deep space black canvas fallback baseline */
+    background-color: #03030c; /* Deep space black baseline fallback */
     min-height: 100vh;
 }
 
@@ -23,7 +23,7 @@ body {
     text-align: center;
     position: relative;
     overflow-x: hidden;
-    overflow-y: auto; /* Fixes the cut-off by allowing the page to scroll naturally */
+    overflow-y: auto; /* Fixes page cut-off by allowing natural scrolling */
 }
 
 /* High Visibility Animated Warp Canvas Layer */
@@ -33,15 +33,15 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1; /* Pull canvas layer forward slightly to guarantee it renders */
-    pointer-events: none; /* Allows cursor to pass directly through to text links smoothly */
+    z-index: 1; 
+    pointer-events: none; /* Allows cursor to click links underneath smoothly */
 }
 
 /* Content wrapper sitting safely over the space elements */
 .content-wrapper {
     position: relative;
-    z-index: 10; /* Locked tightly on top of the space warp background simulation */
-    padding-bottom: 60px; /* Extra breathing room at the very bottom so nothing gets cut off */
+    z-index: 10; /* Locked tightly on top of background canvas */
+    padding-bottom: 60px; /* Extra breathing room at the bottom */
 }
 
 /* Header */
@@ -89,12 +89,12 @@ h3 {
     height: 90px;
     border-radius: 15px;
     object-fit: cover;
-    transition: transform 0.3s ease; /* Makes the scaling smooth */
+    transition: transform 0.3s ease; /* Makes scaling smooth */
 }
 
 /* Example images get bigger when hovered */
 .examples img:hover {
-    transform: scale(1.12); /* Enlarges the image when pointed at */
+    transform: scale(1.12); /* Enlarges image when pointed at */
 }
 
 /* Section title */
@@ -117,12 +117,12 @@ h3 {
     height: 150px;
     border-radius: 20px;
     object-fit: cover;
-    transition: transform 0.3s ease; /* Makes the scaling smooth */
+    transition: transform 0.3s ease; /* Makes scaling smooth */
 }
 
 /* Main product images get bigger when hovered */
 .product img:hover {
-    transform: scale(1.08); /* Enlarges the image when pointed at */
+    transform: scale(1.08); /* Enlarges image when pointed at */
 }
 
 .product p {
@@ -181,7 +181,7 @@ h3 {
     padding-left: 10px;
 }
 
-/* Buttons */
+/* Buttons styling */
 .btn {
     display: inline-block;
     padding: 15px 25px; /* Slightly bigger buttons */
@@ -209,7 +209,7 @@ h3 {
 .btn-container:hover .btn,
 .gmail-group-container:hover .gmail-label,
 .gmail-group-container:hover a {
-    transform: scale(1.10); /* Zooms both 'Gmail:' and the link at the exact same time */
+    transform: scale(1.10); /* Zooms both text elements at the exact same time */
 }
 
 /* Multi-Stage Fireworks setup using pseudo-elements */
@@ -230,7 +230,7 @@ h3 {
 /* Firework Phase 1: High flying primary dots (Runs for exactly 3 seconds total) */
 .btn-container:hover::before, .gmail-group-container:hover::before {
     animation: firework-stage-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1);
-    animation-iteration-count: 4; /* 0.75s * 4 = Exactly 3 seconds */
+    animation-iteration-count: 4; /* Exactly 3 seconds */
 }
 
 /* Firework Phase 2: Shattering mini secondary sparks bursting outward (Runs for exactly 3 seconds total) */
@@ -327,7 +327,7 @@ h3 {
 </head>
 <body>
 
-<!-- High-Performance Animated Warp Canvas -->
+<!-- High-Performance Animated Warp Canvas Layer -->
 <canvas id="spaceCanvas"></canvas>
 
 <div class="content-wrapper">
@@ -374,7 +374,11 @@ h3 {
     <h3>CREATE YOUR 3D PRINT HERE!</h3>
     <p>Contact us here!<br>And get your prints!</p>
 
+    <!-- Social Media Buttons -->
     <div class="btn-container">
         <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
     </div>
     <div class="btn-container">
+        <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
+    </div>
+
