@@ -12,7 +12,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #03030c; /* Deep space black backdrop fallback */
+    background-color: #03030c; /* Deep space dark backdrop */
     min-height: 100vh;
 }
 
@@ -26,22 +26,40 @@ body {
     overflow-y: auto; /* Lets the page scroll naturally to prevent layout cut-off */
 }
 
-/* SAFETY SCREEN: This sits behind your text so it stays completely visible */
+/* HIGH VISIBILITY LAVA LAMP BACKGROUND LAYER */
 #spaceCanvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1; /* Pushes the animation layer all the way to the back */
-    pointer-events: none; /* Allows mouse pointer to click buttons cleanly */
+    z-index: 1; /* Sits directly on top of the black background */
+    pointer-events: none; /* Allows cursor to click links underneath smoothly */
 }
 
-/* MAIN LAYOUT CONTAINER: Forces your entire store to float safely on top */
+/* MAIN LAYOUT CONTAINER */
 .content-wrapper {
     position: relative;
-    z-index: 10; /* Locks text tightly on top of the space background */
+    z-index: 10; /* Floating safely on top of the background canvas */
+    background: transparent !important;
     padding-bottom: 60px; /* Extra room at the very bottom */
+    
+    /* Cinematic Entrance: Page lifts up from the bottom while fading in beautifully */
+    opacity: 0;
+    transform: translateY(60px);
+    animation: entranceRiseUp 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.1s; 
+}
+
+@keyframes entranceRiseUp {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Header */
@@ -193,7 +211,7 @@ h3 {
     padding-left: 10px;
 }
 
-/* CUSTOM ZOOM ANIMATION: Triggers when cursor hovers over buttons or Gmail units */
+/* CUSTOM ZOOM ANIMATION */
 .btn-container:hover .btn,
 .gmail-group-container:hover .gmail-label,
 .gmail-group-container:hover a {
@@ -293,7 +311,7 @@ h3 {
 </head>
 <body>
 
-<!-- The moving cosmic network background canvas layer -->
+<!-- The moving lava lamp background canvas layer -->
 <canvas id="spaceCanvas"></canvas>
 
 <!-- All structural layout items wrapped cleanly safely on top -->
@@ -354,9 +372,3 @@ h3 {
         <a href="https://google.com" onclick="location.href='mailto:demezedginidze@://gmail.com'; return false;" target="_blank">demezedginidze@gmail.com</a>
     </div>
 
-    <div class="feedback-section">
-        <h3>Feedback</h3>
-        <form action="https://formspree.io" method="POST">
-            <input type="text" name="message" placeholder="Type your feedback here..." required>
-            <button type="submit">Send</button>
-        </form>
