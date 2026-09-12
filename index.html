@@ -12,7 +12,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #03030c; /* Deep space black backdrop */
+    background-color: #03030c; /* Deep space black backdrop fallback */
     min-height: 100vh;
 }
 
@@ -129,13 +129,26 @@ h3 {
     margin: 20px 0;
 }
 
-/* Button wrapper layout mapping */
-.btn-container {
+/* Button and Gmail container layout wrapping */
+.btn-container, .gmail-group-container {
     display: inline-block;
     position: relative;
     margin: 10px;
 }
 
+.gmail-group-container {
+    display: block;
+    margin: 15px auto;
+    font-size: 22px;
+    width: fit-content;
+}
+
+.space-down {
+    margin-top: 45px;
+    margin-bottom: 40px; /* Spacing out the two Gmail slots vertically */
+}
+
+/* Buttons styling */
 .btn {
     display: inline-block;
     padding: 15px 25px; 
@@ -149,10 +162,6 @@ h3 {
     transition: transform 0.3s ease;
 }
 
-.btn:hover {
-    transform: scale(1.08); /* Button scales up on hover */
-}
-
 .messenger {
     background: #0084ff;
 }
@@ -161,113 +170,85 @@ h3 {
     background: #1877f2;
 }
 
-/* PHYSICS FIREWORK GENERATION MATRIX */
-.btn-container::before,
-.btn-container::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    z-index: 5;
-}
-
-/* 1. The Launch Dot (Peeeeeeewww) */
-.btn-container:hover::before {
-    width: 6px;
-    height: 6px;
-    background: #ffffff;
-    box-shadow: 0 0 10px #ffffff, 0 0 20px #ffff00;
-    bottom: 50%;
-    animation: rocket-launch 0.35s ease-out forwards;
-}
-
-/* 2. The Massive Gravity Split Sparks Layer (100 Sparks Multiplied) */
-.btn-container:hover::after {
-    width: 3px;
-    height: 3px;
-    top: -55px; /* Peak height location coordinate */
-    animation: spark-burst-gravity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    animation-delay: 0.32s; /* Triggers exactly when the launch dot hits peak flight */
-}
-
-/* Rocket Launch Vector Calculation */
-@keyframes rocket-launch {
-    0% {
-        transform: translate(-50%, 0) scale(1);
-        opacity: 1;
-    }
-    85% {
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -60px) scale(0.4);
-        opacity: 0;
-    }
-}
-
-/* Multiplying Spark Burst: Denser, hyper-saturated sparks pull down like gravity */
-@keyframes spark-burst-gravity {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, 0) scale(0.5);
-        box-shadow: 
-            0 0 0 #ff0055, 0 0 0 #00ffcc, 0 0 0 #ffcc00, 0 0 0 #9900ff,
-            0 0 0 #ff5500, 0 0 0 #00ff00, 0 0 0 #0066ff, 0 0 0 #cc00ff;
-    }
-    10% {
-        opacity: 1;
-        /* Dense core split into a hundred distinct multi-layered sparks */
-        box-shadow: 
-            -35px -35px 2px #ff0055, 35px -35px 2px #00ffcc, -35px 35px 2px #ffcc00, 35px 35px 2px #9900ff,
-            -50px 0px 2px #ff5500, 50px 0px 2px #00ff00, 0px -50px 2px #0066ff, 0px 50px 2px #cc00ff,
-            -20px -55px 1px #ff00bb, 20px -55px 1px #33ff00, -55px 20px 1px #ffaa00, 55px 20px 1px #00aaff,
-            -45px -20px 1px #00ffff, 45px -20px 1px #ff00ff, -20px 45px 1px #ffff00, 20px 45px 1px #ff3300,
-            -15px -15px 3px #fff, 15px -15px 3px #fff, -15px 15px 3px #fff, 15px 15px 3px #fff,
-            -60px -60px 1px #ff0055, 60px -60px 1px #00ffcc, -60px 60px 1px #ffcc00, 60px 60px 1px #9900ff,
-            -75px 0px 1px #ff5500, 75px 0px 1px #00ff00, 0px -75px 1px #0066ff, 0px 75px 1px #cc00ff,
-            -40px -75px 2px #ff00bb, 40px -75px 2px #33ff00, -75px 40px 2px #ffaa00, 75px 40px 2px #00aaff;
-    }
-    40% {
-        opacity: 1;
-    }
-    100% {
-        /* Dropping downwards while expanding far out and dissolving */
-        opacity: 0;
-        transform: translate(-50%, 65px) scale(1.5);
-        box-shadow: 
-            -45px 30px 1px #ff0055, 45px 30px 1px #00ffcc, -45px 100px 1px #ffcc00, 45px 100px 1px #9900ff,
-            -65px 65px 1px #ff5500, 65px 65px 1px #00ff00, 0px 15px 1px #0066ff, 0px 120px 1px #cc00ff,
-            -30px 10px 0px #ff00bb, 30px 10px 0px #33ff00, -70px 85px 0px #ffaa00, 70px 85px 0px #00aaff,
-            -55px 45px 0px #00ffff, 55px 45px 0px #ff00ff, -30px 110px 0px #ffff00, 30px 110px 0px #ff3300,
-            -80px 10px 1px #ff0055, 80px 10px 1px #00ffcc, -80px 130px 1px #ffcc00, 80px 130px 1px #9900ff,
-            -95px 75px 1px #ff5500, 95px 75px 1px #00ff00, 0px 5px 1px #0066ff, 0px 155px 1px #cc00ff;
-    }
-}
-
-/* Email Container section */
-.email-section {
-    margin-top: 50px;
-    margin-bottom: 40px;
-}
-
-.gmail-row {
-    display: block;
-    margin: 25px auto;
-    font-size: 24px;
-}
-
-.gmail-row span, .gmail-row a {
+/* Specific styling for the text inside the Gmail group */
+.gmail-group-container .gmail-label, 
+.gmail-group-container a {
     display: inline-block;
+    vertical-align: middle;
+    font-family: 'Lexend', sans-serif;
     font-weight: 600;
+    transition: transform 0.3s ease;
     text-decoration: none;
+    padding: 6px 5px;
+    
+    /* Smooth, slow rainbow animation for the text labels and the links */
     background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055);
     background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: rainbow 14s linear infinite; /* Slow rainbow color change */
-    padding: 0 5px;
+    animation: rainbow 14s linear infinite; 
+}
+
+.gmail-group-container a {
+    padding-left: 10px;
+}
+
+/* CUSTOM ZOOM ANIMATION: Triggers when cursor hovers over buttons or Gmail units */
+.btn-container:hover .btn,
+.gmail-group-container:hover .gmail-label,
+.gmail-group-container:hover a {
+    transform: scale(1.10); /* Smoothly zooms text and labels larger together */
+}
+
+/* ORIGINAL FIREWORKS METHOD: Popping particle stars explosion directly out from the nodes */
+.btn-container::before, .btn-container::after,
+.gmail-group-container::before, .gmail-group-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Spark layer 1 (Popping particle stars loop) */
+.btn-container:hover::before, .gmail-group-container:hover::before {
+    animation: original-pop-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1);
+    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
+}
+
+/* Spark layer 2 (Multiplying particle stars loop) */
+.btn-container:hover::after, .gmail-group-container:hover::after {
+    animation: original-pop-2 0.75s cubic-bezier(0.1, 0.6, 0.2, 1);
+    animation-delay: 0.15s;
+    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
+}
+
+@keyframes original-pop-1 {
+    0% {
+        box-shadow: 0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff, 0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff;
+        opacity: 1; transform: scale(1);
+    }
+    100% {
+        box-shadow: -140px -90px 4px #ff0055, 140px -90px 4px #00ffcc, -140px 90px 4px #ffcc00, 140px 90px 4px #9900ff, -160px 0px 4px #ff5500, 160px 0px 4px #00ff00, 0px -160px 4px #0066ff, 0px 160px 4px #cc00ff;
+        opacity: 0; transform: scale(1.6);
+    }
+}
+
+@keyframes original-pop-2 {
+    0% {
+        box-shadow: 0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300, 0 0 #33ff00, 0 0 #0033ff, 0 0 #e60073, 0 0 #ff9900;
+        opacity: 0; transform: scale(0.5);
+    }
+    20% { opacity: 1; }
+    100% {
+        box-shadow: -110px -130px 2px #00ffff, 110px -130px 2px #ff00ff, -130px 110px 2px #ffff00, 130px 110px 2px #ff3300, -130px -110px 2px #33ff00, 130px -110px 2px #0033ff, -110px 130px 2px #e60073, 110px 130px 2px #ff9900, -125px -125px 2px #ff0055, 125px -125px 2px #00ffcc, -125px 125px 2px #ffcc00, 125px 125px 2px #9900ff, -145px -60px 1px #ffff00, 145px 60px 1px #ff00ff, -60px 145px 1px #00ffff, 60px -145px 1px #ff3300;
+        opacity: 0; transform: scale(2.3);
+    }
 }
 
 /* Feedback section */
@@ -362,12 +343,20 @@ h3 {
         <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
     </div>
 
-    <!-- Emails Section with Automatic Compose Screen Pre-fills -->
-    <div class="email-section">
-        <div class="gmail-row">
-            <span>Gmail:</span>
-            <a href="mailto:konstantinezedgina@://gmail.com" target="_blank">konstantinezedgina@gmail.com</a>
-        </div>
-        <div class="gmail-row">
-            <span>Gmail:</span>
-            <a href="mailto:demezedginidze@://gmail.com" target="_blank">demezedginidze@gmail.com</a>
+    <!-- Dual-Compatibility Mailer Configuration System -->
+    <div class="gmail-group-container space-down">
+        <span class="gmail-label">Gmail:</span>
+        <a href="https://google.com" onclick="location.href='mailto:konstantinezedgina@://gmail.com'; return false;" target="_blank">konstantinezedgina@gmail.com</a>
+    </div>
+
+    <div class="gmail-group-container">
+        <span class="gmail-label">Gmail:</span>
+        <a href="https://google.com" onclick="location.href='mailto:demezedginidze@://gmail.com'; return false;" target="_blank">demezedginidze@gmail.com</a>
+    </div>
+
+    <div class="feedback-section">
+        <h3>Feedback</h3>
+        <form action="https://formspree.io" method="POST">
+            <input type="text" name="message" placeholder="Type your feedback here..." required>
+            <button type="submit">Send</button>
+        </form>
