@@ -111,10 +111,48 @@ h3 {
 }
 
 /* Buttons and Links Container Setup for Fireworks */
-.btn-container, .gmail-link-wrapper {
+.btn-container, .gmail-group-container {
     display: inline-block;
     position: relative;
     margin: 5px;
+}
+
+/* Unique wrapper to split the two Gmail elements and space them out vertically */
+.gmail-group-container {
+    display: block;
+    margin: 15px auto;
+    font-size: 22px;
+    width: fit-content;
+}
+
+/* Spacing out the first block down from the text above, and away from the block below */
+.space-down {
+    margin-top: 45px;
+    margin-bottom: 40px; /* Moves the second email down significantly */
+}
+
+/* Specific styling for the text inside the Gmail group */
+.gmail-group-container .gmail-label, 
+.gmail-group-container a {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    padding: 6px 5px;
+    
+    /* Smooth, slow rainbow animation for the text labels and the links */
+    background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 14s linear infinite; /* Wonderfully slow color change */
+}
+
+/* Extra side spacing on link specifically */
+.gmail-group-container a {
+    padding-left: 10px;
 }
 
 /* Buttons */
@@ -141,42 +179,16 @@ h3 {
     background: #1877f2;
 }
 
-/* Email container section with more spreading spacing */
-.email {
-    margin-top: 40px;
-    margin-bottom: 30px;
-    font-size: 22px;
-    line-height: 2.2; /* Spreads lines apart vertically */
-}
-
-/* Gmail links with custom positioning, spacing, and slow rainbow text effect */
-.email a {
-    text-decoration: none;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 600;
-    display: inline-block;
-    position: relative;
-    z-index: 2;
-    transition: transform 0.3s ease;
-    padding: 6px 15px; /* Generous breathing room inside links */
-    
-    /* Smooth, slow rainbow animation for the text */
-    background: linear-gradient(90deg, #ff3366, #ff9933, #ffff33, #33cc66, #3399ff, #9933ff, #ff3366);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow 14s linear infinite; /* Wonderfully slow color change */
-}
-
-/* General Hover Scale for Buttons and Gmails */
+/* General Hover Scale for Buttons and Entire Gmail Row Groups together */
 .btn-container:hover .btn,
-.gmail-link-wrapper:hover a {
-    transform: scale(1.10);
+.gmail-group-container:hover .gmail-label,
+.gmail-group-container:hover a {
+    transform: scale(1.10); /* Zooms both 'Gmail:' and the link at the exact same time */
 }
 
 /* Multi-Stage Fireworks setup using pseudo-elements */
 .btn-container::before, .btn-container::after,
-.gmail-link-wrapper::before, .gmail-link-wrapper::after {
+.gmail-group-container::before, .gmail-group-container::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -189,15 +201,17 @@ h3 {
     pointer-events: none;
 }
 
-/* Firework Phase 1: High flying primary dots */
-.btn-container:hover::before, .gmail-link-wrapper:hover::before {
-    animation: firework-stage-1 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+/* Firework Phase 1: High flying primary dots (Runs for exactly 3 seconds total) */
+.btn-container:hover::before, .gmail-group-container:hover::before {
+    animation: firework-stage-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1);
+    animation-iteration-count: 4; /* 0.75s * 4 = Exactly 3 seconds */
 }
 
-/* Firework Phase 2: Shattering mini secondary sparks bursting outward */
-.btn-container:hover::after, .gmail-link-wrapper:hover::after {
-    animation: firework-stage-2 0.8s cubic-bezier(0.1, 0.6, 0.2, 1) infinite;
+/* Firework Phase 2: Shattering mini secondary sparks bursting outward (Runs for exactly 3 seconds total) */
+.btn-container:hover::after, .gmail-group-container:hover::after {
+    animation: firework-stage-2 0.75s cubic-bezier(0.1, 0.6, 0.2, 1);
     animation-delay: 0.15s;
+    animation-iteration-count: 4;
 }
 
 /* Stage 1 Animation: Spreads far out into the air as bright round dots */
@@ -214,14 +228,14 @@ h3 {
     }
     100% {
         box-shadow: 
-            -110px -90px 3px #ff0055, 110px -90px 3px #00ffcc, -110px 90px 3px #ffcc00, 110px 90px 3px #9900ff,
-            -140px 0px 3px #ff5500, 140px 0px 3px #00ff00, 0px -140px 3px #0066ff, 0px 140px 3px #cc00ff;
+            -150px -90px 4px #ff0055, 150px -90px 4px #00ffcc, -150px 90px 4px #ffcc00, 150px 90px 4px #9900ff,
+            -180px 0px 4px #ff5500, 180px 0px 4px #00ff00, 0px -180px 4px #0066ff, 0px 180px 4px #cc00ff;
         opacity: 0;
         transform: scale(1.6);
     }
 }
 
-/* Stage 2 Animation: Explodes instantly into a secondary wave of tons of micro-sparks */
+/* Stage 2 Animation: Explodes instantly into a multiplying wave of dense bright micro-sparks */
 @keyframes firework-stage-2 {
     0% {
         box-shadow: 
@@ -235,11 +249,12 @@ h3 {
     }
     100% {
         box-shadow: 
-            -75px -130px 1px #00ffff, 75px -130px 1px #ff00ff, -130px 75px 1px #ffff00, 130px 75px 1px #ff3300,
-            -130px -75px 1px #33ff00, 130px -75px 1px #0033ff, -75px 130px 1px #e60073, 75px 130px 1px #ff9900,
-            -95px -95px 1px #ff0055, 95px -95px 1px #00ffcc, -95px 95px 1px #ffcc00, 95px 95px 1px #9900ff;
+            -110px -130px 2px #00ffff, 110px -130px 2px #ff00ff, -130px 110px 2px #ffff00, 130px 110px 2px #ff3300,
+            -130px -110px 2px #33ff00, 130px -110px 2px #0033ff, -110px 130px 2px #e60073, 110px 130px 2px #ff9900,
+            -125px -125px 2px #ff0055, 125px -125px 2px #00ffcc, -125px 125px 2px #ffcc00, 125px 125px 2px #9900ff,
+            -145px -60px 1px #ffff00, 145px 60px 1px #ff00ff, -60px 145px 1px #00ffff, 60px -145px 1px #ff3300;
         opacity: 0;
-        transform: scale(2.2);
+        transform: scale(2.3);
     }
 }
 
@@ -334,16 +349,16 @@ h3 {
     <a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
 </div>
 
-<!-- Updated Email Section -->
-<p class="email">
-    Gmail:<br>
-    <span class="gmail-link-wrapper">
-        <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
-    </span><br>
-    <span class="gmail-link-wrapper">
-        <a href="https://google.com" target="_blank">demezedginidze@gmail.com</a>
-    </span>
-</p>
+<!-- Updated Email Section - Grouped to animate label and link together -->
+<div class="gmail-group-container space-down">
+    <span class="gmail-label">Gmail:</span>
+    <a href="https://google.com" target="_blank">konstantinezedgina@gmail.com</a>
+</div>
+
+<div class="gmail-group-container">
+    <span class="gmail-label">Gmail:</span>
+    <a href="https://google.com" target="_blank">demezedginidze@gmail.com</a>
+</div>
 
 <!-- Feedback Section -->
 <div class="feedback-section">
