@@ -13,9 +13,67 @@ body {
     margin: 0;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    background: linear-gradient(to bottom, #2c2c2c, #000);
+    /* PS5-style dark base canvas */
+    background: #0d0d11; 
     color: white;
     text-align: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* PS5 Rainbow Wave Container */
+.ps5-wave-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, rgba(20, 20, 30, 0.6), #070709);
+}
+
+/* The Animated Waves with Rainbow Spectrum shifts */
+.wave {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 42%;
+    /* Soft semi-transparent mesh gradient for a premium 3D mesh look */
+    background: linear-gradient(90deg, 
+        rgba(255, 0, 85, 0.15), 
+        rgba(255, 153, 51, 0.15), 
+        rgba(0, 255, 204, 0.15), 
+        rgba(51, 153, 255, 0.15), 
+        rgba(204, 0, 255, 0.15), 
+        rgba(255, 0, 85, 0.15)
+    );
+    background-size: 400% 400%;
+    /* Combines floating movement with the spectrum rotation shift */
+    animation: waveRotate 18s linear infinite, rainbowShift 25s ease infinite;
+    opacity: 0.65;
+}
+
+/* Layered secondary wave traveling at a unique velocity for the overlapping 3D ribbon depth */
+.wave.layered {
+    border-radius: 40%;
+    animation: waveRotate 24s linear infinite, rainbowShift 35s ease infinite reverse;
+    opacity: 0.45;
+}
+
+/* PS5 ribbon rotational twist */
+@keyframes waveRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Flowing color dynamic morph */
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Header */
@@ -227,6 +285,12 @@ h3 {
 </head>
 <body>
 
+<!-- Background elements injected safely behind all text -->
+<div class="ps5-wave-bg">
+    <div class="wave"></div>
+    <div class="wave layered"></div>
+</div>
+
 <!-- Header -->
 <div class="header">
     <h1>3D HOUSE</h1>
@@ -235,9 +299,9 @@ h3 {
 
 <h3>Examples of what we print!</h3>
 
-<!-- Small Images -->
+<!-- Small Images (FIXED: Missing bracket restored) -->
 <div class="examples">
-    img src="dog.jpg">
+    <img src="dog.jpg">
     <img src="cat.jpg">
     <img src="snail.jpg">
     <img src="seal.jpg">
