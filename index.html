@@ -7,7 +7,10 @@
 
 <title>3D House Store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
@@ -27,7 +30,6 @@ html,
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
     min-height: 100vh;
 }
 
@@ -35,7 +37,6 @@ body {
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
     color: white;
-
     overflow-x: hidden;
 
     background:
@@ -65,197 +66,37 @@ body {
 }
 
 /* =========================================================
-   BACKGROUND GRID
+   LOADING / ENTRANCE SCREEN
 ========================================================= */
 
-body::before {
-    content: "";
-
+.intro-screen {
     position: fixed;
     inset: 0;
 
-    pointer-events: none;
+    z-index: 9999;
 
-    z-index: 0;
-
-    opacity: 0.18;
-
-    background-image:
-        linear-gradient(
-            rgba(0, 217, 255, 0.12) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(0, 217, 255, 0.12) 1px,
-            transparent 1px
-        );
-
-    background-size: 70px 70px;
-
-    mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 85%
-    );
-
-    animation: gridMove 20s linear infinite;
-}
-
-@keyframes gridMove {
-
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(70px);
-    }
-}
-
-/* =========================================================
-   FLOATING LIGHTS
-========================================================= */
-
-body::after {
-    content: "";
-
-    position: fixed;
-
-    width: 600px;
-    height: 600px;
-
-    top: -250px;
-    right: -200px;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background:
         radial-gradient(
             circle,
-            rgba(128, 0, 255, 0.30),
-            rgba(0, 183, 255, 0.08) 40%,
-            transparent 70%
+            #18004d,
+            #05010f 55%,
+            #010107
         );
 
-    filter: blur(25px);
-
-    animation: glowFloat 9s ease-in-out infinite alternate;
-}
-
-@keyframes glowFloat {
-
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-
-    to {
-        transform: translate(-100px, 120px) scale(1.25);
-    }
-}
-
-/* =========================================================
-   CANVAS
-========================================================= */
-
-#spaceCanvas {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    z-index: 1;
+    animation:
+        introFade 1.2s ease forwards;
 
     pointer-events: none;
-
-    display: block;
-
-    opacity: 0.85;
 }
 
-/* =========================================================
-   MAIN CONTAINER
-========================================================= */
-
-.main-container {
-
-    position: relative;
-
-    z-index: 10;
-
-    width: 100%;
-
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding:
-        0 25px 70px;
-
-    opacity: 0;
-
-    animation:
-        entrance 0.9s
-        cubic-bezier(0.25, 1, 0.5, 1)
-        forwards;
-
-    animation-delay: 0.15s;
-}
-
-@keyframes entrance {
-
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.header {
-
-    margin-top: 40px;
-
-    width: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-}
-
-.header h1 {
-
-    margin: 5px 0;
-
-    font-size: clamp(
-        55px,
-        9vw,
-        100px
-    );
-
+.intro-logo {
+    font-size: clamp(45px, 10vw, 100px);
     font-weight: 800;
-
-    letter-spacing: -4px;
+    letter-spacing: -3px;
 
     background:
         linear-gradient(
@@ -274,29 +115,314 @@ body::after {
     -webkit-text-fill-color: transparent;
 
     animation:
+        introLogo 0.8s ease,
+        rainbow 5s linear infinite;
+
+    filter:
+        drop-shadow(
+            0 0 25px
+            rgba(0,200,255,0.5)
+        );
+}
+
+@keyframes introLogo {
+
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+        filter:
+            blur(12px)
+            drop-shadow(
+                0 0 40px
+                rgba(0,200,255,0.8)
+            );
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter:
+            blur(0)
+            drop-shadow(
+                0 0 25px
+                rgba(0,200,255,0.5)
+            );
+    }
+}
+
+@keyframes introFade {
+
+    0% {
+        opacity: 1;
+    }
+
+    65% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* =========================================================
+   FUTURISTIC GRID
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    opacity: 0.18;
+
+    background-image:
+        linear-gradient(
+            rgba(0,217,255,0.12) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,217,255,0.12) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+
+    animation:
+        gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(70px);
+    }
+}
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    top: -250px;
+    right: -200px;
+
+    border-radius: 50%;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(128,0,255,0.30),
+            rgba(0,183,255,0.08) 40%,
+            transparent 70%
+        );
+
+    filter: blur(25px);
+
+    animation:
+        glowFloat 9s ease-in-out infinite alternate;
+}
+
+@keyframes glowFloat {
+
+    from {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translate(-100px,120px)
+            scale(1.25);
+    }
+}
+
+/* =========================================================
+   PARTICLE CANVAS
+========================================================= */
+
+#spaceCanvas {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    opacity: 0.85;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-container {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding:
+        0 25px 80px;
+
+    opacity: 0;
+
+    animation:
+        pageEntrance 1s
+        cubic-bezier(
+            0.25,
+            1,
+            0.5,
+            1
+        )
+        0.35s forwards;
+}
+
+@keyframes pageEntrance {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(45px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+
+    margin-top: 75px;
+
+    padding:
+        20px 0 35px;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.header h1 {
+
+    margin:
+        15px 0 22px;
+
+    padding:
+        0 15px;
+
+    font-size:
+        clamp(
+            55px,
+            10vw,
+            105px
+        );
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing:
+        -3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0080,
+            #7928ff,
+            #00c6ff,
+            #00ffcc,
+            #7928ff,
+            #ff0080
+        );
+
+    background-size:
+        400% 100%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
         rainbow 8s linear infinite,
         titleFloat 4s ease-in-out infinite;
 
     filter:
         drop-shadow(
-            0 0 10px
-            rgba(128, 0, 255, 0.5)
+            0 0 12px
+            rgba(128,0,255,0.5)
         )
 
         drop-shadow(
-            0 0 30px
-            rgba(0, 200, 255, 0.2)
+            0 0 35px
+            rgba(0,200,255,0.2)
         );
 }
 
 @keyframes rainbow {
 
     0% {
-        background-position: 0% 50%;
+        background-position:
+            0% 50%;
     }
 
     100% {
-        background-position: 400% 50%;
+        background-position:
+            400% 50%;
     }
 }
 
@@ -304,27 +430,43 @@ body::after {
 
     0%,
     100% {
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 
     50% {
-        transform: translateY(-7px);
+        transform:
+            translateY(-7px);
     }
 }
 
 .header p {
 
-    margin: 8px 0;
+    margin: 0;
 
     font-size:
-        clamp(16px, 3vw, 23px);
+        clamp(
+            16px,
+            3vw,
+            23px
+        );
 
     color:
-        rgba(255,255,255,0.85);
+        rgba(
+            255,
+            255,
+            255,
+            0.85
+        );
 
     text-shadow:
         0 0 15px
-        rgba(0,200,255,0.4);
+        rgba(
+            0,
+            200,
+            255,
+            0.4
+        );
 }
 
 /* =========================================================
@@ -334,7 +476,11 @@ body::after {
 h3 {
 
     font-size:
-        clamp(24px, 4vw, 32px);
+        clamp(
+            24px,
+            4vw,
+            32px
+        );
 
     font-weight: 700;
 
@@ -345,28 +491,38 @@ h3 {
 
     text-shadow:
         0 0 15px
-        rgba(255,255,255,0.18);
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
 }
 
 .section-title {
 
     font-size:
-        clamp(30px, 5vw, 42px);
+        clamp(
+            30px,
+            5vw,
+            42px
+        );
 
-    margin-top: 45px;
+    margin-top: 50px;
 
     text-align: center;
 
     background:
         linear-gradient(
             90deg,
-            #ffffff,
+            #fff,
             #73e8ff,
             #d18cff,
-            #ffffff
+            #fff
         );
 
-    background-size: 300% 100%;
+    background-size:
+        300% 100%;
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -376,7 +532,7 @@ h3 {
 }
 
 /* =========================================================
-   EXAMPLE IMAGES
+   EXAMPLES
 ========================================================= */
 
 .examples {
@@ -391,7 +547,8 @@ h3 {
 
     flex-wrap: wrap;
 
-    margin: 25px auto;
+    margin:
+        25px auto;
 }
 
 .examples img {
@@ -405,10 +562,14 @@ h3 {
 
     border:
         1px solid
-        rgba(255,255,255,0.15);
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
 
     box-shadow:
-
         0 8px 25px
         rgba(0,0,0,0.5),
 
@@ -429,10 +590,14 @@ h3 {
         rotate(2deg);
 
     border-color:
-        rgba(0,220,255,0.7);
+        rgba(
+            0,
+            220,
+            255,
+            0.7
+        );
 
     box-shadow:
-
         0 15px 35px
         rgba(0,0,0,0.6),
 
@@ -461,10 +626,6 @@ h3 {
 
     margin-top: 25px;
 }
-
-/* =========================================================
-   3D PRODUCT CARD
-========================================================= */
 
 .product {
 
@@ -498,7 +659,6 @@ h3 {
         blur(15px);
 
     box-shadow:
-
         0 20px 40px
         rgba(0,0,0,0.45),
 
@@ -513,8 +673,6 @@ h3 {
 
         border-color 0.4s ease;
 }
-
-/* Moving shine */
 
 .product::before {
 
@@ -536,7 +694,8 @@ h3 {
             transparent 60%
         );
 
-    transform: rotate(10deg);
+    transform:
+        rotate(10deg);
 
     transition:
         0.8s ease;
@@ -596,10 +755,6 @@ h3 {
     filter:
         brightness(1.1)
         saturate(1.15);
-
-    box-shadow:
-        0 0 25px
-        rgba(0,200,255,0.25);
 }
 
 .product p {
@@ -610,7 +765,12 @@ h3 {
     font-size: 16px;
 
     color:
-        rgba(255,255,255,0.9);
+        rgba(
+            255,
+            255,
+            255,
+            0.9
+        );
 
     position: relative;
 
@@ -618,43 +778,46 @@ h3 {
 }
 
 /* =========================================================
-   AND MORE
+   MORE
 ========================================================= */
 
 .big-text {
 
     font-size:
-        clamp(32px, 6vw, 48px);
+        clamp(
+            32px,
+            6vw,
+            48px
+        );
 
     font-weight: 800;
 
-    margin: 40px 0;
+    margin:
+        45px 0;
 
     text-align: center;
 
     text-shadow:
-
-        0 0 10px
-        #8a2be2,
-
-        0 0 25px
-        rgba(138,43,226,0.6),
-
-        0 0 50px
-        rgba(0,200,255,0.25);
+        0 0 10px #8a2be2,
+        0 0 25px rgba(138,43,226,0.6),
+        0 0 50px rgba(0,200,255,0.25);
 
     animation:
-        moreGlow 3s ease-in-out infinite alternate;
+        moreGlow 3s
+        ease-in-out
+        infinite alternate;
 }
 
 @keyframes moreGlow {
 
     from {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
 
     to {
-        transform: scale(1.04);
+        transform:
+            scale(1.04);
     }
 }
 
@@ -662,15 +825,17 @@ h3 {
    CONTACT
 ========================================================= */
 
-p.contact-sub {
-
-    margin:
-        10px 0 20px;
+.contact-sub {
 
     text-align: center;
 
     color:
-        rgba(255,255,255,0.75);
+        rgba(
+            255,
+            255,
+            255,
+            0.75
+        );
 
     line-height: 1.7;
 }
@@ -693,9 +858,10 @@ p.contact-sub {
     display: inline-block;
 
     padding:
-        15px 28px;
+        16px 30px;
 
-    border-radius: 30px;
+    border-radius:
+        30px;
 
     color: white;
 
@@ -713,10 +879,14 @@ p.contact-sub {
 
     border:
         1px solid
-        rgba(255,255,255,0.2);
+        rgba(
+            255,
+            255,
+            255,
+            0.22
+        );
 
     box-shadow:
-
         0 8px 25px
         rgba(0,0,0,0.4);
 
@@ -730,19 +900,20 @@ p.contact-sub {
 
     transform:
         translateY(-5px)
-        scale(1.07);
+        scale(1.08);
 
     filter:
         brightness(1.15);
 
     box-shadow:
-
         0 12px 30px
         rgba(0,0,0,0.5),
 
         0 0 25px
         rgba(0,200,255,0.4);
 }
+
+/* Messenger */
 
 .messenger {
 
@@ -752,7 +923,13 @@ p.contact-sub {
             #0084ff,
             #7b2cff
         );
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,132,255,0.3);
 }
+
+/* Facebook */
 
 .facebook {
 
@@ -765,223 +942,145 @@ p.contact-sub {
 }
 
 /* =========================================================
-   GMAIL
+   GMAIL CONTACTS
 ========================================================= */
+
+.gmail-title {
+
+    margin-top:
+        30px;
+
+    text-align: center;
+
+    font-size: 22px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        );
+}
 
 .gmail-group-container {
 
-    display: block;
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
 
     margin:
         15px auto;
 
-    font-size: 20px;
-
-    width: fit-content;
+    width:
+        fit-content;
 }
 
-.gmail-group-container .gmail-label,
-.gmail-group-container a {
+.gmail-link {
 
-    display: inline-block;
+    display: inline-flex;
 
-    vertical-align: middle;
+    align-items: center;
 
-    font-family:
-        'Lexend',
-        sans-serif;
+    gap: 8px;
 
-    font-weight: 700;
+    padding:
+        12px 18px;
 
-    transition:
-        transform 0.3s ease;
+    border-radius:
+        18px;
 
     text-decoration: none;
 
-    padding: 6px 5px;
+    color: white;
+
+    font-size:
+        clamp(
+            13px,
+            2vw,
+            17px
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.gmail-link:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
+    border-color:
+        rgba(
+            255,
+            0,
+            160,
+            0.6
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            255,
+            0,
+            170,
+            0.25
+        );
+}
+
+.gmail-icon {
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius:
+        8px;
 
     background:
         linear-gradient(
-            90deg,
+            135deg,
             #ff0055,
-            #ff9933,
-            #ffff33,
-            #00ffcc,
-            #3399ff,
-            #cc00ff,
-            #ff0055
+            #ff7a00
         );
 
-    background-size:
-        400% 100%;
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    animation:
-        rainbow 14s linear infinite;
-}
-
-.gmail-group-container a {
-
-    padding-left: 10px;
-}
-
-.gmail-group-container:hover .gmail-label,
-.gmail-group-container:hover a {
-
-    transform:
-        scale(1.08);
-
+    font-size: 14px;
 }
 
 /* =========================================================
-   FIREWORK EFFECT
-========================================================= */
-
-.btn-container::before,
-.btn-container::after,
-.gmail-group-container::before,
-.gmail-group-container::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    z-index: 5;
-
-    opacity: 0;
-
-    pointer-events: none;
-}
-
-.btn-container:hover::before,
-.gmail-group-container:hover::before {
-
-    animation:
-        original-pop-1
-        0.75s
-        cubic-bezier(
-            0.1,
-            0.8,
-            0.3,
-            1
-        );
-
-    animation-iteration-count: 4;
-}
-
-.btn-container:hover::after,
-.gmail-group-container:hover::after {
-
-    animation:
-        original-pop-2
-        0.75s
-        cubic-bezier(
-            0.1,
-            0.6,
-            0.2,
-            1
-        );
-
-    animation-delay:
-        0.15s;
-
-    animation-iteration-count: 4;
-}
-
-@keyframes original-pop-1 {
-
-    0% {
-
-        box-shadow:
-            0 0 #ff0055,
-            0 0 #00ffcc,
-            0 0 #ffcc00,
-            0 0 #9900ff,
-            0 0 #ff5500,
-            0 0 #00ff00,
-            0 0 #0066ff,
-            0 0 #cc00ff;
-
-        opacity: 1;
-
-        transform:
-            scale(1);
-    }
-
-    100% {
-
-        box-shadow:
-            -140px -90px 4px #ff0055,
-            140px -90px 4px #00ffcc,
-            -140px 90px 4px #ffcc00,
-            140px 90px 4px #9900ff,
-            -160px 0 4px #ff5500,
-            160px 0 4px #00ff00,
-            0 -160px 4px #0066ff,
-            0 160px 4px #cc00ff;
-
-        opacity: 0;
-
-        transform:
-            scale(1.6);
-    }
-}
-
-@keyframes original-pop-2 {
-
-    0% {
-
-        box-shadow:
-            0 0 #00ffff,
-            0 0 #ff00ff,
-            0 0 #ffff00,
-            0 0 #ff3300,
-            0 0 #33ff00,
-            0 0 #0033ff,
-            0 0 #e60073,
-            0 0 #ff9900;
-
-        opacity: 0;
-
-        transform:
-            scale(0.5);
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    100% {
-
-        box-shadow:
-            -110px -130px 2px #00ffff,
-            110px -130px 2px #ff00ff,
-            -130px 110px 2px #ffff00,
-            130px 110px 2px #ff3300,
-            -130px -110px 2px #33ff00,
-            130px -110px 2px #0033ff,
-            -110px 130px 2px #e60073,
-            110px 130px 2px #ff9900;
-
-        opacity: 0;
-
-        transform:
-            scale(2.3);
-    }
-}
-
-/* =========================================================
-   FEEDBACK CARD
+   FEEDBACK
 ========================================================= */
 
 .feedback-section {
@@ -1019,7 +1118,6 @@ p.contact-sub {
         blur(15px);
 
     box-shadow:
-
         0 20px 50px
         rgba(0,0,0,0.5),
 
@@ -1048,10 +1146,20 @@ p.contact-sub {
 
     border:
         1px solid
-        rgba(255,255,255,0.12);
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
 
     background:
-        rgba(0,0,0,0.35);
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
 
     color: white;
 
@@ -1065,26 +1173,21 @@ p.contact-sub {
         15px;
 
     outline: none;
-
-    transition:
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
 }
 
-.feedback-section input[type="text"]::placeholder {
-
-    color:
-        rgba(255,255,255,0.45);
-}
-
-.feedback-section input[type="text"]:focus {
+.feedback-section input:focus {
 
     border-color:
         #00cfff;
 
     box-shadow:
         0 0 18px
-        rgba(0,200,255,0.25);
+        rgba(
+            0,
+            200,
+            255,
+            0.25
+        );
 }
 
 .feedback-section button {
@@ -1127,7 +1230,12 @@ p.contact-sub {
 
     box-shadow:
         0 0 25px
-        rgba(0,180,255,0.4);
+        rgba(
+            0,
+            180,
+            255,
+            0.4
+        );
 }
 
 /* =========================================================
@@ -1138,18 +1246,29 @@ p.contact-sub {
 
     .main-container {
 
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left:
+            15px;
+
+        padding-right:
+            15px;
     }
 
     .header {
 
-        margin-top: 25px;
+        margin-top:
+            45px;
+
+        padding-bottom:
+            25px;
     }
 
     .header h1 {
 
-        letter-spacing: -2px;
+        letter-spacing:
+            -2px;
+
+        margin-bottom:
+            18px;
     }
 
     .examples {
@@ -1159,10 +1278,14 @@ p.contact-sub {
 
     .examples img {
 
-        width: 70px;
-        height: 70px;
+        width:
+            70px;
 
-        border-radius: 15px;
+        height:
+            70px;
+
+        border-radius:
+            15px;
     }
 
     .products {
@@ -1173,23 +1296,52 @@ p.contact-sub {
     .product {
 
         width:
-            min(100%, 290px);
+            min(
+                100%,
+                290px
+            );
     }
 
     .product img {
 
-        width: 210px;
-        height: 210px;
+        width:
+            210px;
+
+        height:
+            210px;
     }
 
     .btn-container {
 
-        display: block;
+        display:
+            block;
 
-        width: fit-content;
+        width:
+            fit-content;
 
         margin:
             10px auto;
+    }
+
+    .gmail-group-container {
+
+        flex-direction:
+            column;
+
+        width:
+            100%;
+
+        align-items:
+            center;
+    }
+
+    .gmail-link {
+
+        max-width:
+            100%;
+
+        font-size:
+            13px;
     }
 }
 
@@ -1221,13 +1373,27 @@ p.contact-sub {
 <body>
 
 <!-- =======================================================
+     QUICK WEBSITE INTRO
+======================================================= -->
+
+<div class="intro-screen">
+
+```
+<div class="intro-logo">
+    3D HOUSE
+</div>
+```
+
+</div>
+
+<!-- =======================================================
      ANIMATED BACKGROUND
 ======================================================= -->
 
 <canvas id="spaceCanvas"></canvas>
 
 <!-- =======================================================
-     MAIN STORE
+     MAIN WEBSITE
 ======================================================= -->
 
 <div class="main-container">
@@ -1235,7 +1401,9 @@ p.contact-sub {
 ```
 <div class="header">
 
-    <h1>3D HOUSE</h1>
+    <h1>
+        3D HOUSE
+    </h1>
 
     <p>
         Where YOUR prints come to life!
@@ -1251,15 +1419,30 @@ p.contact-sub {
 
 <div class="examples">
 
-    <img src="dog.jpg" alt="3D printed dog">
+    <img
+        src="dog.jpg"
+        alt="3D printed dog"
+    >
 
-    <img src="cat.jpg" alt="3D printed cat">
+    <img
+        src="cat.jpg"
+        alt="3D printed cat"
+    >
 
-    <img src="snail.jpg" alt="3D printed snail">
+    <img
+        src="snail.jpg"
+        alt="3D printed snail"
+    >
 
-    <img src="seal.jpg" alt="3D printed seal">
+    <img
+        src="seal.jpg"
+        alt="3D printed seal"
+    >
 
-    <img src="axolotl.jpg" alt="3D printed axolotl">
+    <img
+        src="axolotl.jpg"
+        alt="3D printed axolotl"
+    >
 
 </div>
 
@@ -1334,29 +1517,78 @@ p.contact-sub {
 </p>
 
 
+<!-- ===================================================
+     MESSENGER
+==================================================== -->
+
 <div class="btn-container">
 
     <a
-        href="https://messenger.com"
+        href="https://www.messenger.com/e2ee/t/27930725193238751"
         target="_blank"
         rel="noopener noreferrer"
         class="btn messenger"
     >
-        Messenger
+        💬 Messenger
     </a>
 
 </div>
 
 
+<!-- ===================================================
+     FACEBOOK
+==================================================== -->
+
 <div class="btn-container">
 
     <a
-        href="https://facebook.com"
+        href="https://www.facebook.com/"
         target="_blank"
         rel="noopener noreferrer"
         class="btn facebook"
     >
-        Facebook
+        👍 Facebook
+    </a>
+
+</div>
+
+
+<!-- ===================================================
+     EMAILS
+==================================================== -->
+
+<div class="gmail-title">
+    📧 Email us directly
+</div>
+
+
+<div class="gmail-group-container">
+
+    <a
+        class="gmail-link"
+        href="mailto:konstantinezedgina@gmail.com"
+    >
+
+        <span class="gmail-icon">
+            ✉
+        </span>
+
+        konstantinezedgina@gmail.com
+
+    </a>
+
+
+    <a
+        class="gmail-link"
+        href="mailto:demetrezedgina@gmail.com"
+    >
+
+        <span class="gmail-icon">
+            ✉
+        </span>
+
+        demetrezedgina@gmail.com
+
     </a>
 
 </div>
@@ -1372,12 +1604,17 @@ p.contact-sub {
         💬 Tell Us What You Think
     </h3>
 
+
     <input
         type="text"
         placeholder="Type your feedback..."
     >
 
-    <button type="button">
+
+    <button
+        type="button"
+        onclick="sendFeedback()"
+    >
         Send Feedback
     </button>
 
@@ -1387,18 +1624,23 @@ p.contact-sub {
 </div>
 
 <!-- =======================================================
-     BACKGROUND PARTICLES
+     PARTICLE BACKGROUND
 ======================================================= -->
 
 <script>
 
 const canvas =
-    document.getElementById("spaceCanvas");
+    document.getElementById(
+        "spaceCanvas"
+    );
 
 const ctx =
     canvas.getContext("2d");
 
 let particles = [];
+
+
+/* Resize */
 
 function resizeCanvas() {
 
@@ -1408,9 +1650,8 @@ function resizeCanvas() {
     canvas.height =
         window.innerHeight;
 
+    createParticles();
 }
-
-resizeCanvas();
 
 window.addEventListener(
     "resize",
@@ -1426,9 +1667,9 @@ function createParticles() {
 
     const amount =
         Math.min(
-            120,
+            130,
             Math.floor(
-                window.innerWidth / 10
+                window.innerWidth / 9
             )
         );
 
@@ -1441,24 +1682,28 @@ function createParticles() {
         particles.push({
 
             x:
-                Math.random() *
-                canvas.width,
+                Math.random()
+                * canvas.width,
 
             y:
-                Math.random() *
-                canvas.height,
+                Math.random()
+                * canvas.height,
 
             size:
-                Math.random() * 2.2 + 0.5,
+                Math.random()
+                * 2.2 + 0.5,
 
             speed:
-                Math.random() * 0.35 + 0.08,
+                Math.random()
+                * 0.35 + 0.08,
 
             opacity:
-                Math.random() * 0.8 + 0.2,
+                Math.random()
+                * 0.8 + 0.2,
 
             hue:
-                Math.random() * 80 + 180
+                Math.random()
+                * 80 + 180
 
         });
 
@@ -1466,10 +1711,8 @@ function createParticles() {
 
 }
 
-createParticles();
 
-
-/* Animate */
+/* Animation */
 
 function animateBackground() {
 
@@ -1494,9 +1737,8 @@ function animateBackground() {
                     canvas.height + 10;
 
                 particle.x =
-                    Math.random() *
-                    canvas.width;
-
+                    Math.random()
+                    * canvas.width;
             }
 
 
@@ -1540,10 +1782,59 @@ function animateBackground() {
     requestAnimationFrame(
         animateBackground
     );
-
 }
 
+
+resizeCanvas();
+
 animateBackground();
+
+
+/* =======================================================
+   FEEDBACK EMAIL
+======================================================= */
+
+function sendFeedback() {
+
+    const input =
+        document.querySelector(
+            '.feedback-section input'
+        );
+
+    const message =
+        input.value.trim();
+
+
+    if (!message) {
+
+        alert(
+            "Please type some feedback first!"
+        );
+
+        return;
+    }
+
+
+    const email =
+        "konstantinezedgina@gmail.com";
+
+
+    const subject =
+        encodeURIComponent(
+            "3D House Website Feedback"
+        );
+
+
+    const body =
+        encodeURIComponent(
+            message
+        );
+
+
+    window.location.href =
+        `mailto:${email}?subject=${subject}&body=${body}`;
+
+}
 
 </script>
 
