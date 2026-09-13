@@ -1,376 +1,1551 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>3D House Store</title>
 
-<!-- Include Lexend font -->
-<link href="https://googleapis.com" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* Reset base browser parameters safely */
-html, body {
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: #03030c; /* Deep space dark backdrop void */
 }
 
 body {
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
     color: white;
-    position: relative;
+
     overflow-x: hidden;
-    overflow-y: auto; /* Allows natural scrolling downwards */
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(113, 0, 255, 0.25),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(0, 183, 255, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255, 0, 179, 0.16),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #02010a,
+            #08021b,
+            #010712
+        );
+
+    background-attachment: fixed;
 }
 
-/* HIGH VISIBILITY BACKGROUND CANVAS: Forced to stretch 100% to prevent blank screens */
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    opacity: 0.18;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 217, 255, 0.12) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 217, 255, 0.12) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+    );
+
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(70px);
+    }
+}
+
+/* =========================================================
+   FLOATING LIGHTS
+========================================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    top: -250px;
+    right: -200px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(128, 0, 255, 0.30),
+            rgba(0, 183, 255, 0.08) 40%,
+            transparent 70%
+        );
+
+    filter: blur(25px);
+
+    animation: glowFloat 9s ease-in-out infinite alternate;
+}
+
+@keyframes glowFloat {
+
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(-100px, 120px) scale(1.25);
+    }
+}
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
 #spaceCanvas {
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100vw;
     height: 100vh;
-    z-index: 1; /* Pushes shapes directly behind structural storefront code layout */
-    pointer-events: none; /* Crucial: Allows clicks to pass through to the buttons beneath */
+
+    z-index: 1;
+
+    pointer-events: none;
+
     display: block;
+
+    opacity: 0.85;
 }
 
-/* TOTAL WEBPAGE CONTENT WRAPPER: Centers layout and keeps things packed together tightly */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
 .main-container {
+
     position: relative;
-    z-index: 10; /* Locked tightly on top of the moving lava bubbles */
+
+    z-index: 10;
+
     width: 100%;
+
     max-width: 1200px;
+
     margin: 0 auto;
-    padding-bottom: 50px; /* Cushion padding at the absolute bottom */
-    box-sizing: border-box;
-    
-    /* Cinematic Intro Entrance: Clean, tightly packed slide up animation sequence */
+
+    padding:
+        0 25px 70px;
+
     opacity: 0;
-    animation: layoutEntranceRise 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+
+    animation:
+        entrance 0.9s
+        cubic-bezier(0.25, 1, 0.5, 1)
+        forwards;
+
     animation-delay: 0.15s;
 }
 
-/* Center-locked vertical slide rise mechanics */
-@keyframes layoutEntranceRise {
-    0% {
+@keyframes entrance {
+
+    from {
         opacity: 0;
         transform: translateY(50px);
     }
-    100% {
+
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Header Section - Perfectly centered horizontally */
+/* =========================================================
+   HEADER
+========================================================= */
+
 .header {
-    margin-top: 30px;
+
+    margin-top: 40px;
+
     width: 100%;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
+    text-align: center;
 }
 
 .header h1 {
+
     margin: 5px 0;
-    font-size: 85px; 
-    text-align: center;
-    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+
+    font-size: clamp(
+        55px,
+        9vw,
+        100px
+    );
+
+    font-weight: 800;
+
+    letter-spacing: -4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0080,
+            #7928ff,
+            #00c6ff,
+            #00ffcc,
+            #7928ff,
+            #ff0080
+        );
+
     background-size: 400% 100%;
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: rainbow 8s linear infinite;
-    width: auto;
+
+    animation:
+        rainbow 8s linear infinite,
+        titleFloat 4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(128, 0, 255, 0.5)
+        )
+
+        drop-shadow(
+            0 0 30px
+            rgba(0, 200, 255, 0.2)
+        );
 }
 
 @keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 400% 50%; }
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 400% 50%;
+    }
+}
+
+@keyframes titleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
 }
 
 .header p {
-    margin: 5px 0;
-    font-size: 22px; 
-    text-align: center;
+
+    margin: 8px 0;
+
+    font-size:
+        clamp(16px, 3vw, 23px);
+
+    color:
+        rgba(255,255,255,0.85);
+
+    text-shadow:
+        0 0 15px
+        rgba(0,200,255,0.4);
 }
+
+/* =========================================================
+   HEADINGS
+========================================================= */
 
 h3 {
-    font-size: 32px; 
-    font-weight: 600;
-    margin: 20px 0 10px 0;
-}
 
-/* Image showcase grids mapping */
-.examples {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin: 20px auto;
-}
+    font-size:
+        clamp(24px, 4vw, 32px);
 
-.examples img {
-    width: 90px; 
-    height: 90px;
-    border-radius: 15px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
+    font-weight: 700;
 
-.examples img:hover {
-    transform: scale(1.12); /* Image scales up on hover */
+    margin:
+        40px 0 15px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,255,255,0.18);
 }
 
 .section-title {
-    font-size: 36px;
-    margin-top: 20px;
+
+    font-size:
+        clamp(30px, 5vw, 42px);
+
+    margin-top: 45px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #73e8ff,
+            #d18cff,
+            #ffffff
+        );
+
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        rainbow 10s linear infinite;
 }
 
-.products {
+/* =========================================================
+   EXAMPLE IMAGES
+========================================================= */
+
+.examples {
+
     display: flex;
+
     justify-content: center;
-    gap: 40px;
+
+    align-items: center;
+
+    gap: 16px;
+
     flex-wrap: wrap;
-    margin-top: 20px;
+
+    margin: 25px auto;
+}
+
+.examples img {
+
+    width: 95px;
+    height: 95px;
+
+    border-radius: 20px;
+
+    object-fit: cover;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(0,0,0,0.5),
+
+        0 0 15px
+        rgba(125,0,255,0.18);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.examples img:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.12)
+        rotate(2deg);
+
+    border-color:
+        rgba(0,220,255,0.7);
+
+    box-shadow:
+
+        0 15px 35px
+        rgba(0,0,0,0.6),
+
+        0 0 20px
+        rgba(0,200,255,0.5),
+
+        0 0 45px
+        rgba(130,0,255,0.3);
+}
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+.products {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    gap: 28px;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+}
+
+/* =========================================================
+   3D PRODUCT CARD
+========================================================= */
+
+.product {
+
+    width: 220px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.11),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+
+        0 20px 40px
+        rgba(0,0,0,0.45),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.08);
+
+    transition:
+        transform 0.4s
+        cubic-bezier(.2,.8,.2,1),
+
+        box-shadow 0.4s ease,
+
+        border-color 0.4s ease;
+}
+
+/* Moving shine */
+
+.product::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -120%;
+    left: -100%;
+
+    width: 250%;
+    height: 250%;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 40%,
+            rgba(255,255,255,0.15) 50%,
+            transparent 60%
+        );
+
+    transform: rotate(10deg);
+
+    transition:
+        0.8s ease;
+}
+
+.product:hover::before {
+
+    left: 100%;
+}
+
+.product:hover {
+
+    transform:
+        translateY(-14px)
+        rotateX(4deg)
+        rotateY(-4deg);
+
+    border-color:
+        rgba(0,220,255,0.5);
+
+    box-shadow:
+
+        0 30px 60px
+        rgba(0,0,0,0.55),
+
+        0 0 25px
+        rgba(0,200,255,0.25),
+
+        0 0 60px
+        rgba(130,0,255,0.18);
 }
 
 .product img {
-    width: 150px; 
-    height: 150px;
+
+    width: 175px;
+    height: 175px;
+
     border-radius: 20px;
+
     object-fit: cover;
-    transition: transform 0.3s ease;
+
+    position: relative;
+
+    z-index: 2;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
 }
 
-.product img:hover {
-    transform: scale(1.08); /* Product image scales up on hover */
+.product:hover img {
+
+    transform:
+        scale(1.07)
+        rotate(1deg);
+
+    filter:
+        brightness(1.1)
+        saturate(1.15);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,200,255,0.25);
 }
 
 .product p {
-    margin-top: 10px;
+
+    margin:
+        15px 0 3px;
+
+    font-size: 16px;
+
+    color:
+        rgba(255,255,255,0.9);
+
+    position: relative;
+
+    z-index: 2;
 }
+
+/* =========================================================
+   AND MORE
+========================================================= */
 
 .big-text {
-    font-size: 40px;
-    font-weight: 600;
-    margin: 20px 0;
+
+    font-size:
+        clamp(32px, 6vw, 48px);
+
+    font-weight: 800;
+
+    margin: 40px 0;
+
+    text-align: center;
+
+    text-shadow:
+
+        0 0 10px
+        #8a2be2,
+
+        0 0 25px
+        rgba(138,43,226,0.6),
+
+        0 0 50px
+        rgba(0,200,255,0.25);
+
+    animation:
+        moreGlow 3s ease-in-out infinite alternate;
 }
 
-/* Spacing out contact labels slightly */
+@keyframes moreGlow {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.04);
+    }
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
 p.contact-sub {
-    margin: 10px 0;
+
+    margin:
+        10px 0 20px;
+
+    text-align: center;
+
+    color:
+        rgba(255,255,255,0.75);
+
+    line-height: 1.7;
 }
 
-/* Button & Link layout block specifications packed tightly */
-.btn-container, .gmail-group-container {
+.btn-container {
+
     display: inline-block;
+
     position: relative;
-    margin: 5px;
+
+    margin: 8px;
 }
 
-.gmail-group-container {
-    display: block;
-    margin: 10px auto;
-    font-size: 22px;
-    width: fit-content;
-}
+/* =========================================================
+   BUTTONS
+========================================================= */
 
-.space-down {
-    margin-top: 25px;
-    margin-bottom: 10px; /* Packed tightly back together */
-}
-
-/* Buttons formatting styling */
 .btn {
+
     display: inline-block;
-    padding: 15px 25px; 
-    border-radius: 25px;
+
+    padding:
+        15px 28px;
+
+    border-radius: 30px;
+
     color: white;
+
     text-decoration: none;
-    font-weight: 600;
-    font-family: 'Lexend', sans-serif;
+
+    font-weight: 700;
+
+    font-family:
+        'Lexend',
+        sans-serif;
+
     position: relative;
+
     z-index: 12;
-    transition: transform 0.3s ease;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.2);
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(0,0,0,0.4);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+.btn:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.07);
+
+    filter:
+        brightness(1.15);
+
+    box-shadow:
+
+        0 12px 30px
+        rgba(0,0,0,0.5),
+
+        0 0 25px
+        rgba(0,200,255,0.4);
 }
 
 .messenger {
-    background: #0084ff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0084ff,
+            #7b2cff
+        );
 }
 
 .facebook {
-    background: #1877f2;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1877f2,
+            #0757c9
+        );
 }
 
-/* Gmail links customized specifications layout mapping */
-.gmail-group-container .gmail-label, 
+/* =========================================================
+   GMAIL
+========================================================= */
+
+.gmail-group-container {
+
+    display: block;
+
+    margin:
+        15px auto;
+
+    font-size: 20px;
+
+    width: fit-content;
+}
+
+.gmail-group-container .gmail-label,
 .gmail-group-container a {
+
     display: inline-block;
+
     vertical-align: middle;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 600;
-    transition: transform 0.3s ease;
+
+    font-family:
+        'Lexend',
+        sans-serif;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.3s ease;
+
     text-decoration: none;
+
     padding: 6px 5px;
-    
-    /* Smooth, slow rainbow animation for the text labels and the links */
-    background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055);
-    background-size: 400% 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0055,
+            #ff9933,
+            #ffff33,
+            #00ffcc,
+            #3399ff,
+            #cc00ff,
+            #ff0055
+        );
+
+    background-size:
+        400% 100%;
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: rainbow 14s linear infinite; 
+
+    animation:
+        rainbow 14s linear infinite;
 }
 
 .gmail-group-container a {
+
     padding-left: 10px;
 }
 
-/* CUSTOM ZOOM ANIMATION: Activates on user cursor interactions */
-.btn-container:hover .btn,
 .gmail-group-container:hover .gmail-label,
 .gmail-group-container:hover a {
-    transform: scale(1.10); /* Elements expand smoothly together */
+
+    transform:
+        scale(1.08);
+
 }
 
-/* ORIGINAL FIREWORKS METHOD: Explodes directly out from the elements core nodes */
-.btn-container::before, .btn-container::after,
-.gmail-group-container::before, .gmail-group-container::after {
+/* =========================================================
+   FIREWORK EFFECT
+========================================================= */
+
+.btn-container::before,
+.btn-container::after,
+.gmail-group-container::before,
+.gmail-group-container::after {
+
     content: "";
+
     position: absolute;
+
     top: 50%;
     left: 50%;
+
     width: 6px;
     height: 6px;
+
     border-radius: 50%;
+
     z-index: 5;
+
     opacity: 0;
+
     pointer-events: none;
 }
 
-/* Spark layer 1 (Popping particle stars loop) */
-.btn-container:hover::before, .gmail-group-container:hover::before {
-    animation: original-pop-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1);
-    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
+.btn-container:hover::before,
+.gmail-group-container:hover::before {
+
+    animation:
+        original-pop-1
+        0.75s
+        cubic-bezier(
+            0.1,
+            0.8,
+            0.3,
+            1
+        );
+
+    animation-iteration-count: 4;
 }
 
-/* Spark layer 2 (Multiplying particle stars loop) */
-.btn-container:hover::after, .gmail-group-container:hover::after {
-    animation: original-pop-2 0.75s cubic-bezier(0.1, 0.6, 0.2, 1);
-    animation-delay: 0.15s;
-    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
+.btn-container:hover::after,
+.gmail-group-container:hover::after {
+
+    animation:
+        original-pop-2
+        0.75s
+        cubic-bezier(
+            0.1,
+            0.6,
+            0.2,
+            1
+        );
+
+    animation-delay:
+        0.15s;
+
+    animation-iteration-count: 4;
 }
 
 @keyframes original-pop-1 {
+
     0% {
-        box-shadow: 0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff, 0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff;
-        opacity: 1; transform: scale(1);
+
+        box-shadow:
+            0 0 #ff0055,
+            0 0 #00ffcc,
+            0 0 #ffcc00,
+            0 0 #9900ff,
+            0 0 #ff5500,
+            0 0 #00ff00,
+            0 0 #0066ff,
+            0 0 #cc00ff;
+
+        opacity: 1;
+
+        transform:
+            scale(1);
     }
+
     100% {
-        box-shadow: -140px -90px 4px #ff0055, 140px -90px 4px #00ffcc, -140px 90px 4px #ffcc00, 140px 90px 4px #9900ff, -160px 0px 4px #ff5500, 160px 0px 4px #00ff00, 0px -160px 4px #0066ff, 0px 160px 4px #cc00ff;
-        opacity: 0; transform: scale(1.6);
+
+        box-shadow:
+            -140px -90px 4px #ff0055,
+            140px -90px 4px #00ffcc,
+            -140px 90px 4px #ffcc00,
+            140px 90px 4px #9900ff,
+            -160px 0 4px #ff5500,
+            160px 0 4px #00ff00,
+            0 -160px 4px #0066ff,
+            0 160px 4px #cc00ff;
+
+        opacity: 0;
+
+        transform:
+            scale(1.6);
     }
 }
 
 @keyframes original-pop-2 {
+
     0% {
-        box-shadow: 0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300, 0 0 #33ff00, 0 0 #0033ff, 0 0 #e60073, 0 0 #ff9900;
-        opacity: 0; transform: scale(0.5);
+
+        box-shadow:
+            0 0 #00ffff,
+            0 0 #ff00ff,
+            0 0 #ffff00,
+            0 0 #ff3300,
+            0 0 #33ff00,
+            0 0 #0033ff,
+            0 0 #e60073,
+            0 0 #ff9900;
+
+        opacity: 0;
+
+        transform:
+            scale(0.5);
     }
-    20% { opacity: 1; }
+
+    20% {
+        opacity: 1;
+    }
+
     100% {
-        box-shadow: -110px -130px 2px #00ffff, 110px -130px 2px #ff00ff, -130px 110px 2px #ffff00, 130px 110px 2px #ff3300, -130px -110px 2px #33ff00, 130px -110px 2px #0033ff, -110px 130px 2px #e60073, 110px 130px 2px #ff9900, -125px -125px 2px #ff0055, 125px -125px 2px #00ffcc, -125px 125px 2px #ffcc00, 125px 125px 2px #9900ff, -145px -60px 1px #ffff00, 145px 60px 1px #ff00ff, -60px 145px 1px #00ffff, 60px -145px 1px #ff3300;
-        opacity: 0; transform: scale(2.3);
+
+        box-shadow:
+            -110px -130px 2px #00ffff,
+            110px -130px 2px #ff00ff,
+            -130px 110px 2px #ffff00,
+            130px 110px 2px #ff3300,
+            -130px -110px 2px #33ff00,
+            130px -110px 2px #0033ff,
+            -110px 130px 2px #e60073,
+            110px 130px 2px #ff9900;
+
+        opacity: 0;
+
+        transform:
+            scale(2.3);
     }
 }
 
-/* Feedback card module mapping packed closely */
+/* =========================================================
+   FEEDBACK CARD
+========================================================= */
+
 .feedback-section {
-    margin-top: 40px;
-    padding: 20px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 20px;
-    width: 90%;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px); /* Premium frosted pane effect */
-    box-sizing: border-box;
+
+    margin:
+        55px auto 0;
+
+    padding:
+        25px;
+
+    width:
+        90%;
+
+    max-width:
+        520px;
+
+    border-radius:
+        25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+
+        0 20px 50px
+        rgba(0,0,0,0.5),
+
+        0 0 35px
+        rgba(100,0,255,0.15);
 }
 
 .feedback-section h3 {
+
     margin-top: 0;
-    margin-bottom: 15px;
+
+    margin-bottom: 20px;
+
     font-size: 28px;
 }
 
 .feedback-section input[type="text"] {
+
     width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
+
+    padding:
+        14px 16px;
+
+    border-radius:
+        14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    background:
+        rgba(0,0,0,0.35);
+
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    font-family:
+        'Lexend',
+        sans-serif;
+
+    font-weight: 600;
+
+    margin-bottom:
+        15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
+
+.feedback-section input[type="text"]::placeholder {
+
+    color:
+        rgba(255,255,255,0.45);
+}
+
+.feedback-section input[type="text"]:focus {
+
+    border-color:
+        #00cfff;
+
+    box-shadow:
+        0 0 18px
+        rgba(0,200,255,0.25);
+}
+
+.feedback-section button {
+
+    padding:
+        13px 32px;
+
+    border-radius:
+        30px;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0084ff,
+            #7928ff
+        );
+
+    color: white;
+
+    font-family:
+        'Lexend',
+        sans-serif;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.feedback-section button:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,180,255,0.4);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .main-container {
+
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .header {
+
+        margin-top: 25px;
+    }
+
+    .header h1 {
+
+        letter-spacing: -2px;
+    }
+
+    .examples {
+
+        gap: 9px;
+    }
+
+    .examples img {
+
+        width: 70px;
+        height: 70px;
+
+        border-radius: 15px;
+    }
+
+    .products {
+
+        gap: 18px;
+    }
+
+    .product {
+
+        width:
+            min(100%, 290px);
+    }
+
+    .product img {
+
+        width: 210px;
+        height: 210px;
+    }
+
+    .btn-container {
+
+        display: block;
+
+        width: fit-content;
+
+        margin:
+            10px auto;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+
 </style>
+
 </head>
+
 <body>
 
-<!-- High visibility space animation background anchor tag -->
+<!-- =======================================================
+     ANIMATED BACKGROUND
+======================================================= -->
+
 <canvas id="spaceCanvas"></canvas>
 
-<!-- Total store foreground structural interface layers -->
+<!-- =======================================================
+     MAIN STORE
+======================================================= -->
+
 <div class="main-container">
-    <div class="header">
-        <h1>3D House Store</h1>
-        <p>Your portal to digital spaces</p>
-    </div>
-    
-    <div class="feedback-section">
-        <h3>Drop some feedback!</h3>
-        <input type="text" placeholder="Type here...">
-    </div>
+
+```
+<div class="header">
+
+    <h1>3D HOUSE</h1>
+
+    <p>
+        Where YOUR prints come to life!
+    </p>
+
 </div>
 
-<!-- LAVA LAMP BUBBLE GENERATOR SCRIPT -->
+
+<h3>
+    Examples of what we print!
+</h3>
+
+
+<div class="examples">
+
+    <img src="dog.jpg" alt="3D printed dog">
+
+    <img src="cat.jpg" alt="3D printed cat">
+
+    <img src="snail.jpg" alt="3D printed snail">
+
+    <img src="seal.jpg" alt="3D printed seal">
+
+    <img src="axolotl.jpg" alt="3D printed axolotl">
+
+</div>
+
+
+<h2 class="section-title">
+    What We Make
+</h2>
+
+
+<div class="products">
+
+    <div class="product">
+
+        <img
+            src="stand.jpg"
+            alt="3D printed headphone stand"
+        >
+
+        <p>
+            Headphone Stands
+        </p>
+
+    </div>
+
+
+    <div class="product">
+
+        <img
+            src="shelf.jpg"
+            alt="3D printed mini shelf"
+        >
+
+        <p>
+            Mini Shelves
+        </p>
+
+    </div>
+
+
+    <div class="product">
+
+        <img
+            src="oreo.jpg"
+            alt="3D printed magnet fidget"
+        >
+
+        <p>
+            Magnet Fidgets
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="big-text">
+    And More!
+</div>
+
+
+<h3>
+    CREATE YOUR 3D PRINT HERE!
+</h3>
+
+
+<p class="contact-sub">
+
+    Contact us here!<br>
+
+    And get your prints!
+
+</p>
+
+
+<div class="btn-container">
+
+    <a
+        href="https://messenger.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn messenger"
+    >
+        Messenger
+    </a>
+
+</div>
+
+
+<div class="btn-container">
+
+    <a
+        href="https://facebook.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn facebook"
+    >
+        Facebook
+    </a>
+
+</div>
+
+
+<!-- ===================================================
+     FEEDBACK
+==================================================== -->
+
+<div class="feedback-section">
+
+    <h3>
+        💬 Tell Us What You Think
+    </h3>
+
+    <input
+        type="text"
+        placeholder="Type your feedback..."
+    >
+
+    <button type="button">
+        Send Feedback
+    </button>
+
+</div>
+```
+
+</div>
+
+<!-- =======================================================
+     BACKGROUND PARTICLES
+======================================================= -->
+
 <script>
-const canvas = document.getElementById('spaceCanvas');
-const ctx = canvas.getContext('2d');
+
+const canvas =
+    document.getElementById("spaceCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+let particles = [];
 
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
 }
-window.addEventListener('resize', resizeCanvas);
+
 resizeCanvas();
 
-class LavaBlob {
-    constructor(startOnScreen = false) {
-        this.x = Math.random() * canvas.width;
-        // Instantly spreads initial blobs across layout viewport coordinates
-        this.y = startOnScreen ? Math.random() * canvas.height : canvas.height + 100;
-        this.radius = Math.random() * 75 + 55; // Highly visible neon dimensions
-        this.speedY = -(Math.random() * 0.6 + 0.35);
-        this.wobbleSpeed = Math.random() * 0.01 + 0.004;
-        this.hue = Math.random() * 360;
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+/* Create particles */
+
+function createParticles() {
+
+    particles = [];
+
+    const amount =
+        Math.min(
+            120,
+            Math.floor(
+                window.innerWidth / 10
+            )
+        );
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        particles.push({
+
+            x:
+                Math.random() *
+                canvas.width,
+
+            y:
+                Math.random() *
+                canvas.height,
+
+            size:
+                Math.random() * 2.2 + 0.5,
+
+            speed:
+                Math.random() * 0.35 + 0.08,
+
+            opacity:
+                Math.random() * 0.8 + 0.2,
+
+            hue:
+                Math.random() * 80 + 180
+
+        });
+
     }
 
-    update() {
-        this.y += this.speedY;
-        this.hue = (this.hue + 0.2) % 360; // Shifting rainbow color track
+}
 
-        // Recycles elements looping back seamlessly into bottom coordinates
-        if (this.y + this.radius < -50) {
-            this.y = canvas.height + this.radius;
-            this.x = Math.random() * canvas.width;
+createParticles();
+
+
+/* Animate */
+
+function animateBackground() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    particles.forEach(
+        particle => {
+
+            particle.y -=
+                particle.speed;
+
+            if (
+                particle.y < -10
+            ) {
+
+                particle.y =
+                    canvas.height + 10;
+
+                particle.x =
+                    Math.random() *
+                    canvas.width;
+
+            }
+
+
+            ctx.beginPath();
+
+            ctx.arc(
+                particle.x,
+                particle.y,
+                particle.size,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                `hsla(
+                    ${particle.hue},
+                    100%,
+                    70%,
+                    ${particle.opacity}
+                )`;
+
+
+            ctx.shadowBlur = 12;
+
+            ctx.shadowColor =
+                `hsla(
+                    ${particle.hue},
+                    100%,
+                    70%,
+                    0.8
+                )`;
+
+
+            ctx.fill();
+
         }
-    }
+    );
 
-    draw() {
-        ctx.save();
+
+    requestAnimationFrame(
+        animateBackground
+    );
+
+}
+
+animateBackground();
+
+</script>
+
+</body>
+</html>
