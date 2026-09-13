@@ -3,90 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D House Store</title>
+<title>3D House</title>
 
 <!-- Include Lexend font -->
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
-/* Reset base browser parameters safely */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: #03030c; /* Deep space dark backdrop void */
-}
-
 body {
+    margin: 0;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
     color: white;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto; /* Allows natural scrolling downwards */
+    text-align: center;
 }
 
-/* HIGH VISIBILITY BACKGROUND CANVAS: Forced to stretch 100% to prevent blank screens */
-#spaceCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1; /* Pushes shapes directly behind structural storefront code layout */
-    pointer-events: none; /* Crucial: Allows clicks to pass through to the buttons beneath */
-    display: block;
-}
-
-/* TOTAL WEBPAGE CONTENT WRAPPER: Centers layout and keeps things packed together tightly */
-.main-container {
-    position: relative;
-    z-index: 10; /* Locked tightly on top of the moving lava bubbles */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 50px; /* Cushion padding at the absolute bottom */
-    box-sizing: border-box;
-    
-    /* Cinematic Intro Entrance: Clean, tightly packed slide up animation sequence */
-    opacity: 0;
-    animation: layoutEntranceRise 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 0.15s;
-}
-
-/* Center-locked vertical slide rise mechanics */
-@keyframes layoutEntranceRise {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Header Section - Perfectly centered horizontally */
+/* Header */
 .header {
     margin-top: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .header h1 {
-    margin: 5px 0;
-    font-size: 85px; 
-    text-align: center;
+    margin: 5px;
+    font-size: 85px; /* Bigger title */
     background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
     background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rainbow 8s linear infinite;
-    width: auto;
 }
 
 @keyframes rainbow {
@@ -95,43 +39,45 @@ body {
 }
 
 .header p {
-    margin: 5px 0;
-    font-size: 22px; 
-    text-align: center;
+    margin: 5px;
+    font-size: 22px; /* Subtitle slightly bigger */
 }
 
+/* Main headings on page */
 h3 {
-    font-size: 32px; 
+    font-size: 32px; /* Bigger h3 headings */
     font-weight: 600;
-    margin: 20px 0 10px 0;
 }
 
-/* Image showcase grids mapping */
+/* Example images row */
 .examples {
     display: flex;
     justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
-    margin: 20px auto;
+    margin: 20px;
 }
 
 .examples img {
-    width: 90px; 
+    width: 90px; /* bigger animal example images */
     height: 90px;
     border-radius: 15px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* Makes the scaling smooth */
 }
 
+/* Example images get bigger when hovered */
 .examples img:hover {
-    transform: scale(1.12); /* Image scales up on hover */
+    transform: scale(1.12); /* Enlarges the image when pointed at */
 }
 
+/* Section title */
 .section-title {
-    font-size: 36px;
+    font-size: 36px; /* Slightly bigger section title */
     margin-top: 20px;
 }
 
+/* Products */
 .products {
     display: flex;
     justify-content: center;
@@ -141,65 +87,42 @@ h3 {
 }
 
 .product img {
-    width: 150px; 
+    width: 150px; /* bigger product images */
     height: 150px;
     border-radius: 20px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* Makes the scaling smooth */
 }
 
+/* Main product images get bigger when hovered */
 .product img:hover {
-    transform: scale(1.08); /* Product image scales up on hover */
+    transform: scale(1.08); /* Enlarges the image when pointed at */
 }
 
 .product p {
     margin-top: 10px;
 }
 
+/* Big text */
 .big-text {
-    font-size: 40px;
+    font-size: 40px; /* Bigger big text */
     font-weight: 600;
     margin: 20px 0;
 }
 
-/* Spacing out contact labels slightly */
-p.contact-sub {
-    margin: 10px 0;
-}
-
-/* Button & Link layout block specifications packed tightly */
-.btn-container, .gmail-group-container {
-    display: inline-block;
-    position: relative;
-    margin: 5px;
-}
-
-.gmail-group-container {
-    display: block;
-    margin: 10px auto;
-    font-size: 22px;
-    width: fit-content;
-}
-
-.space-down {
-    margin-top: 25px;
-    margin-bottom: 10px; /* Packed tightly back together */
-}
-
-/* Buttons formatting styling */
+/* Buttons */
 .btn {
     display: inline-block;
-    padding: 15px 25px; 
+    padding: 15px 25px; /* Slightly bigger buttons */
+    margin: 10px;
     border-radius: 25px;
     color: white;
     text-decoration: none;
     font-weight: 600;
     font-family: 'Lexend', sans-serif;
-    position: relative;
-    z-index: 12;
-    transition: transform 0.3s ease;
 }
 
+/* Button colors */
 .messenger {
     background: #0084ff;
 }
@@ -208,177 +131,134 @@ p.contact-sub {
     background: #1877f2;
 }
 
-/* Gmail links customized specifications layout mapping */
-.gmail-group-container .gmail-label, 
-.gmail-group-container a {
+/* Email text section matching your working copy */
+.email {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+.email span, .email a {
     display: inline-block;
-    vertical-align: middle;
-    font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    transition: transform 0.3s ease;
     text-decoration: none;
-    padding: 6px 5px;
-    
-    /* Smooth, slow rainbow animation for the text labels and the links */
     background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055);
     background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: rainbow 14s linear infinite; 
+    animation: rainbow 14s linear infinite; /* Slow rainbow color change */
+    padding: 0 5px;
 }
 
-.gmail-group-container a {
-    padding-left: 10px;
-}
-
-/* CUSTOM ZOOM ANIMATION: Activates on user cursor interactions */
-.btn-container:hover .btn,
-.gmail-group-container:hover .gmail-label,
-.gmail-group-container:hover a {
-    transform: scale(1.10); /* Elements expand smoothly together */
-}
-
-/* ORIGINAL FIREWORKS METHOD: Explodes directly out from the elements core nodes */
-.btn-container::before, .btn-container::after,
-.gmail-group-container::before, .gmail-group-container::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    z-index: 5;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Spark layer 1 (Popping particle stars loop) */
-.btn-container:hover::before, .gmail-group-container:hover::before {
-    animation: original-pop-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1);
-    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
-}
-
-/* Spark layer 2 (Multiplying particle stars loop) */
-.btn-container:hover::after, .gmail-group-container:hover::after {
-    animation: original-pop-2 0.75s cubic-bezier(0.1, 0.6, 0.2, 1);
-    animation-delay: 0.15s;
-    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
-}
-
-@keyframes original-pop-1 {
-    0% {
-        box-shadow: 0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff, 0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff;
-        opacity: 1; transform: scale(1);
-    }
-    100% {
-        box-shadow: -140px -90px 4px #ff0055, 140px -90px 4px #00ffcc, -140px 90px 4px #ffcc00, 140px 90px 4px #9900ff, -160px 0px 4px #ff5500, 160px 0px 4px #00ff00, 0px -160px 4px #0066ff, 0px 160px 4px #cc00ff;
-        opacity: 0; transform: scale(1.6);
-    }
-}
-
-@keyframes original-pop-2 {
-    0% {
-        box-shadow: 0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300, 0 0 #33ff00, 0 0 #0033ff, 0 0 #e60073, 0 0 #ff9900;
-        opacity: 0; transform: scale(0.5);
-    }
-    20% { opacity: 1; }
-    100% {
-        box-shadow: -110px -130px 2px #00ffff, 110px -130px 2px #ff00ff, -130px 110px 2px #ffff00, 130px 110px 2px #ff3300, -130px -110px 2px #33ff00, 130px -110px 2px #0033ff, -110px 130px 2px #e60073, 110px 130px 2px #ff9900, -125px -125px 2px #ff0055, 125px -125px 2px #00ffcc, -125px 125px 2px #ffcc00, 125px 125px 2px #9900ff, -145px -60px 1px #ffff00, 145px 60px 1px #ff00ff, -60px 145px 1px #00ffff, 60px -145px 1px #ff3300;
-        opacity: 0; transform: scale(2.3);
-    }
-}
-
-/* Feedback card module mapping packed closely */
+/* Feedback section */
 .feedback-section {
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 20px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
     width: 90%;
     max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px); /* Premium frosted pane effect */
-    box-sizing: border-box;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .feedback-section h3 {
-    margin-top: 0;
     margin-bottom: 15px;
     font-size: 28px;
 }
 
 .feedback-section input[type="text"] {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border-radius: 10px;
     border: none;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    margin-bottom: 15px;
-    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .feedback-section button {
-    padding: 12px 30px;
+    padding: 12px 25px;
     border-radius: 25px;
     border: none;
-    background: #0084ff;
-    color: white;
+    background:#0084ff;
+    color:white;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    cursor: pointer;
+    cursor:pointer;
 }
 </style>
+
 </head>
 <body>
 
-<!-- High-Performance Animated Liquid Background Canvas Layer -->
-<canvas id="spaceCanvas"></canvas>
+<!-- Header -->
+<div class="header">
+    <h1>3D HOUSE</h1>
+    <p>Where YOUR prints come to life!</p>
+</div>
 
-<!-- Master Structure Container Layer Sitting Safely on Top -->
-<div class="main-container">
+<h3>Examples of what we print!</h3>
 
-    <div class="header">
-        <h1>3D HOUSE</h1>
-        <p>Where YOUR prints come to life!</p>
+<!-- Small Images -->
+<div class="examples">
+    <img src="dog.jpg">
+    <img src="cat.jpg">
+    <img src="snail.jpg">
+    <img src="seal.jpg">
+    <img src="axolotl.jpg">
+</div>
+
+<h2 class="section-title">Animals</h2>
+
+<!-- Products -->
+<div class="products">
+    <div class="product">
+        <img src="stand.jpg">
+        <p>Headphone Stands</p>
     </div>
 
-    <h3>Examples of what we print!</h3>
-
-    <div class="examples">
-        <img src="dog.jpg">
-        <img src="cat.jpg">
-        <img src="snail.jpg">
-        <img src="seal.jpg">
-        <img src="axolotl.jpg">
+    <div class="product">
+        <img src="shelf.jpg">
+        <p>Mini Shelves</p>
     </div>
 
-    <h2 class="section-title">Animals</h2>
-
-    <div class="products">
-        <div class="product">
-            <img src="stand.jpg">
-            <p>Headphone Stands</p>
-        </div>
-        <div class="product">
-            <img src="shelf.jpg">
-            <p>Mini Shelves</p>
-        </div>
-        <div class="product">
-            <img src="oreo.jpg">
-            <p>Magnet Fidgets</p>
-        </div>
+    <div class="product">
+        <img src="oreo.jpg">
+        <p>Magnet Fidgets</p>
     </div>
+</div>
 
-    <div class="big-text">And More!</div>
+<div class="big-text">And More!</div>
 
-    <h3>CREATE YOUR 3D PRINT HERE!</h3>
-    <p class="contact-sub">Contact us here!<br>And get your prints!</p>
+<h3>CREATE YOUR 3D PRINT HERE!</h3>
+<p>Contact us here!<br>And get your prints!</p>
 
-    <div class="btn-container">
-        <a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
+<a href="https://messenger.com" target="_blank" class="btn messenger">Messenger</a>
+<a href="https://facebook.com" target="_blank" class="btn facebook">Facebook</a>
+
+<!-- Updated Email Section - Fully Restored and Fixed -->
+<div class="email"> 
+    <div>
+        <span>Gmail:</span>
+        <a href="https://google.com" onclick="location.href='mailto:konstantinezedgina@://gmail.com'; return false;" target="_blank">konstantinezedgina@gmail.com</a>
     </div>
-    <div class="btn-container">
+    <div style="margin-top: 15px;">
+        <span>Gmail:</span>
+        <a href="https://google.com" onclick="location.href='mailto:demezedginidze@://gmail.com'; return false;" target="_blank">demezedginidze@gmail.com</a>
+    </div>
+</div>
+
+<!-- Feedback Section - Fully Restored -->
+<div class="feedback-section">
+    <h3>Feedback</h3>
+    
+    <!-- Form using Formspree -->
+    <form action="https://formspree.io" method="POST">
+        <input type="text" name="message" placeholder="Type your feedback here..." required>
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+</body>
+</html>
