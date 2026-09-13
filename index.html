@@ -3,329 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D House Store</title>
+<title>3D House</title>
 
 <!-- Include Lexend font -->
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
-/* Reset base browser parameters safely */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+html, body { 
+    margin: 0; 
+    padding: 0; 
+    background-color: #03030c; /* Deep space black baseline fallback */ 
     min-height: 100vh;
-    background-color: #03030c; /* Deep space dark backdrop void - inherited from original snippet */
 }
 
-body {
-    font-family: 'Lexend', sans-serif;
-    font-weight: 600;
-    color: white;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto; /* Allows natural scrolling downwards */
+body { 
+    font-family: 'Lexend', sans-serif; 
+    font-weight: 600; 
+    color: white; 
+    text-align: center; 
+    position: relative; 
+    overflow-x: hidden; 
+    overflow-y: auto; /* Fixes page cut-off by allowing natural scrolling */
 }
 
-/* HIGH VISIBILITY BACKGROUND CANVAS: Forced to stretch 100% to prevent blank screens */
-#spaceCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1; /* Pushes shapes directly behind structural storefront code layout */
-    pointer-events: none; /* Crucial: Allows clicks to pass through to the buttons beneath */
-    display: block;
+/* High Visibility Animated Warp Canvas Layer */
+#spaceCanvas { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    z-index: 1; 
+    pointer-events: none; /* Allows cursor to click links underneath smoothly */
 }
 
-/* TOTAL WEBPAGE CONTENT WRAPPER: Centers layout and keeps things packed together tightly */
-.main-container {
-    position: relative;
-    z-index: 10; /* Locked tightly on top of the moving lava bubbles */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 50px; /* Cushion padding at the absolute bottom */
-    box-sizing: border-box;
-    
-    /* Cinematic Intro Entrance: Clean, tightly packed slide up animation sequence */
-    opacity: 0;
-    animation: layoutEntranceRise 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    animation-delay: 0.15s;
+/* Content wrapper sitting safely over the space elements */
+.content-wrapper { 
+    position: relative; 
+    z-index: 10; /* Locked tightly on top of background canvas */ 
+    padding-bottom: 60px; /* Extra breathing room at the bottom */
 }
 
-/* Center-locked vertical slide rise mechanics */
-@keyframes layoutEntranceRise {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Header Section - Perfectly centered horizontally */
-.header {
+/* Header */
+.header { 
     margin-top: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
-.header h1 {
-    margin: 5px 0;
-    font-size: 85px; 
-    text-align: center;
-    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.header h1 { 
+    margin: 5px; 
+    font-size: 85px; /* Bigger title */ 
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000); 
+    background-size: 400% 100%; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
     animation: rainbow 8s linear infinite;
-    width: auto;
 }
 
-@keyframes rainbow {
-    0% { background-position: 0% 50%; }
+@keyframes rainbow { 
+    0% { background-position: 0% 50%; } 
     100% { background-position: 400% 50%; }
 }
 
-.header p {
-    margin: 5px 0;
-    font-size: 22px; 
-    text-align: center;
+.header p { 
+    margin: 5px; 
+    font-size: 22px; /* Subtitle slightly bigger */
 }
 
-h3 {
-    font-size: 32px; 
+/* Main headings on page */
+h3 { 
+    font-size: 32px; /* Bigger h3 headings */ 
     font-weight: 600;
-    margin: 20px 0 10px 0;
 }
 
-/* Image showcase grids mapping */
-.examples {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin: 20px auto;
+/* Example images row */
+.examples { 
+    display: flex; 
+    justify-content: center; 
+    gap: 12px; 
+    flex-wrap: wrap; 
+    margin: 20px;
 }
 
-.examples img {
-    width: 90px; 
-    height: 90px;
-    border-radius: 15px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+.examples img { 
+    width: 90px; /* bigger animal example images */ 
+    height: 90px; 
+    border-radius: 15px; 
+    object-fit: cover; 
+    transition: transform 0.3s ease; /* Makes scaling smooth */
 }
 
-.examples img:hover {
-    transform: scale(1.12); /* Image scales up on hover */
+/* Example images get bigger when hovered */
+.examples img:hover { 
+    transform: scale(1.12); /* Enlarges image when pointed at */
 }
 
-.section-title {
-    font-size: 36px;
+/* Section title */
+.section-title { 
+    font-size: 36px; /* Slightly bigger section title */ 
     margin-top: 20px;
 }
 
-.products {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
+/* Products */
+.products { 
+    display: flex; 
+    justify-content: center; 
+    gap: 40px; 
+    flex-wrap: wrap; 
     margin-top: 20px;
 }
 
-.product img {
-    width: 150px; 
-    height: 150px;
-    border-radius: 20px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+.product img { 
+    width: 150px; /* bigger product images */ 
+    height: 150px; 
+    border-radius: 20px; 
+    object-fit: cover; 
+    transition: transform 0.3s ease; /* Makes scaling smooth */
 }
 
-.product img:hover {
-    transform: scale(1.08); /* Product image scales up on hover */
+/* Main product images get bigger when hovered */
+.product img:hover { 
+    transform: scale(1.08); /* Enlarges image when pointed at */
 }
 
-.product p {
+.product p { 
     margin-top: 10px;
 }
 
-.big-text {
-    font-size: 40px;
-    font-weight: 600;
+/* Big text */
+.big-text { 
+    font-size: 40px; /* Bigger big text */ 
+    font-weight: 600; 
     margin: 20px 0;
 }
 
-/* Spacing out contact labels slightly */
-p.contact-sub {
-    margin: 10px 0;
-}
-
-/* Button & Link layout block specifications packed tightly */
-.btn-container, .gmail-group-container {
-    display: inline-block;
-    position: relative;
+/* Buttons and Links Container Setup for Fireworks */
+.btn-container, .gmail-group-container { 
+    display: inline-block; 
+    position: relative; 
     margin: 5px;
 }
 
-.gmail-group-container {
-    display: block;
-    margin: 10px auto;
-    font-size: 22px;
+/* Unique wrapper to split the two Gmail elements and space them out vertically */
+.gmail-group-container { 
+    display: block; 
+    margin: 15px auto; 
+    font-size: 22px; 
     width: fit-content;
 }
 
-.space-down {
-    margin-top: 25px;
-    margin-bottom: 10px; /* Packed tightly back together */
+/* Spacing out the first block down from the text above, and away from the block below */
+.space-down { 
+    margin-top: 45px; 
+    margin-bottom: 40px; /* Moves the second email down significantly */
 }
 
-/* Buttons formatting styling */
-.btn {
-    display: inline-block;
-    padding: 15px 25px; 
-    border-radius: 25px;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-family: 'Lexend', sans-serif;
-    position: relative;
-    z-index: 12;
-    transition: transform 0.3s ease;
+/* Specific styling for the text inside the Gmail group */
+.gmail-group-container .gmail-label, .gmail-group-container a { 
+    display: inline-block; 
+    vertical-align: middle; 
+    font-family: 'Lexend', sans-serif; 
+    font-weight: 600; 
+    transition: transform 0.3s ease; 
+    text-decoration: none; 
+    padding: 6px 5px; /* Smooth, slow rainbow animation for the text labels and the links */ 
+    background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055); 
+    background-size: 400% 100%; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    animation: rainbow 14s linear infinite; /* Wonderfully slow color change */
 }
 
-.messenger {
-    background: #0084ff;
-}
-
-.facebook {
-    background: #1877f2;
-}
-
-/* Gmail links customized specifications layout mapping */
-.gmail-group-container .gmail-label, 
-.gmail-group-container a {
-    display: inline-block;
-    vertical-align: middle;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 600;
-    transition: transform 0.3s ease;
-    text-decoration: none;
-    padding: 6px 5px;
-    
-    /* Smooth, slow rainbow animation for the text labels and the links */
-    background: linear-gradient(90deg, #ff0055, #ff9933, #ffff33, #00ffcc, #3399ff, #cc00ff, #ff0055);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow 14s linear infinite; 
-}
-
-.gmail-group-container a {
+/* Extra side spacing on link specifically */
+.gmail-group-container a { 
     padding-left: 10px;
 }
 
-/* CUSTOM ZOOM ANIMATION: Activates on user cursor interactions */
-.btn-container:hover .btn,
-.gmail-group-container:hover .gmail-label,
-.gmail-group-container:hover a {
-    transform: scale(1.10); /* Elements expand smoothly together */
+/* Buttons styling */
+.btn { 
+    display: inline-block; 
+    padding: 15px 25px; /* Slightly bigger buttons */ 
+    margin: 10px; 
+    border-radius: 25px; 
+    color: white; 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-family: 'Lexend', sans-serif; 
+    position: relative; 
+    z-index: 12; 
+    transition: transform 0.3s ease;
 }
 
-/* ORIGINAL FIREWORKS METHOD: Explodes directly out from the elements core nodes */
+/* Button colors */
+.messenger { background: #0084ff;}
+.facebook { background: #1877f2;}
+
+/* General Hover Scale for Buttons and Entire Gmail Row Groups together */
+.btn-container:hover .btn,
+.gmail-group-container:hover .gmail-label,
+.gmail-group-container:hover a { 
+    transform: scale(1.10); /* Zooms both text elements at the exact same time */
+}
+
+/* Multi-Stage Fireworks setup using pseudo-elements */
 .btn-container::before, .btn-container::after,
-.gmail-group-container::before, .gmail-group-container::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    z-index: 5;
-    opacity: 0;
+.gmail-group-container::before, .gmail-group-container::after { 
+    content: ""; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    width: 6px; 
+    height: 6px; 
+    border-radius: 50%; 
+    z-index: 5; 
+    opacity: 0; 
     pointer-events: none;
 }
 
-/* Spark layer 1 (Popping particle stars loop) */
-.btn-container:hover::before, .gmail-group-container:hover::before {
-    animation: original-pop-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1);
-    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
+/* Firework Phase 1: High flying primary dots (Runs for exactly 3 seconds total) */
+.btn-container:hover::before, .gmail-group-container:hover::before { 
+    animation: firework-stage-1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1); 
+    animation-iteration-count: 4; /* Exactly 3 seconds */
 }
 
-/* Spark layer 2 (Multiplying particle stars loop) */
-.btn-container:hover::after, .gmail-group-container:hover::after {
-    animation: original-pop-2 0.75s cubic-bezier(0.1, 0.6, 0.2, 1);
-    animation-delay: 0.15s;
-    animation-iteration-count: 4; /* Clears out at exactly 3 seconds */
+/* Firework Phase 2: Shattering mini secondary sparks bursting outward (Runs for exactly 3 seconds total) */
+.btn-container:hover::after, .gmail-group-container:hover::after { 
+    animation: firework-stage-2 0.75s cubic-bezier(0.1, 0.6, 0.2, 1); 
+    animation-delay: 0.15s; 
+    animation-iteration-count: 4;
 }
 
-@keyframes original-pop-1 {
-    0% {
-        box-shadow: 0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff, 0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff;
-        opacity: 1; transform: scale(1);
-    }
-    100% {
-        box-shadow: -140px -90px 4px #ff0055, 140px -90px 4px #00ffcc, -140px 90px 4px #ffcc00, 140px 90px 4px #9900ff, -160px 0px 4px #ff5500, 160px 0px 4px #00ff00, 0px -160px 4px #0066ff, 0px 160px 4px #cc00ff;
-        opacity: 0; transform: scale(1.6);
-    }
+/* Stage 1 Animation: Spreads far out into the air as bright round dots */
+@keyframes firework-stage-1 { 
+    0% { box-shadow: 0 0 #ff0055, 0 0 #00ffcc, 0 0 #ffcc00, 0 0 #9900ff, 0 0 #ff5500, 0 0 #00ff00, 0 0 #0066ff, 0 0 #cc00ff; opacity: 1; transform: scale(1); } 
+    40% { opacity: 1; } 
+    100% { box-shadow: -150px -90px 4px #ff0055, 150px -90px 4px #00ffcc, -150px 90px 4px #ffcc00, 150px 90px 4px #9900ff, -180px 0px 4px #ff5500, 180px 0px 4px #00ff00, 0px -180px 4px #0066ff, 0px 180px 4px #cc00ff; opacity: 0; transform: scale(1.6); }
 }
 
-@keyframes original-pop-2 {
-    0% {
-        box-shadow: 0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300, 0 0 #33ff00, 0 0 #0033ff, 0 0 #e60073, 0 0 #ff9900;
-        opacity: 0; transform: scale(0.5);
-    }
-    20% { opacity: 1; }
-    100% {
-        box-shadow: -110px -130px 2px #00ffff, 110px -130px 2px #ff00ff, -130px 110px 2px #ffff00, 130px 110px 2px #ff3300, -130px -110px 2px #33ff00, 130px -110px 2px #0033ff, -110px 130px 2px #e60073, 110px 130px 2px #ff9900, -125px -125px 2px #ff0055, 125px -125px 2px #00ffcc, -125px 125px 2px #ffcc00, 125px 125px 2px #9900ff, -145px -60px 1px #ffff00, 145px 60px 1px #ff00ff, -60px 145px 1px #00ffff, 60px -145px 1px #ff3300;
-        opacity: 0; transform: scale(2.3);
-    }
+/* Stage 2 Animation: Explodes instantly into a multiplying wave of dense bright micro-sparks */
+@keyframes firework-stage-2 { 
+    0% { box-shadow: 0 0 #00ffff, 0 0 #ff00ff, 0 0 #ffff00, 0 0 #ff3300, 0 0 #33ff00, 0 0 #0033ff, 0 0 #e60073, 0 0 #ff9900; opacity: 0; transform: scale(0.5); } 
+    20% { opacity: 1; } 
+    100% { box-shadow: -110px -130px 2px #00ffff, 110px -130px 2px #ff00ff, -130px 110px 2px #ffff00, 130px 110px 2px #ff3300, -130px -110px 2px #33ff00, 130px -110px 2px #0033ff, -110px 130px 2px #e60073, 110px 130px 2px #ff9900, -125px -125px 2px #ff0055, 125px -125px 2px #00ffcc, -125px 125px 2px #ffcc00, 125px 125px 2px #9900ff, -145px -60px 1px #ffff00, 145px 60px 1px #ff00ff, -60px 145px 1px #00ffff, 60px -145px 1px #ff3300; opacity: 0; transform: scale(2.3); }
 }
 
-/* Feedback card module mapping packed closely */
-.feedback-section {
-    margin-top: 40px;
-    padding: 20px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 20px;
-    width: 90%;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(4px); /* Clean frosted glass effect over space warp inherited from snippet 1 */
-    box-sizing: border-box;
+/* Feedback section */
+.feedback-section { 
+    margin-top: 50px; 
+    padding: 20px; 
+    background: rgba(255,255,255,0.05); 
+    border-radius: 15px; 
+    width: 90%; 
+    max-width: 500px; 
+    margin-left:auto; 
+    margin-right:auto; 
+    backdrop-filter: blur(4px); /* Clean frosted glass effect over space warp */
 }
 
-.feedback-section h3 {
-    margin-top: 0;
+.feedback-section h3 { 
     margin-bottom: 15px;
-    font-size: 28px;
-}
-
-.feedback-section input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
 }
 </style>
 </head>
 <body>
 
-<!-- Canvas background targeted by your morphing lava lamp bubble scripts -->
+<!-- Animated fluid background element -->
 <canvas id="spaceCanvas"></canvas>
 
-<!-- All foreground storefront structure safely layered above z-index 1 -->
-<div class="main-container">
-    <!-- Rest of your body elements, headings, product grids, images, and script targets continue here -->
+<!-- Your primary text layout wrapped and isolated cleanly on top -->
+<div class="content-wrapper">
+    <div class="header">
+        <h1>3D House</h1>
+        <p>Interactive Space Platform</p>
+    </div>
+
+    <!-- Your examples rows, products grids, or form modules fit right here -->
+    <div class="feedback-section">
+        <h3>Feedback Area</h3>
+        <p>This panel blurs beautifully over the moving colors behind it.</p>
+    </div>
 </div>
 
-</body>
-</html>
+<!-- HIGH PERFORMANCE LAVA LAMP EMULATOR ENGINE -->
+<script>
+const canvas = document.getElementById('spaceCanvas');
+const ctx = canvas.getContext('2d');
+
+function initSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', initSize);
+initSize();
+
+class BubbleNode {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height + canvas.height;
+        this.size = Math.random() * 55 + 45;
+        this.speedY = -(Math.random() * 0.5 + 0.25);
+        this.wobbleSpeed = Math.random() * 0.02;
+        this.wobbleRange = Math.random() * 30 + 10;
+        this.hue = Math.random() * 360;
+    }
+
+    step() {
+        this.y += this.speedY;
+        this.hue = (this.hue + 0.2) % 360; // Shifting color loop
+
+        // Reset tracking once element floats beyond top frame boundaries
+        if (this.y + this.size < 0) {
+            this.y = canvas.height + this.size;
+            this.x = Math.random() * canvas.width;
+        }
+    }
+
+    render() {
+        ctx.beginPath();
+        let fx = this.x + Math.sin(this.y * this.wobbleSpeed) * 0.4;
+        let glow = ctx.createRadialGradient(fx, this.y, this.size * 0.05, fx, this.y, this.size);
+        
+        glow.addColorStop(0, `hsla(${this.hue}, 95%, 65%, 0.4)`);
+        glow.addColorStop(0.4, `hsla(${(this.hue + 35) % 360}, 90%, 55%, 0.15)`);
+        glow.addColorStop(1, `hsla(${this.hue}, 80%, 50%, 0)`);
+        
+        ctx.fillStyle = glow;
+        ctx.arc(fx, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
