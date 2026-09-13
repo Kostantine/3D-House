@@ -13,16 +13,16 @@ body {
     margin: 0;
     font-family: 'Lexend', sans-serif;
     font-weight: 600;
-    /* PS5-style dark base canvas */
-    background: #0d0d11; 
+    /* Rich dark canvas to make the lava lamp glow stand out */
+    background: #09090d; 
     color: white;
     text-align: center;
     position: relative;
     overflow-x: hidden;
 }
 
-/* PS5 Rainbow Wave Container */
-.ps5-wave-bg {
+/* Lava Lamp Canvas Layer */
+.lava-lamp-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,50 +30,84 @@ body {
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    background: radial-gradient(circle at 50% 50%, rgba(20, 20, 30, 0.6), #070709);
+    /* Soft ambient vignetting for depth */
+    background: radial-gradient(circle at 50% 50%, rgba(15, 15, 25, 0.5), #040406);
+    filter: blur(50px); /* Heavy blur blends the shapes together like fluid wax */
 }
 
-/* The Animated Waves with Rainbow Spectrum shifts */
-.wave {
+/* Base glowing lava blob setup */
+.blob {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    border-radius: 42%;
-    /* Soft semi-transparent mesh gradient for a premium 3D mesh look */
-    background: linear-gradient(90deg, 
-        rgba(255, 0, 85, 0.15), 
-        rgba(255, 153, 51, 0.15), 
-        rgba(0, 255, 204, 0.15), 
-        rgba(51, 153, 255, 0.15), 
-        rgba(204, 0, 255, 0.15), 
-        rgba(255, 0, 85, 0.15)
-    );
-    background-size: 400% 400%;
-    /* Combines floating movement with the spectrum rotation shift */
-    animation: waveRotate 18s linear infinite, rainbowShift 25s ease infinite;
-    opacity: 0.65;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff0055, #3399ff);
+    background-size: 200% 200%;
+    mix-blend-mode: screen;
+    animation: rainbowShift 20s ease infinite;
 }
 
-/* Layered secondary wave traveling at a unique velocity for the overlapping 3D ribbon depth */
-.wave.layered {
-    border-radius: 40%;
-    animation: waveRotate 24s linear infinite, rainbowShift 35s ease infinite reverse;
-    opacity: 0.45;
+/* Individual organic floating movements for each lava blob */
+.blob-1 {
+    width: 350px;
+    height: 450px;
+    left: 10%;
+    top: 10%;
+    animation: floatUpAndDown 22s ease-in-out infinite alternate, rainbowShift 18s ease infinite;
 }
 
-/* PS5 ribbon rotational twist */
-@keyframes waveRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.blob-2 {
+    width: 500px;
+    height: 350px;
+    right: 5%;
+    bottom: -5%;
+    animation: floatLeftToRight 28s ease-in-out infinite alternate, rainbowShift 24s ease infinite;
+    opacity: 0.8;
 }
 
-/* Flowing color dynamic morph */
+.blob-3 {
+    width: 280px;
+    height: 280px;
+    left: 45%;
+    bottom: 20%;
+    animation: floatUpAndDown 16s ease-in-out infinite alternate-reverse, rainbowShift 15s ease infinite;
+    opacity: 0.6;
+}
+
+/* Lava Lamp Floating Animations */
+@keyframes floatUpAndDown {
+    0% {
+        transform: translateY(0px) scale(1) rotate(0deg);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+    50% {
+        transform: translateY(180px) scale(1.15) rotate(90deg);
+        border-radius: 60% 40% 50% 50% / 50% 60% 40% 60%;
+    }
+    100% {
+        transform: translateY(-50px) scale(0.9) rotate(180deg);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+}
+
+@keyframes floatLeftToRight {
+    0% {
+        transform: translateX(0px) translateY(0px) scale(1);
+        border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
+    }
+    50% {
+        transform: translateX(-150px) translateY(-100px) scale(1.2);
+        border-radius: 30% 70% 70% 30% / 60% 40% 60% 40%;
+    }
+    100% {
+        transform: translateX(50px) translateY(50px) scale(0.9);
+        border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
+    }
+}
+
+/* Fluid Rainbow Color Spectrum Loop */
 @keyframes rainbowShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+    50% { background-position: 100% 50%; filter: hue-rotate(180deg); }
+    100% { background-position: 0% 50%; filter: hue-rotate(360deg); }
 }
 
 /* Header */
@@ -285,10 +319,11 @@ h3 {
 </head>
 <body>
 
-<!-- Background elements injected safely behind all text -->
-<div class="ps5-wave-bg">
-    <div class="wave"></div>
-    <div class="wave layered"></div>
+<!-- Morphing Lava Lamp Background Objects safely behind content -->
+<div class="lava-lamp-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
 </div>
 
 <!-- Header -->
@@ -299,7 +334,7 @@ h3 {
 
 <h3>Examples of what we print!</h3>
 
-<!-- Small Images (FIXED: Missing bracket restored) -->
+<!-- Small Images -->
 <div class="examples">
     <img src="dog.jpg">
     <img src="cat.jpg">
