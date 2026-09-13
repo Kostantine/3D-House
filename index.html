@@ -120,6 +120,41 @@ h3 {
     text-decoration: none;
     font-weight: 600;
     font-family: 'Lexend', sans-serif;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Visual Effects added on Button Hover */
+.btn:hover {
+    transform: translateY(-3px) scale(1.05); /* Slight lift and scale upward */
+    box-shadow: 0 8px 25px rgba(255,255,255,0.2); /* Soft glow behind button */
+    animation: buttonPulse 1s infinite alternate; /* Gentle continuous bounce animation */
+}
+
+/* Sleek lighting shine flash that passes over the button when hovered */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: 0.75s;
+    opacity: 0;
+}
+
+.btn:hover::after {
+    left: 125%;
+    opacity: 1;
+}
+
+@keyframes buttonPulse {
+    0% { transform: translateY(-3px) scale(1.05); }
+    100% { transform: translateY(-6px) scale(1.07); }
 }
 
 /* Button colors */
@@ -202,7 +237,7 @@ h3 {
 
 <!-- Small Images -->
 <div class="examples">
-    <img src="dog.jpg">
+    img src="dog.jpg">
     <img src="cat.jpg">
     <img src="snail.jpg">
     <img src="seal.jpg">
