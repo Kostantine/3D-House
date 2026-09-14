@@ -80,30 +80,10 @@ body::before {
         linear-gradient(90deg, rgba(0, 200, 255, 0.045) 1px, transparent 1px);
 
     background-size: 70px 70px;
+
     animation: gridMove 20s linear infinite;
+
     opacity: 0.45;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    left: 50%;
-    top: 35%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-
-    background: radial-gradient(
-        circle,
-        rgba(0, 180, 255, 0.07),
-        transparent 68%
-    );
-
-    filter: blur(30px);
-    animation: ambientGlow 7s ease-in-out infinite alternate;
 }
 
 @keyframes gridMove {
@@ -113,18 +93,6 @@ body::after {
 
     to {
         transform: translateY(70px);
-    }
-}
-
-@keyframes ambientGlow {
-    from {
-        opacity: 0.45;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.15);
     }
 }
 
@@ -400,10 +368,6 @@ h3 {
     margin: 30px 0 10px;
 
     text-align: center;
-
-    text-shadow:
-        0 0 8px rgba(255,255,255,0.08),
-        0 0 20px rgba(0,180,255,0.12);
 }
 
 .section-title {
@@ -412,12 +376,6 @@ h3 {
     margin-top: 30px;
 
     text-align: center;
-
-    color: #ffffff;
-
-    text-shadow:
-        0 0 10px rgba(0,200,255,0.25),
-        0 0 25px rgba(120,0,255,0.18);
 }
 
 /* =========================================================
@@ -452,14 +410,11 @@ h3 {
 
     transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease,
-        filter 0.3s ease;
+        box-shadow 0.3s ease;
 }
 
 .examples img:hover {
     transform: scale(1.12) translateY(-5px);
-
-    filter: brightness(1.12) saturate(1.1);
 
     box-shadow:
         0 0 20px rgba(0, 200, 255, 0.35),
@@ -507,42 +462,10 @@ h3 {
     box-shadow:
         0 15px 35px rgba(0,0,0,0.35);
 
-    position: relative;
-    overflow: hidden;
-
     transition:
         transform 0.35s ease,
         box-shadow 0.35s ease,
         border-color 0.35s ease;
-}
-
-/* Moving glass shine */
-.product::before {
-    content: "";
-    position: absolute;
-    top: -120%;
-    left: -70%;
-
-    width: 45%;
-    height: 300%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.16),
-            transparent
-        );
-
-    transform: rotate(25deg);
-
-    transition: left 0.7s ease;
-
-    pointer-events: none;
-}
-
-.product:hover::before {
-    left: 140%;
 }
 
 .product:hover {
@@ -568,34 +491,19 @@ h3 {
 
     transition:
         transform 0.3s ease,
-        filter 0.3s ease,
-        box-shadow 0.3s ease;
+        filter 0.3s ease;
 }
 
-.product:hover img {
+.product img:hover {
     transform: scale(1.08);
 
     filter:
         brightness(1.1)
         saturate(1.1);
-
-    box-shadow:
-        0 0 20px rgba(0, 200, 255, 0.2);
 }
 
 .product p {
     margin-top: 10px;
-
-    transition:
-        color 0.3s ease,
-        text-shadow 0.3s ease;
-}
-
-.product:hover p {
-    color: #8eefff;
-
-    text-shadow:
-        0 0 10px rgba(0, 210, 255, 0.35);
 }
 
 /* =========================================================
@@ -611,26 +519,12 @@ h3 {
 
     text-align: center;
 
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #00d9ff,
-            #b000ff,
-            #ffffff
-        );
-
-    background-size: 300% 100%;
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-shadow:
+        0 0 10px #8a2be2,
+        0 0 25px rgba(138, 43, 226, 0.5);
 
     animation:
-        morePulse 3s ease-in-out infinite alternate,
-        rainbow 7s linear infinite;
-
-    filter:
-        drop-shadow(0 0 10px rgba(138,43,226,0.4));
+        morePulse 3s ease-in-out infinite alternate;
 }
 
 @keyframes morePulse {
@@ -655,9 +549,6 @@ p.contact-sub {
     line-height: 1.6;
 
     color: rgba(255, 255, 255, 0.78);
-
-    text-shadow:
-        0 0 12px rgba(0,200,255,0.12);
 }
 
 /* =========================================================
@@ -718,43 +609,10 @@ p.contact-sub {
     box-shadow:
         0 8px 20px rgba(0, 0, 0, 0.3);
 
-    overflow: hidden;
-
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease,
         filter 0.3s ease;
-}
-
-/* Button shine */
-.btn::after {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 70%;
-    height: 100%;
-
-    transform: skewX(-25deg);
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.28),
-            transparent
-        );
-
-    transition: left 0.55s ease;
-
-    pointer-events: none;
-}
-
-.btn:hover::after {
-    left: 140%;
 }
 
 .btn:hover {
@@ -799,9 +657,6 @@ p.contact-sub {
     font-size: 21px;
 
     color: rgba(255, 255, 255, 0.85);
-
-    text-shadow:
-        0 0 12px rgba(255,255,255,0.12);
 }
 
 .gmail-link {
@@ -834,8 +689,7 @@ p.contact-sub {
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
+        border-color 0.3s ease;
 }
 
 .gmail-link:hover {
@@ -845,9 +699,6 @@ p.contact-sub {
 
     border-color:
         rgba(255, 0, 170, 0.5);
-
-    background:
-        rgba(255, 0, 170, 0.07);
 
     box-shadow:
         0 0 20px rgba(255, 0, 170, 0.2);
@@ -870,9 +721,6 @@ p.contact-sub {
             #ff0055,
             #ff9900
         );
-
-    box-shadow:
-        0 0 12px rgba(255,0,100,0.25);
 }
 
 /* =========================================================
@@ -1016,11 +864,7 @@ p.contact-sub {
     padding: 20px;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.065),
-            rgba(255,255,255,0.025)
-        );
+        rgba(255, 255, 255, 0.04);
 
     border-radius: 20px;
 
@@ -1029,26 +873,12 @@ p.contact-sub {
     max-width: 500px;
 
     border:
-        1px solid rgba(255, 255, 255, 0.08);
+        1px solid rgba(255, 255, 255, 0.05);
 
-    backdrop-filter: blur(8px);
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,0.3),
-        0 0 30px rgba(0,100,255,0.08);
-
-    transition:
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        transform 0.3s ease;
-}
-
-.feedback-section:hover {
-    border-color: rgba(0,200,255,0.22);
+    backdrop-filter: blur(5px);
 
     box-shadow:
-        0 20px 45px rgba(0,0,0,0.4),
-        0 0 35px rgba(0,180,255,0.12);
+        0 15px 35px rgba(0,0,0,0.3);
 }
 
 .feedback-section h3 {
@@ -1079,15 +909,9 @@ p.contact-sub {
     color: #111;
 
     outline: none;
-
-    transition:
-        box-shadow 0.3s ease,
-        transform 0.3s ease;
 }
 
 .feedback-section input[type="text"]:focus {
-    transform: translateY(-2px);
-
     box-shadow:
         0 0 0 2px #00cfff,
         0 0 20px rgba(0, 207, 255, 0.25);
@@ -1246,6 +1070,7 @@ p.contact-sub {
         Where <span>YOUR</span> prints come to life!
     </p>
 
+
     <!-- CENTERED SOCIAL BUTTONS -->
 
     <div class="social-buttons">
@@ -1263,7 +1088,10 @@ p.contact-sub {
 
         </div>
 
+
         <div class="btn-container">
+
+            <!-- Replace this URL with your Facebook profile/page URL -->
 
             <a
                 href="https://www.facebook.com/"
@@ -1280,31 +1108,50 @@ p.contact-sub {
 
 </div>
 
+
 <!-- EXAMPLES -->
 
 <h3>
     Examples of what we print!
 </h3>
 
+
 <div class="examples">
 
-    <img src="dog.jpg" alt="Dog 3D print">
+    <img
+        src="dog.jpg"
+        alt="Dog 3D print"
+    >
 
-    <img src="cat.jpg" alt="Cat 3D print">
+    <img
+        src="cat.jpg"
+        alt="Cat 3D print"
+    >
 
-    <img src="snail.jpg" alt="Snail 3D print">
+    <img
+        src="snail.jpg"
+        alt="Snail 3D print"
+    >
 
-    <img src="seal.jpg" alt="Seal 3D print">
+    <img
+        src="seal.jpg"
+        alt="Seal 3D print"
+    >
 
-    <img src="axolotl.jpg" alt="Axolotl 3D print">
+    <img
+        src="axolotl.jpg"
+        alt="Axolotl 3D print"
+    >
 
 </div>
+
 
 <!-- PRODUCTS -->
 
 <h2 class="section-title">
     Animals
 </h2>
+
 
 <div class="products">
 
@@ -1321,6 +1168,7 @@ p.contact-sub {
 
     </div>
 
+
     <div class="product">
 
         <img
@@ -1333,6 +1181,7 @@ p.contact-sub {
         </p>
 
     </div>
+
 
     <div class="product">
 
@@ -1349,11 +1198,13 @@ p.contact-sub {
 
 </div>
 
+
 <!-- MORE -->
 
 <div class="big-text">
     And More!
 </div>
+
 
 <!-- CONTACT -->
 
@@ -1361,16 +1212,19 @@ p.contact-sub {
     CREATE YOUR 3D PRINT HERE!
 </h3>
 
+
 <p class="contact-sub">
     Contact us here!<br>
     And get your prints!
 </p>
+
 
 <!-- GMAIL -->
 
 <div class="gmail-title">
     📧 Email us directly
 </div>
+
 
 <div class="gmail-group-container">
 
@@ -1387,20 +1241,22 @@ p.contact-sub {
 
     </a>
 
+
     <a
         class="gmail-link"
-        href="mailto:demezedginidze@gmail.com"
+        href="mailto:demetrezedgina@gmail.com"
     >
 
         <span class="gmail-icon">
             ✉
         </span>
 
-        demezedginidze@gmail.com
+        demetrezedgina@gmail.com
 
     </a>
 
 </div>
+
 
 <!-- FEEDBACK -->
 
@@ -1410,11 +1266,13 @@ p.contact-sub {
         Tell Us What You Think
     </h3>
 
+
     <input
         type="text"
         id="feedbackInput"
         placeholder="Type your feedback..."
     >
+
 
     <button
         type="button"
@@ -1524,11 +1382,13 @@ function animateBackground() {
         canvas.height
     );
 
+
     particles.forEach(
         particle => {
 
             particle.y -=
                 particle.speed;
+
 
             if (
                 particle.y < -10
@@ -1543,7 +1403,9 @@ function animateBackground() {
 
             }
 
+
             ctx.beginPath();
+
 
             ctx.arc(
                 particle.x,
@@ -1553,6 +1415,7 @@ function animateBackground() {
                 Math.PI * 2
             );
 
+
             ctx.fillStyle =
                 `hsla(
                     ${particle.hue},
@@ -1561,7 +1424,9 @@ function animateBackground() {
                     ${particle.opacity}
                 )`;
 
+
             ctx.shadowBlur = 12;
+
 
             ctx.shadowColor =
                 `hsla(
@@ -1571,10 +1436,12 @@ function animateBackground() {
                     0.8
                 )`;
 
+
             ctx.fill();
 
         }
     );
+
 
     requestAnimationFrame(
         animateBackground
@@ -1589,6 +1456,7 @@ function animateBackground() {
 resizeCanvas();
 
 animateBackground();
+
 
 window.addEventListener(
     "resize",
@@ -1607,8 +1475,10 @@ function sendFeedback() {
             "feedbackInput"
         );
 
+
     const message =
         input.value.trim();
+
 
     if (!message) {
 
@@ -1619,18 +1489,22 @@ function sendFeedback() {
         return;
     }
 
+
     const email =
         "konstantinezedgina@gmail.com";
+
 
     const subject =
         encodeURIComponent(
             "3D House Website Feedback"
         );
 
+
     const body =
         encodeURIComponent(
             message
         );
+
 
     window.location.href =
         `mailto:${email}?subject=${subject}&body=${body}`;
