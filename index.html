@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3D House Store</title>
 
-<!-- Lexend Font -->
+<!-- Lexend font -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,7 @@
    RESET
 ========================================================= */
 
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -44,78 +43,70 @@ body {
     overflow-y: auto;
 
     background:
-        radial-gradient(
-            circle at 10% 10%,
-            rgba(110, 0, 255, 0.20),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(0, 150, 255, 0.17),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 100%,
-            rgba(255, 0, 150, 0.14),
-            transparent 35%
-        ),
+        radial-gradient(circle at 10% 10%, rgba(110, 0, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(0, 150, 255, 0.15), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(255, 0, 150, 0.12), transparent 35%),
         #03030c;
 }
 
 /* =========================================================
-   BACKGROUND CANVAS
+   ANIMATED BACKGROUND CANVAS
 ========================================================= */
 
 #spaceCanvas {
     position: fixed;
     top: 0;
     left: 0;
-
     width: 100vw;
     height: 100vh;
-
     z-index: 1;
-
     pointer-events: none;
-
     display: block;
 }
 
 /* =========================================================
-   BACKGROUND GRID
+   EXTRA BACKGROUND GRID
 ========================================================= */
 
 body::before {
     content: "";
-
     position: fixed;
     inset: 0;
-
     z-index: 0;
-
     pointer-events: none;
 
     background-image:
-        linear-gradient(
-            rgba(0, 200, 255, 0.045) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(0, 200, 255, 0.045) 1px,
-            transparent 1px
-        );
+        linear-gradient(rgba(0, 200, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 200, 255, 0.045) 1px, transparent 1px);
 
     background-size: 70px 70px;
-
+    animation: gridMove 20s linear infinite;
     opacity: 0.45;
+}
 
-    animation:
-        gridMove 20s linear infinite;
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+
+    background: radial-gradient(
+        circle,
+        rgba(0, 180, 255, 0.07),
+        transparent 68%
+    );
+
+    filter: blur(30px);
+    animation: ambientGlow 7s ease-in-out infinite alternate;
 }
 
 @keyframes gridMove {
-
     from {
         transform: translateY(0);
     }
@@ -125,46 +116,42 @@ body::before {
     }
 }
 
+@keyframes ambientGlow {
+    from {
+        opacity: 0.45;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
 /* =========================================================
-   QUICK ENTRANCE SCREEN
+   QUICK WEBSITE ENTRANCE
 ========================================================= */
 
 .intro-screen {
     position: fixed;
-
     inset: 0;
-
     z-index: 9999;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     background:
-        radial-gradient(
-            circle at center,
-            #19004d 0%,
-            #060114 50%,
-            #010106 100%
-        );
+        radial-gradient(circle at center, #19004d 0%, #060114 50%, #010106 100%);
 
     pointer-events: none;
 
-    animation:
-        introDisappear 1.15s ease forwards;
+    animation: introDisappear 1.15s ease forwards;
 }
 
 .intro-logo {
-    font-size:
-        clamp(
-            50px,
-            10vw,
-            100px
-        );
-
+    font-size: clamp(50px, 10vw, 100px);
     font-weight: 800;
-
     letter-spacing: -3px;
 
     background:
@@ -188,37 +175,24 @@ body::before {
         rainbow 5s linear infinite;
 
     filter:
-        drop-shadow(
-            0 0 25px
-            rgba(0, 200, 255, 0.5)
-        );
+        drop-shadow(0 0 25px rgba(0, 200, 255, 0.5));
 }
 
 @keyframes introLogo {
-
     from {
         opacity: 0;
-
-        transform:
-            scale(0.65);
-
-        filter:
-            blur(12px);
+        transform: scale(0.65);
+        filter: blur(12px);
     }
 
     to {
         opacity: 1;
-
-        transform:
-            scale(1);
-
-        filter:
-            blur(0);
+        transform: scale(1);
+        filter: blur(0);
     }
 }
 
 @keyframes introDisappear {
-
     0% {
         opacity: 1;
     }
@@ -238,49 +212,35 @@ body::before {
 ========================================================= */
 
 .main-container {
-
     position: relative;
-
     z-index: 10;
 
     width: 100%;
-
     max-width: 1200px;
 
     margin: 0 auto;
 
-    padding:
-        0 25px 50px;
+    padding: 0 25px 50px;
 
     opacity: 0;
 
     animation:
         layoutEntranceRise
         0.85s
-        cubic-bezier(
-            0.25,
-            1,
-            0.5,
-            1
-        )
+        cubic-bezier(0.25, 1, 0.5, 1)
         0.25s
         forwards;
 }
 
 @keyframes layoutEntranceRise {
-
     0% {
         opacity: 0;
-
-        transform:
-            translateY(50px);
+        transform: translateY(50px);
     }
 
     100% {
         opacity: 1;
-
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 }
 
@@ -289,39 +249,24 @@ body::before {
 ========================================================= */
 
 .header {
-
     margin-top: 55px;
-
-    padding:
-        20px 0 20px;
+    padding: 20px 0 15px;
 
     width: 100%;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
 }
 
 .header h1 {
+    margin: 10px 0 24px;
+    padding: 0 15px;
 
-    margin:
-        10px 0 24px;
-
-    padding:
-        0 15px;
-
-    font-size:
-        clamp(
-            55px,
-            10vw,
-            95px
-        );
+    font-size: clamp(55px, 10vw, 95px);
 
     line-height: 1.05;
 
@@ -354,19 +299,11 @@ body::before {
         titleFloat 4s ease-in-out infinite;
 
     filter:
-        drop-shadow(
-            0 0 12px
-            rgba(130, 0, 255, 0.45)
-        )
-
-        drop-shadow(
-            0 0 25px
-            rgba(0, 200, 255, 0.18)
-        );
+        drop-shadow(0 0 12px rgba(130, 0, 255, 0.45))
+        drop-shadow(0 0 25px rgba(0, 200, 255, 0.18));
 }
 
 @keyframes rainbow {
-
     0% {
         background-position: 0% 50%;
     }
@@ -377,9 +314,7 @@ body::before {
 }
 
 @keyframes titleFloat {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateY(0);
     }
 
@@ -389,58 +324,28 @@ body::before {
 }
 
 /* =========================================================
-   SUBTITLE UNDER 3D HOUSE
+   SUBTITLE
 ========================================================= */
 
 .header p {
-
     margin: 0;
 
-    font-size:
-        clamp(
-            17px,
-            3vw,
-            23px
-        );
+    font-size: clamp(17px, 3vw, 23px);
 
     text-align: center;
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.86
-        );
+    color: rgba(255, 255, 255, 0.86);
 
     letter-spacing: 1px;
 
     text-shadow:
-        0 0 8px
-        rgba(
-            255,
-            255,
-            255,
-            0.2
-        ),
+        0 0 8px rgba(255, 255, 255, 0.2),
+        0 0 18px rgba(0, 200, 255, 0.3);
 
-        0 0 18px
-        rgba(
-            0,
-            200,
-            255,
-            0.3
-        );
-
-    animation:
-        subtitleGlow
-        3s
-        ease-in-out
-        infinite alternate;
+    animation: subtitleGlow 3s ease-in-out infinite alternate;
 }
 
 .header p span {
-
     color: #00d9ff;
 
     font-weight: 800;
@@ -448,16 +353,10 @@ body::before {
     text-shadow:
         0 0 8px #00d9ff,
         0 0 18px #00d9ff,
-        0 0 35px rgba(
-            0,
-            217,
-            255,
-            0.55
-        );
+        0 0 35px rgba(0, 217, 255, 0.55);
 }
 
 @keyframes subtitleGlow {
-
     from {
         opacity: 0.78;
     }
@@ -468,38 +367,57 @@ body::before {
 }
 
 /* =========================================================
+   SOCIAL BUTTONS UNDER TITLE
+========================================================= */
+
+.social-buttons {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin: 20px auto 15px;
+}
+
+.social-buttons .btn {
+    position: relative;
+    z-index: 12;
+}
+
+/* =========================================================
    HEADINGS
 ========================================================= */
 
 h3 {
-
-    font-size:
-        clamp(
-            24px,
-            4vw,
-            32px
-        );
+    font-size: clamp(24px, 4vw, 32px);
 
     font-weight: 600;
 
-    margin:
-        30px 0 10px;
+    margin: 30px 0 10px;
 
     text-align: center;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.08),
+        0 0 20px rgba(0,180,255,0.12);
 }
 
 .section-title {
-
-    font-size:
-        clamp(
-            32px,
-            5vw,
-            40px
-        );
+    font-size: clamp(32px, 5vw, 40px);
 
     margin-top: 30px;
 
     text-align: center;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px rgba(0,200,255,0.25),
+        0 0 25px rgba(120,0,255,0.18);
 }
 
 /* =========================================================
@@ -507,11 +425,9 @@ h3 {
 ========================================================= */
 
 .examples {
-
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     gap: 12px;
@@ -522,7 +438,6 @@ h3 {
 }
 
 .examples img {
-
     width: 90px;
     height: 90px;
 
@@ -530,51 +445,25 @@ h3 {
 
     object-fit: cover;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
     box-shadow:
-        0 8px 20px
-        rgba(
-            0,
-            0,
-            0,
-            0.4
-        );
+        0 8px 20px rgba(0, 0, 0, 0.4);
 
     transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease;
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
 }
 
 .examples img:hover {
+    transform: scale(1.12) translateY(-5px);
 
-    transform:
-        scale(1.12)
-        translateY(-5px);
+    filter: brightness(1.12) saturate(1.1);
 
     box-shadow:
-        0 0 20px
-        rgba(
-            0,
-            200,
-            255,
-            0.35
-        ),
-
-        0 10px 25px
-        rgba(
-            0,
-            0,
-            0,
-            0.5
-        );
+        0 0 20px rgba(0, 200, 255, 0.35),
+        0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* =========================================================
@@ -582,11 +471,9 @@ h3 {
 ========================================================= */
 
 .products {
-
     display: flex;
 
     justify-content: center;
-
     align-items: stretch;
 
     gap: 40px;
@@ -597,7 +484,6 @@ h3 {
 }
 
 .product {
-
     width: 205px;
 
     padding: 15px;
@@ -609,40 +495,20 @@ h3 {
     background:
         linear-gradient(
             145deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.09
-            ),
-            rgba(
-                255,
-                255,
-                255,
-                0.025
-            )
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.025)
         );
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.08
-        );
+        1px solid rgba(255,255,255,0.08);
 
-    backdrop-filter:
-        blur(8px);
+    backdrop-filter: blur(8px);
 
     box-shadow:
-        0 15px 35px
-        rgba(
-            0,
-            0,
-            0,
-            0.35
-        );
+        0 15px 35px rgba(0,0,0,0.35);
+
+    position: relative;
+    overflow: hidden;
 
     transition:
         transform 0.35s ease,
@@ -650,40 +516,49 @@ h3 {
         border-color 0.35s ease;
 }
 
-.product:hover {
+/* Moving glass shine */
+.product::before {
+    content: "";
+    position: absolute;
+    top: -120%;
+    left: -70%;
 
+    width: 45%;
+    height: 300%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.16),
+            transparent
+        );
+
+    transform: rotate(25deg);
+
+    transition: left 0.7s ease;
+
+    pointer-events: none;
+}
+
+.product:hover::before {
+    left: 140%;
+}
+
+.product:hover {
     transform:
         translateY(-10px)
         scale(1.03);
 
     border-color:
-        rgba(
-            0,
-            200,
-            255,
-            0.45
-        );
+        rgba(0, 200, 255, 0.45);
 
     box-shadow:
-        0 20px 45px
-        rgba(
-            0,
-            0,
-            0,
-            0.5
-        ),
-
-        0 0 25px
-        rgba(
-            0,
-            200,
-            255,
-            0.18
-        );
+        0 20px 45px rgba(0,0,0,0.5),
+        0 0 25px rgba(0, 200, 255, 0.18);
 }
 
 .product img {
-
     width: 150px;
     height: 150px;
 
@@ -693,63 +568,72 @@ h3 {
 
     transition:
         transform 0.3s ease,
-        filter 0.3s ease;
+        filter 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.product img:hover {
-
-    transform:
-        scale(1.08);
+.product:hover img {
+    transform: scale(1.08);
 
     filter:
         brightness(1.1)
         saturate(1.1);
+
+    box-shadow:
+        0 0 20px rgba(0, 200, 255, 0.2);
 }
 
 .product p {
-
     margin-top: 10px;
+
+    transition:
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+.product:hover p {
+    color: #8eefff;
+
+    text-shadow:
+        0 0 10px rgba(0, 210, 255, 0.35);
 }
 
 /* =========================================================
-   MORE
+   MORE TEXT
 ========================================================= */
 
 .big-text {
-
-    font-size:
-        clamp(
-            35px,
-            6vw,
-            45px
-        );
+    font-size: clamp(35px, 6vw, 45px);
 
     font-weight: 600;
 
-    margin:
-        30px 0;
+    margin: 30px 0;
 
     text-align: center;
 
-    text-shadow:
-        0 0 10px #8a2be2,
-        0 0 25px
-        rgba(
-            138,
-            43,
-            226,
-            0.5
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #00d9ff,
+            #b000ff,
+            #ffffff
         );
 
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
     animation:
-        morePulse
-        3s
-        ease-in-out
-        infinite alternate;
+        morePulse 3s ease-in-out infinite alternate,
+        rainbow 7s linear infinite;
+
+    filter:
+        drop-shadow(0 0 10px rgba(138,43,226,0.4));
 }
 
 @keyframes morePulse {
-
     from {
         transform: scale(1);
     }
@@ -764,21 +648,16 @@ h3 {
 ========================================================= */
 
 p.contact-sub {
-
-    margin:
-        10px 0;
+    margin: 10px 0;
 
     text-align: center;
 
     line-height: 1.6;
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.78
-        );
+    color: rgba(255, 255, 255, 0.78);
+
+    text-shadow:
+        0 0 12px rgba(0,200,255,0.12);
 }
 
 /* =========================================================
@@ -787,7 +666,6 @@ p.contact-sub {
 
 .btn-container,
 .gmail-group-container {
-
     display: inline-block;
 
     position: relative;
@@ -796,19 +674,16 @@ p.contact-sub {
 }
 
 .gmail-group-container {
-
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     flex-wrap: wrap;
 
     gap: 8px;
 
-    margin:
-        10px auto;
+    margin: 10px auto;
 
     font-size: 18px;
 
@@ -816,38 +691,15 @@ p.contact-sub {
 }
 
 /* =========================================================
-   SOCIAL BUTTON AREA
-========================================================= */
-
-.social-buttons {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
-
-    margin:
-        18px auto 12px;
-}
-
-/* =========================================================
    BUTTONS
 ========================================================= */
 
 .btn {
-
     display: inline-block;
 
-    padding:
-        15px 25px;
+    padding: 15px 25px;
 
-    border-radius:
-        25px;
+    border-radius: 25px;
 
     color: white;
 
@@ -855,31 +707,18 @@ p.contact-sub {
 
     font-weight: 600;
 
-    font-family:
-        'Lexend',
-        sans-serif;
+    font-family: 'Lexend', sans-serif;
 
     position: relative;
 
     z-index: 12;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.15
-        );
+    border: 1px solid rgba(255, 255, 255, 0.15);
 
     box-shadow:
-        0 8px 20px
-        rgba(
-            0,
-            0,
-            0,
-            0.3
-        );
+        0 8px 20px rgba(0, 0, 0, 0.3);
+
+    overflow: hidden;
 
     transition:
         transform 0.3s ease,
@@ -887,35 +726,50 @@ p.contact-sub {
         filter 0.3s ease;
 }
 
-.btn:hover {
+/* Button shine */
+.btn::after {
+    content: "";
 
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    transform: skewX(-25deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.28),
+            transparent
+        );
+
+    transition: left 0.55s ease;
+
+    pointer-events: none;
+}
+
+.btn:hover::after {
+    left: 140%;
+}
+
+.btn:hover {
     transform:
         translateY(-4px)
         scale(1.08);
 
-    filter:
-        brightness(1.1);
+    filter: brightness(1.1);
 
     box-shadow:
-        0 12px 30px
-        rgba(
-            0,
-            0,
-            0,
-            0.45
-        ),
-
-        0 0 20px
-        rgba(
-            0,
-            200,
-            255,
-            0.3
-        );
+        0 12px 30px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(0, 200, 255, 0.3);
 }
 
 .messenger {
-
     background:
         linear-gradient(
             135deg,
@@ -925,7 +779,6 @@ p.contact-sub {
 }
 
 .facebook {
-
     background:
         linear-gradient(
             135deg,
@@ -939,99 +792,68 @@ p.contact-sub {
 ========================================================= */
 
 .gmail-title {
-
-    margin-top:
-        22px;
+    margin-top: 22px;
 
     text-align: center;
 
     font-size: 21px;
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.85
-        );
+    color: rgba(255, 255, 255, 0.85);
+
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.12);
 }
 
 .gmail-link {
-
     display: inline-flex;
 
     align-items: center;
 
     gap: 8px;
 
-    padding:
-        10px 14px;
+    padding: 10px 14px;
 
-    border-radius:
-        18px;
+    border-radius: 18px;
 
     text-decoration: none;
 
-    font-family:
-        'Lexend',
-        sans-serif;
+    font-family: 'Lexend', sans-serif;
 
     font-weight: 600;
 
     color: white;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.045
-        );
+        rgba(255, 255, 255, 0.045);
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.1
-        );
+        1px solid rgba(255, 255, 255, 0.1);
 
-    backdrop-filter:
-        blur(8px);
+    backdrop-filter: blur(8px);
 
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease,
-        border-color 0.3s ease;
+        border-color 0.3s ease,
+        background 0.3s ease;
 }
 
 .gmail-link:hover {
-
     transform:
         translateY(-4px)
         scale(1.03);
 
     border-color:
-        rgba(
-            255,
-            0,
-            170,
-            0.5
-        );
+        rgba(255, 0, 170, 0.5);
+
+    background:
+        rgba(255, 0, 170, 0.07);
 
     box-shadow:
-        0 0 20px
-        rgba(
-            255,
-            0,
-            170,
-            0.2
-        );
+        0 0 20px rgba(255, 0, 170, 0.2);
 }
 
 .gmail-icon {
-
     width: 25px;
     height: 25px;
 
@@ -1040,8 +862,7 @@ p.contact-sub {
     align-items: center;
     justify-content: center;
 
-    border-radius:
-        8px;
+    border-radius: 8px;
 
     background:
         linear-gradient(
@@ -1049,6 +870,9 @@ p.contact-sub {
             #ff0055,
             #ff9900
         );
+
+    box-shadow:
+        0 0 12px rgba(255,0,100,0.25);
 }
 
 /* =========================================================
@@ -1059,7 +883,6 @@ p.contact-sub {
 .btn-container::after,
 .gmail-group-container::before,
 .gmail-group-container::after {
-
     content: "";
 
     position: absolute;
@@ -1081,35 +904,22 @@ p.contact-sub {
 
 .btn-container:hover::before,
 .gmail-group-container:hover::before {
-
     animation:
         original-pop-1
         0.75s
-        cubic-bezier(
-            0.1,
-            0.8,
-            0.3,
-            1
-        );
+        cubic-bezier(0.1, 0.8, 0.3, 1);
 
     animation-iteration-count: 4;
 }
 
 .btn-container:hover::after,
 .gmail-group-container:hover::after {
-
     animation:
         original-pop-2
         0.75s
-        cubic-bezier(
-            0.1,
-            0.6,
-            0.2,
-            1
-        );
+        cubic-bezier(0.1, 0.6, 0.2, 1);
 
-    animation-delay:
-        0.15s;
+    animation-delay: 0.15s;
 
     animation-iteration-count: 4;
 }
@@ -1117,7 +927,6 @@ p.contact-sub {
 @keyframes original-pop-1 {
 
     0% {
-
         box-shadow:
             0 0 #ff0055,
             0 0 #00ffcc,
@@ -1130,12 +939,10 @@ p.contact-sub {
 
         opacity: 1;
 
-        transform:
-            scale(1);
+        transform: scale(1);
     }
 
     100% {
-
         box-shadow:
             -140px -90px 4px #ff0055,
             140px -90px 4px #00ffcc,
@@ -1148,15 +955,13 @@ p.contact-sub {
 
         opacity: 0;
 
-        transform:
-            scale(1.6);
+        transform: scale(1.6);
     }
 }
 
 @keyframes original-pop-2 {
 
     0% {
-
         box-shadow:
             0 0 #00ffff,
             0 0 #ff00ff,
@@ -1169,8 +974,7 @@ p.contact-sub {
 
         opacity: 0;
 
-        transform:
-            scale(0.5);
+        transform: scale(0.5);
     }
 
     20% {
@@ -1178,7 +982,6 @@ p.contact-sub {
     }
 
     100% {
-
         box-shadow:
             -110px -130px 2px #00ffff,
             110px -130px 2px #ff00ff,
@@ -1199,63 +1002,56 @@ p.contact-sub {
 
         opacity: 0;
 
-        transform:
-            scale(2.3);
+        transform: scale(2.3);
     }
 }
 
 /* =========================================================
-   FEEDBACK
+   FEEDBACK CARD
 ========================================================= */
 
 .feedback-section {
+    margin: 40px auto 0;
 
-    margin:
-        40px auto 0;
-
-    padding:
-        20px;
+    padding: 20px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.04
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
         );
 
-    border-radius:
-        20px;
+    border-radius: 20px;
 
     width: 90%;
 
-    max-width:
-        500px;
+    max-width: 500px;
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.05
-        );
+        1px solid rgba(255, 255, 255, 0.08);
 
-    backdrop-filter:
-        blur(5px);
+    backdrop-filter: blur(8px);
 
     box-shadow:
-        0 15px 35px
-        rgba(
-            0,
-            0,
-            0,
-            0.3
-        );
+        0 15px 35px rgba(0,0,0,0.3),
+        0 0 30px rgba(0,100,255,0.08);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.feedback-section:hover {
+    border-color: rgba(0,200,255,0.22);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.4),
+        0 0 35px rgba(0,180,255,0.12);
 }
 
 .feedback-section h3 {
-
     margin-top: 0;
 
     margin-bottom: 15px;
@@ -1264,7 +1060,6 @@ p.contact-sub {
 }
 
 .feedback-section input[type="text"] {
-
     width: 100%;
 
     padding: 12px;
@@ -1273,47 +1068,35 @@ p.contact-sub {
 
     border: none;
 
-    font-family:
-        'Lexend',
-        sans-serif;
+    font-family: 'Lexend', sans-serif;
 
     font-weight: 600;
 
     margin-bottom: 15px;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.95
-        );
+    background: rgba(255,255,255,0.95);
 
     color: #111;
 
     outline: none;
+
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
 .feedback-section input[type="text"]:focus {
+    transform: translateY(-2px);
 
     box-shadow:
         0 0 0 2px #00cfff,
-        0 0 20px
-        rgba(
-            0,
-            207,
-            255,
-            0.25
-        );
+        0 0 20px rgba(0, 207, 255, 0.25);
 }
 
 .feedback-section button {
+    padding: 12px 30px;
 
-    padding:
-        12px 30px;
-
-    border-radius:
-        25px;
+    border-radius: 25px;
 
     border: none;
 
@@ -1326,9 +1109,7 @@ p.contact-sub {
 
     color: white;
 
-    font-family:
-        'Lexend',
-        sans-serif;
+    font-family: 'Lexend', sans-serif;
 
     font-weight: 600;
 
@@ -1340,19 +1121,12 @@ p.contact-sub {
 }
 
 .feedback-section button:hover {
-
     transform:
         translateY(-3px)
         scale(1.05);
 
     box-shadow:
-        0 0 25px
-        rgba(
-            0,
-            180,
-            255,
-            0.4
-        );
+        0 0 25px rgba(0, 180, 255, 0.4);
 }
 
 /* =========================================================
@@ -1362,75 +1136,56 @@ p.contact-sub {
 @media (max-width: 600px) {
 
     .main-container {
-
         padding-left: 15px;
         padding-right: 15px;
     }
 
     .header {
-
         margin-top: 35px;
     }
 
     .header h1 {
-
         letter-spacing: -2px;
     }
 
     .examples img {
-
         width: 72px;
         height: 72px;
     }
 
     .products {
-
         gap: 20px;
     }
 
     .product {
-
-        width:
-            min(
-                100%,
-                280px
-            );
+        width: min(100%, 280px);
     }
 
     .product img {
-
         width: 190px;
         height: 190px;
     }
 
     .social-buttons {
-
-        flex-direction: row;
-
-        gap: 8px;
+        flex-direction: column;
+        gap: 9px;
     }
 
     .social-buttons .btn {
-
-        min-width: 145px;
-
+        min-width: 190px;
         text-align: center;
     }
 
     .gmail-group-container {
-
         flex-direction: column;
     }
 
     .gmail-link {
-
         max-width: 100%;
-
         font-size: 13px;
     }
 
     .feedback-section {
-
         width: 100%;
     }
 }
@@ -1444,15 +1199,9 @@ p.contact-sub {
     *,
     *::before,
     *::after {
-
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
@@ -1467,17 +1216,13 @@ p.contact-sub {
 ======================================================= -->
 
 <div class="intro-screen">
-
-```
-<div class="intro-logo">
-    3D HOUSE
-</div>
-```
-
+    <div class="intro-logo">
+        3D HOUSE
+    </div>
 </div>
 
 <!-- =======================================================
-     ANIMATED BACKGROUND
+     BACKGROUND CANVAS
 ======================================================= -->
 
 <canvas id="spaceCanvas"></canvas>
@@ -1501,8 +1246,39 @@ p.contact-sub {
         Where <span>YOUR</span> prints come to life!
     </p>
 
-</div>
+    <!-- CENTERED SOCIAL BUTTONS -->
 
+    <div class="social-buttons">
+
+        <div class="btn-container">
+
+            <a
+                href="https://www.messenger.com/e2ee/t/27930725193238751"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn messenger"
+            >
+                💬 Messenger
+            </a>
+
+        </div>
+
+        <div class="btn-container">
+
+            <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn facebook"
+            >
+                👍 Facebook
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 <!-- EXAMPLES -->
 
@@ -1510,43 +1286,25 @@ p.contact-sub {
     Examples of what we print!
 </h3>
 
-
 <div class="examples">
 
-    <img
-        src="dog.jpg"
-        alt="Dog 3D print"
-    >
+    <img src="dog.jpg" alt="Dog 3D print">
 
-    <img
-        src="cat.jpg"
-        alt="Cat 3D print"
-    >
+    <img src="cat.jpg" alt="Cat 3D print">
 
-    <img
-        src="snail.jpg"
-        alt="Snail 3D print"
-    >
+    <img src="snail.jpg" alt="Snail 3D print">
 
-    <img
-        src="seal.jpg"
-        alt="Seal 3D print"
-    >
+    <img src="seal.jpg" alt="Seal 3D print">
 
-    <img
-        src="axolotl.jpg"
-        alt="Axolotl 3D print"
-    >
+    <img src="axolotl.jpg" alt="Axolotl 3D print">
 
 </div>
-
 
 <!-- PRODUCTS -->
 
 <h2 class="section-title">
     Animals
 </h2>
-
 
 <div class="products">
 
@@ -1563,7 +1321,6 @@ p.contact-sub {
 
     </div>
 
-
     <div class="product">
 
         <img
@@ -1576,7 +1333,6 @@ p.contact-sub {
         </p>
 
     </div>
-
 
     <div class="product">
 
@@ -1593,13 +1349,11 @@ p.contact-sub {
 
 </div>
 
-
 <!-- MORE -->
 
 <div class="big-text">
     And More!
 </div>
-
 
 <!-- CONTACT -->
 
@@ -1607,60 +1361,16 @@ p.contact-sub {
     CREATE YOUR 3D PRINT HERE!
 </h3>
 
-
 <p class="contact-sub">
     Contact us here!<br>
     And get your prints!
 </p>
 
-
-<!-- ===================================================
-     MESSENGER + FACEBOOK
-     THESE ARE UNDER CONTACT US
-==================================================== -->
-
-<div class="social-buttons">
-
-    <div class="btn-container">
-
-        <a
-            href="https://www.messenger.com/e2ee/t/27930725193238751"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn messenger"
-        >
-            💬 Messenger
-        </a>
-
-    </div>
-
-
-    <div class="btn-container">
-
-        <!-- Replace this URL with your Facebook profile/page -->
-
-        <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn facebook"
-        >
-            👍 Facebook
-        </a>
-
-    </div>
-
-</div>
-
-
-<!-- ===================================================
-     EMAILS
-==================================================== -->
+<!-- GMAIL -->
 
 <div class="gmail-title">
     📧 Email us directly
 </div>
-
 
 <div class="gmail-group-container">
 
@@ -1677,7 +1387,6 @@ p.contact-sub {
 
     </a>
 
-
     <a
         class="gmail-link"
         href="mailto:demezedginidze@gmail.com"
@@ -1693,10 +1402,7 @@ p.contact-sub {
 
 </div>
 
-
-<!-- ===================================================
-     FEEDBACK
-==================================================== -->
+<!-- FEEDBACK -->
 
 <div class="feedback-section">
 
@@ -1704,13 +1410,11 @@ p.contact-sub {
         Tell Us What You Think
     </h3>
 
-
     <input
         type="text"
         id="feedbackInput"
         placeholder="Type your feedback..."
     >
-
 
     <button
         type="button"
@@ -1731,9 +1435,7 @@ p.contact-sub {
 <script>
 
 const canvas =
-    document.getElementById(
-        "spaceCanvas"
-    );
+    document.getElementById("spaceCanvas");
 
 const ctx =
     canvas.getContext("2d");
@@ -1741,9 +1443,9 @@ const ctx =
 let particles = [];
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    RESIZE CANVAS
-========================================================= */
+--------------------------------------------------------- */
 
 function resizeCanvas() {
 
@@ -1757,9 +1459,9 @@ function resizeCanvas() {
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    CREATE PARTICLES
-========================================================= */
+--------------------------------------------------------- */
 
 function createParticles() {
 
@@ -1768,9 +1470,7 @@ function createParticles() {
     const amount =
         Math.min(
             140,
-            Math.floor(
-                window.innerWidth / 8
-            )
+            Math.floor(window.innerWidth / 8)
         );
 
     for (
@@ -1811,9 +1511,9 @@ function createParticles() {
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    ANIMATE BACKGROUND
-========================================================= */
+--------------------------------------------------------- */
 
 function animateBackground() {
 
@@ -1824,13 +1524,11 @@ function animateBackground() {
         canvas.height
     );
 
-
     particles.forEach(
         particle => {
 
             particle.y -=
                 particle.speed;
-
 
             if (
                 particle.y < -10
@@ -1845,9 +1543,7 @@ function animateBackground() {
 
             }
 
-
             ctx.beginPath();
-
 
             ctx.arc(
                 particle.x,
@@ -1857,7 +1553,6 @@ function animateBackground() {
                 Math.PI * 2
             );
 
-
             ctx.fillStyle =
                 `hsla(
                     ${particle.hue},
@@ -1866,9 +1561,7 @@ function animateBackground() {
                     ${particle.opacity}
                 )`;
 
-
             ctx.shadowBlur = 12;
-
 
             ctx.shadowColor =
                 `hsla(
@@ -1878,12 +1571,10 @@ function animateBackground() {
                     0.8
                 )`;
 
-
             ctx.fill();
 
         }
     );
-
 
     requestAnimationFrame(
         animateBackground
@@ -1891,9 +1582,9 @@ function animateBackground() {
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+/* ---------------------------------------------------------
+   START BACKGROUND
+--------------------------------------------------------- */
 
 resizeCanvas();
 
@@ -1905,9 +1596,9 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   FEEDBACK EMAIL
-========================================================= */
+/* ---------------------------------------------------------
+   FEEDBACK
+--------------------------------------------------------- */
 
 function sendFeedback() {
 
@@ -1916,10 +1607,8 @@ function sendFeedback() {
             "feedbackInput"
         );
 
-
     const message =
         input.value.trim();
-
 
     if (!message) {
 
@@ -1930,22 +1619,18 @@ function sendFeedback() {
         return;
     }
 
-
     const email =
         "konstantinezedgina@gmail.com";
-
 
     const subject =
         encodeURIComponent(
             "3D House Website Feedback"
         );
 
-
     const body =
         encodeURIComponent(
             message
         );
-
 
     window.location.href =
         `mailto:${email}?subject=${subject}&body=${body}`;
